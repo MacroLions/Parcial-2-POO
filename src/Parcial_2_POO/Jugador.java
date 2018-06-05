@@ -59,9 +59,9 @@ public class Jugador {
     public void Construir(){
         Scanner input = new Scanner(System.in);
         System.out.println("Construir:");
-        System.out.println("1. Maquina de Oro");
-        System.out.println("2. Maquina de Magia");
-        System.out.println("3. Maquina de Diamantes");
+        System.out.println("1. Maquina de Oro (100 de Magia)");
+        System.out.println("2. Maquina de Magia (100 de oro)");
+        System.out.println("3. Maquina de Diamantes (500 de Oro, 500 de Magia)");
         
         System.out.print("Opcion: ");
         int op = input.nextInt();
