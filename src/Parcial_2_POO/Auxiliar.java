@@ -24,7 +24,26 @@ public class Auxiliar {
         } 
         return contador;
     }
+    
+    public static int RecolectorMaster(ArrayList lista, Edificacion MaquinaRecursos){
+        int contador=0;
+        for(int i = 0; i<lista.size();i++){
+            if(lista.get(i).getClass()==MaquinaRecursos.getClass()){
+                Edificacion Master = (Edificacion) lista.get(i);
+                contador=contador + Master.EntregarRecursos();
+            }    
+        } 
+        return contador;
+    }
 
+        public static void RecursosCreatorMaster(ArrayList lista, Edificacion MaquinaRecursos){
+        for(int i = 0; i<lista.size();i++){
+            if(lista.get(i).getClass()==MaquinaRecursos.getClass()){
+                Edificacion MaquinaRecursosMaster = (Edificacion) lista.get(i);
+                MaquinaRecursosMaster.GenerarRecursos();
+            }    
+        }
+    }
 
 
 
