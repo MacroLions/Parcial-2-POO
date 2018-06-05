@@ -13,8 +13,13 @@ public class EdificacionFactory {
     public static Edificacion getEdificacion(int opcion) {
         switch(opcion){
             case 1:
-                Edificacion Edificacion = new MaquinadeDiamantes();
-                return Edificacion;
+                return new MaquinadeOro();
+                
+            case 2:
+                return new MaquinadeMagia();
+                
+            case 3:
+                return new MaquinadeDiamantes();
         }
         return null;
     }
