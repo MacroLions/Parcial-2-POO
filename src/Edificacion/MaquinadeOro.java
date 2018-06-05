@@ -10,10 +10,12 @@ import java.util.Date;
  *
  * @author Mai Perez
  */
-public abstract class MaquinadeOro implements Edificacion {
+public class MaquinadeOro implements Edificacion {
     int Vida=1000;
     int RecursosGuardados;
     int tiempoAnterior=0;
+    
+    MaquinadeOro(){}
     
     @Override
     public void GenerarRecursos() {
