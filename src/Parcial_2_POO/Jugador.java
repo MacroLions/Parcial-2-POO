@@ -69,17 +69,39 @@ public class Jugador {
         
         switch(op){
             case 1:
-                Edificaciones.add(EdificacionFactory.getEdificacion(op));
-                System.out.println("Se construyó maquina de Oro");
-                break;
+                if(this.MagiaTotal>=100){
+                    this.MagiaTotal=this.MagiaTotal-100;
+                    Edificaciones.add(EdificacionFactory.getEdificacion(op));
+                    System.out.println("Se construyó maquina de Oro");
+                    break;
+                }
+                else{
+                    System.out.println("No hay suficiente Magia.");
+                    break;
+                }
             case 2:
-                Edificaciones.add(EdificacionFactory.getEdificacion(op));
-                System.out.println("Se construyó maquina de Magia");
-                break;
+                if(this.OroTotal>=100){
+                    this.OroTotal=this.OroTotal-100;
+                    Edificaciones.add(EdificacionFactory.getEdificacion(op));
+                    System.out.println("Se construyó maquina de Magia");
+                    break;
+                }
+                else{
+                    System.out.println("No hay suficiente Oro.");
+                    break;
+                }
             case 3:
-                Edificaciones.add(EdificacionFactory.getEdificacion(op));
-                System.out.println("Se construyó maquina de diamantes");
-                break;
+                if(this.OroTotal>=500&&this.MagiaTotal>=500){
+                    this.OroTotal=this.OroTotal-500;
+                    this.MagiaTotal=this.MagiaTotal-500;
+                    Edificaciones.add(EdificacionFactory.getEdificacion(op));
+                    System.out.println("Se construyó maquina de diamantes");
+                    break;
+                }
+                else{
+                    System.out.println("No hay Magia u Oro suficiente.");
+                    break;
+                }
         }
         
     };
