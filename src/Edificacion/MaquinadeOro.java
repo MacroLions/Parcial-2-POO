@@ -12,34 +12,33 @@ import java.util.Date;
  */
 public class MaquinadeOro implements Edificacion {
     int Vida=1000;
-    int RecursosGuardados;
-    int tiempoAnterior=0;
+    int RecursosGuardados=0;
+    Date tiempoAnterior=null;
     
     MaquinadeOro(){}
     
     @Override
     public void GenerarRecursos() {
         
-        if(Vida!=0){
-            int segundosActuales = new Date().getSeconds();
-        
-            if(tiempoAnterior==0){
-                this.tiempoAnterior=segundosActuales;
+        if(this.Vida!=0){
+            Date TiempoActual = new Date();
+            if(tiempoAnterior==null){
+                this.tiempoAnterior=TiempoActual;
             }
-        
-            this.RecursosGuardados= this.RecursosGuardados+ (segundosActuales-tiempoAnterior)*100;
+            float calculo= (int) (TiempoActual.getTime()-tiempoAnterior.getTime());
+            this.RecursosGuardados=this.RecursosGuardados+(int)(calculo*0.02);
+            this.tiempoAnterior=TiempoActual;
         }
     }
 
     @Override
     public int EntregarRecursos() {
-        if(RecursosGuardados>0){
-            int Entregado = (int) this.RecursosGuardados;
+        if(this.RecursosGuardados>0){
+            int Entregado = this.RecursosGuardados;
             this.RecursosGuardados=0;
             return Entregado; 
         }
         else{
-            System.out.println("No hay Oro");
             return 0;
         }
     }

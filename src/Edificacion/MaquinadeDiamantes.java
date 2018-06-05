@@ -13,7 +13,7 @@ import java.util.Date;
 public class MaquinadeDiamantes implements Edificacion {
     int Vida=1000;
     double RecursosGuardados;
-    int tiempoAnterior=0;
+    Date tiempoAnterior=null;
     
     
     MaquinadeDiamantes(){}
@@ -22,29 +22,29 @@ public class MaquinadeDiamantes implements Edificacion {
     @Override
     public void GenerarRecursos() {
         
-        if(Vida!=0){
-            int segundosActuales = new Date().getSeconds();
-        
-            if(tiempoAnterior==0){
-                this.tiempoAnterior=segundosActuales;
+        if(this.Vida!=0){
+            Date TiempoActual = new Date();
+            if(tiempoAnterior==null){
+                this.tiempoAnterior=TiempoActual;
             }
-        
-            this.RecursosGuardados= this.RecursosGuardados+ (segundosActuales-tiempoAnterior)*.05;
+            float calculo= (int) (TiempoActual.getTime()-tiempoAnterior.getTime());
+            this.RecursosGuardados=this.RecursosGuardados+(int)(calculo*0.0002);
+            this.tiempoAnterior=TiempoActual;
         }
     }
 
     @Override
     public int EntregarRecursos() {
-        if(RecursosGuardados>0){
+        if(this.RecursosGuardados>0){
             int Entregado = (int) this.RecursosGuardados;
             this.RecursosGuardados=0;
             return Entregado; 
         }
         else{
-            System.out.println("No hay Diamantes");
             return 0;
         }
     }
+
     
     @Override
     public void RecibirDamage(int damage){
