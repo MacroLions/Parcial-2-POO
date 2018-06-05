@@ -10,10 +10,13 @@ import java.util.Date;
  *
  * @author Mai Perez
  */
-public abstract class MaquinadeDiamantes implements Edificacion {
+public class MaquinadeDiamantes implements Edificacion {
     int Vida=1000;
     double RecursosGuardados;
     int tiempoAnterior=0;
+    
+    
+    MaquinadeDiamantes(){}
     
     
     @Override
@@ -47,6 +50,16 @@ public abstract class MaquinadeDiamantes implements Edificacion {
     public void RecibirDamage(int damage){
         this.Vida=this.Vida-damage;
     };
+
+    @Override
+    public void GenerarTropa() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void GenerarVehiculo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     
 }
