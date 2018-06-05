@@ -10,5 +10,7 @@ package Tropa;
  * @author Maishi
  */
 public interface Tropa {
+    public int Atacar();
+    public boolean Viajar(int FaseActual);
     
 }
