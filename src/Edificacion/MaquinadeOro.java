@@ -48,5 +48,15 @@ public class MaquinadeOro implements Edificacion {
     public void RecibirDamage(int damage){
         this.Vida=this.Vida-damage;
     };
+
+    @Override
+    public void GenerarTropa() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void GenerarVehiculo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
