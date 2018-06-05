@@ -10,10 +10,12 @@ import java.util.Date;
  *
  * @author Mai Perez
  */
-public abstract class MaquinadeMagia implements Edificacion {
+public class MaquinadeMagia implements Edificacion {
     int Vida=1000;
     int RecursosGuardados;
     int tiempoAnterior=0;
+    
+    MaquinadeMagia(){}
     
     @Override
     public void GenerarRecursos() {
