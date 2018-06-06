@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author Mai Perez
  */
-public class Auxiliar {
+public class Auxiliar extends Thread{
     //Esto es como se haría una variable global xD static int contador=0;
     
     public static int RevisarEdificaciones(ArrayList lista, Edificacion EdificacionABuscar){
@@ -36,6 +36,7 @@ public class Auxiliar {
         return contador;
     }
 
+    
         public static void RecursosCreatorMaster(ArrayList lista, Edificacion MaquinaRecursos){
         for(int i = 0; i<lista.size();i++){
             if(lista.get(i).getClass()==MaquinaRecursos.getClass()){
