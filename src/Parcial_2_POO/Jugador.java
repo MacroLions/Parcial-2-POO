@@ -33,9 +33,12 @@ public class Jugador {
     
     public void MenuJugador(){
         Scanner input = new Scanner(System.in);
+        
+        /*
         Auxiliar.RecursosCreatorMaster(Edificaciones, EdificacionFactory.getEdificacion(1));
         Auxiliar.RecursosCreatorMaster(Edificaciones, EdificacionFactory.getEdificacion(2));
         Auxiliar.RecursosCreatorMaster(Edificaciones, EdificacionFactory.getEdificacion(3));
+        */
         
         System.out.println("////Hola "+this.nombre+" ¿Que quieres en este turno?////");
         System.out.println("Recursos disponibles: Oro: "+this.OroTotal+" Magia: "+this.MagiaTotal+" Diamantes: "+this.Diamantes);
