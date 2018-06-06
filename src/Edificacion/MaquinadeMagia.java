@@ -5,17 +5,31 @@
  */
 package Edificacion;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Mai Perez
  */
-public class MaquinadeMagia implements Edificacion {
+public class MaquinadeMagia extends Thread implements Edificacion {
     int Vida=1000;
     int RecursosGuardados;
     Date tiempoAnterior=null;
     
     MaquinadeMagia(){}
+    
+    @Override
+    public void run(){
+        GenerarRecursos();
+        try {
+            sleep(1);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(MaquinadeDiamantes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
     
     @Override
     public void GenerarRecursos() {

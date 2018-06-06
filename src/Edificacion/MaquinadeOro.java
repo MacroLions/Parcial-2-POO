@@ -4,18 +4,33 @@
  * and open the template in the editor.
  */
 package Edificacion;
+import static java.lang.Thread.sleep;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Mai Perez
  */
-public class MaquinadeOro implements Edificacion {
+public class MaquinadeOro extends Thread implements Edificacion {
     int Vida=1000;
     int RecursosGuardados=0;
     Date tiempoAnterior=null;
     
     MaquinadeOro(){}
+    
+    @Override
+    public void run(){
+        GenerarRecursos();
+        try {
+            sleep(1);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(MaquinadeDiamantes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
     
     @Override
     public void GenerarRecursos() {

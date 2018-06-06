@@ -5,18 +5,31 @@
  */
 package Edificacion;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Mai Perez
  */
-public class MaquinadeDiamantes implements Edificacion {
+public class MaquinadeDiamantes extends Thread implements Edificacion {
     int Vida=1000;
     double RecursosGuardados;
     Date tiempoAnterior=null;
     
     
     MaquinadeDiamantes(){}
+    
+    @Override
+    public void run(){
+        GenerarRecursos();
+        try {
+            sleep(1);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(MaquinadeDiamantes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
     
     
     @Override
@@ -28,7 +41,7 @@ public class MaquinadeDiamantes implements Edificacion {
                 this.tiempoAnterior=TiempoActual;
             }
             float calculo= (int) (TiempoActual.getTime()-tiempoAnterior.getTime());
-            this.RecursosGuardados=this.RecursosGuardados+(int)(calculo*0.00003125);
+            this.RecursosGuardados=this.RecursosGuardados+(int)(calculo*0.001);
             this.tiempoAnterior=TiempoActual;
         }
     }
