@@ -41,7 +41,7 @@ public class Auxiliar extends Thread{
         for(int i = 0; i<lista.size();i++){
             if(lista.get(i).getClass()==MaquinaRecursos.getClass()){
                 Edificacion MaquinaRecursosMaster = (Edificacion) lista.get(i);
-                MaquinaRecursosMaster.GenerarRecursos();
+                MaquinaRecursosMaster.run();
             }    
         }
     }
