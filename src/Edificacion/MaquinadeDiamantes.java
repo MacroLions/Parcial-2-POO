@@ -28,14 +28,14 @@ public class MaquinadeDiamantes implements Edificacion {
                 this.tiempoAnterior=TiempoActual;
             }
             float calculo= (int) (TiempoActual.getTime()-tiempoAnterior.getTime());
-            this.RecursosGuardados=this.RecursosGuardados+(int)(calculo*0.0002);
+            this.RecursosGuardados=this.RecursosGuardados+(int)(calculo*0.00003125);
             this.tiempoAnterior=TiempoActual;
         }
     }
 
     @Override
     public int EntregarRecursos() {
-        if(this.RecursosGuardados>0){
+        if(this.RecursosGuardados>=1){
             int Entregado = (int) this.RecursosGuardados;
             this.RecursosGuardados=0;
             return Entregado; 

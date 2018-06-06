@@ -32,7 +32,7 @@ public class MaquinadeMagia implements Edificacion {
 
     @Override
     public int EntregarRecursos() {
-        if(this.RecursosGuardados>0){
+        if(this.RecursosGuardados>=0){
             int Entregado = this.RecursosGuardados;
             this.RecursosGuardados=0;
             return Entregado; 
