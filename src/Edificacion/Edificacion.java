@@ -17,5 +17,7 @@ public interface Edificacion {
     
     public void GenerarVehiculo();
     public void RecibirDamage(int damage);
+
+    public void run();
     
 }
