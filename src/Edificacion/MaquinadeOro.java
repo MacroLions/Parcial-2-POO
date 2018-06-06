@@ -18,7 +18,9 @@ public class MaquinadeOro extends Thread implements Edificacion {
     int RecursosGuardados=0;
     Date tiempoAnterior=null;
     
-    MaquinadeOro(){}
+    MaquinadeOro(){
+        start();
+    }
     
     @Override
     public void run(){
@@ -35,7 +37,7 @@ public class MaquinadeOro extends Thread implements Edificacion {
     @Override
     public void GenerarRecursos() {
         
-        if(this.Vida!=0){
+        while(this.Vida!=0){
             Date TiempoActual = new Date();
             if(tiempoAnterior==null){
                 this.tiempoAnterior=TiempoActual;

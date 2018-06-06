@@ -17,7 +17,9 @@ public class MaquinadeMagia extends Thread implements Edificacion {
     int RecursosGuardados;
     Date tiempoAnterior=null;
     
-    MaquinadeMagia(){}
+    MaquinadeMagia(){
+        start();
+    }
     
     @Override
     public void run(){
@@ -33,7 +35,7 @@ public class MaquinadeMagia extends Thread implements Edificacion {
     
     @Override
     public void GenerarRecursos() {
-        if(this.Vida!=0){
+        while(this.Vida!=0){
             Date TiempoActual = new Date();
             if(tiempoAnterior==null){
                 this.tiempoAnterior=TiempoActual;

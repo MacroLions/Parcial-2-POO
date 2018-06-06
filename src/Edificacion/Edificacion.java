@@ -19,5 +19,7 @@ public interface Edificacion {
     public void RecibirDamage(int damage);
 
     public void run();
+
+    public void start();
     
 }

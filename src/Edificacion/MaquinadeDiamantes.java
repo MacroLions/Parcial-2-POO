@@ -18,7 +18,9 @@ public class MaquinadeDiamantes extends Thread implements Edificacion {
     Date tiempoAnterior=null;
     
     
-    MaquinadeDiamantes(){}
+    MaquinadeDiamantes(){
+        start();
+    }
     
     @Override
     public void run(){
@@ -35,7 +37,7 @@ public class MaquinadeDiamantes extends Thread implements Edificacion {
     @Override
     public void GenerarRecursos() {
         
-        if(this.Vida!=0){
+        while(this.Vida!=0){
             Date TiempoActual = new Date();
             if(tiempoAnterior==null){
                 this.tiempoAnterior=TiempoActual;
