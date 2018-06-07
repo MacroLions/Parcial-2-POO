@@ -45,6 +45,18 @@ public class Auxiliar extends Thread{
             }    
         }
     }
+    
+    public static void TropaCreatorMaster(ArrayList lista, Edificacion MaquinaRecursos){
+        for(int i = 0; i<lista.size();i++){
+            if(lista.get(i).getClass()==MaquinaRecursos.getClass()){
+                Edificacion MaquinaTropaMaster = (Edificacion) lista.get(i);
+                if(MaquinaTropaMaster.isDisponibilidad()==false){
+                    MaquinaTropaMaster.run();
+                }
+                
+            }    
+        }
+    }
 
     
     //Gets and Sets globales. ¿?
