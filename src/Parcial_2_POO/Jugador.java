@@ -5,6 +5,7 @@
  */
 package Parcial_2_POO;
 
+import Edificacion.Cuartel;
 import Edificacion.Edificacion;
 import Edificacion.EdificacionFactory;
 import Razas.Raza;
@@ -44,6 +45,7 @@ public class Jugador {
         System.out.println("Recursos disponibles: Oro: "+this.OroTotal+" Magia: "+this.MagiaTotal+" Diamantes: "+this.Diamantes);
         System.out.println("1. Construir");
         System.out.println("2. Recolectar Recursos");
+        System.out.println("3. Entrenar Tropa");
         
         System.out.print("Opcion: ");
         int op = input.nextInt();
@@ -55,6 +57,9 @@ public class Jugador {
                 break;
             case 2:
                 RecolectarRecursos();
+                break;
+            case 3:
+                EntrenarTropa();
                 break;
         }
     }
@@ -151,6 +156,35 @@ public class Jugador {
                 System.out.println("Se ha recolectado todo lo posible");
                 
             }
+        }
+        
+        else if(Edificaciones.isEmpty()){
+                System.out.println("No hay edificaciones");    
+        }
+           
+    };
+    
+    
+    public void EntrenarTropa(){
+        Scanner input = new Scanner(System.in);
+        if(Edificaciones.isEmpty()==false){
+            System.out.println("Maquinas disponibles:");
+            int Comprobador_1 = Auxiliar.RevisarEdificaciones(Edificaciones, EdificacionFactory.getEdificacion(4));
+        
+            if(Comprobador_1==0){
+                System.out.println("No hay Cuarteles, solo otro tipo de edificaciones.");
+            }
+            int contador = 0;
+            for(int i = 0; i<this.Edificaciones.size() ;i++){
+                Edificacion EdificacionABuscar = EdificacionFactory.getEdificacion(4);
+                if(Edificaciones.get(i).getClass()==EdificacionABuscar.getClass()){
+                    Cuartel cuartel = (Cuartel) Edificaciones.get(i);
+                    System.out.println("Cuartel #"+contador+" Disponibilidad: "+cuartel.isDisponibilidad());
+                    contador= contador+1;
+                }
+                    
+            }    
+            
         }
         
         else if(Edificaciones.isEmpty()){
