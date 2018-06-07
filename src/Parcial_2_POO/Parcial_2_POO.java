@@ -15,13 +15,13 @@ public class Parcial_2_POO {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+          
         Jugador Mai = new Jugador("Mai");
         while(true){
             Mai.MenuJugador();
             System.out.println("");
         }
-        
+      
     }
     
 }

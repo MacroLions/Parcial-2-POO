@@ -9,8 +9,8 @@ package Tropa;
  *
  * @author Mai Perez
  */
-public class TropaFactory {
-     public static Tropa getTropa(int opcion) {
+public class TropaFactory {  
+    public static Tropa getTropa(int opcion) {
         switch(opcion){
             case 1:
                 return new Escuadron();
