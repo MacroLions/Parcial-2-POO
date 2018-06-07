@@ -16,6 +16,7 @@ import Tropa.TropaFactory;
  */
 public class Cuartel extends Thread implements Edificacion{
     private int FaseSet=-1;
+    private boolean Disponibilidad=true;
     
     public Tropa GenerarTropa(int op){
         int FaseActual = Auxiliar.getFase();
@@ -54,6 +55,24 @@ public class Cuartel extends Thread implements Edificacion{
     public void run() {
         
     }
+
+    public int getFaseSet() {
+        return FaseSet;
+    }
+
+    public void setFaseSet(int FaseSet) {
+        this.FaseSet = FaseSet;
+    }
+
+    public boolean isDisponibilidad() {
+        return Disponibilidad;
+    }
+
+    public void setDisponibilidad(boolean Disponibilidad) {
+        this.Disponibilidad = Disponibilidad;
+    }
+    
+    
 
 
     @Override
