@@ -34,11 +34,11 @@ public class Jugador {
     public void MenuJugador(){
         Scanner input = new Scanner(System.in);
         
-        /*
+
         Auxiliar.RecursosCreatorMaster(Edificaciones, EdificacionFactory.getEdificacion(1));
         Auxiliar.RecursosCreatorMaster(Edificaciones, EdificacionFactory.getEdificacion(2));
         Auxiliar.RecursosCreatorMaster(Edificaciones, EdificacionFactory.getEdificacion(3));
-        */
+
         
         System.out.println("////Hola "+this.nombre+" ¿Que quieres en este turno?////");
         System.out.println("Recursos disponibles: Oro: "+this.OroTotal+" Magia: "+this.MagiaTotal+" Diamantes: "+this.Diamantes);
@@ -62,9 +62,9 @@ public class Jugador {
     public void Construir(){
         Scanner input = new Scanner(System.in);
         System.out.println("Construir:");
-        System.out.println("1. Maquina de Oro (100 de Magia)");
-        System.out.println("2. Maquina de Magia (100 de oro)");
-        System.out.println("3. Maquina de Diamantes (500 de Oro, 500 de Magia)");
+        System.out.println("1. Maquina de Oro (200 de Magia)");
+        System.out.println("2. Maquina de Magia (200 de oro)");
+        System.out.println("3. Maquina de Diamantes (600 de Oro, 600 de Magia)");
         
         System.out.print("Opcion: ");
         int op = input.nextInt();
@@ -72,8 +72,8 @@ public class Jugador {
         
         switch(op){
             case 1:
-                if(this.MagiaTotal>=100){
-                    this.MagiaTotal=this.MagiaTotal-100;
+                if(this.MagiaTotal>=200){
+                    this.MagiaTotal=this.MagiaTotal-200;
                     Edificaciones.add(EdificacionFactory.getEdificacion(op));
                     System.out.println("Se construyó maquina de Oro");
                     break;
@@ -83,8 +83,8 @@ public class Jugador {
                     break;
                 }
             case 2:
-                if(this.OroTotal>=100){
-                    this.OroTotal=this.OroTotal-100;
+                if(this.OroTotal>=200){
+                    this.OroTotal=this.OroTotal-200;
                     Edificaciones.add(EdificacionFactory.getEdificacion(op));
                     System.out.println("Se construyó maquina de Magia");
                     break;
@@ -94,9 +94,9 @@ public class Jugador {
                     break;
                 }
             case 3:
-                if(this.OroTotal>=500&&this.MagiaTotal>=500){
-                    this.OroTotal=this.OroTotal-500;
-                    this.MagiaTotal=this.MagiaTotal-500;
+                if(this.OroTotal>=600&&this.MagiaTotal>=600){
+                    this.OroTotal=this.OroTotal-600;
+                    this.MagiaTotal=this.MagiaTotal-600;
                     Edificaciones.add(EdificacionFactory.getEdificacion(op));
                     System.out.println("Se construyó maquina de diamantes");
                     break;
