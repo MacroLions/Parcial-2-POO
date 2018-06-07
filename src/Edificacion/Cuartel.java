@@ -7,6 +7,8 @@ package Edificacion;
 
 import Parcial_2_POO.Auxiliar;
 import Tropa.Tropa;
+import Tropa.TropaFactory;
+
 
 /**
  *
@@ -16,13 +18,36 @@ public class Cuartel extends Thread implements Edificacion{
     private int FaseSet=-1;
     
     public Tropa GenerarTropa(int op){
-        int FaseActual=Auxiliar.getFase();
-        if(FaseSet==-1){
-            FaseSet=FaseActual;
+        int FaseActual = Auxiliar.getFase();
+        
+        if(this.FaseSet==-1){
+            this.FaseSet=FaseActual;
+            switch(op){
+                case 1:
+                    Tropa Tropa= TropaFactory.getTropa(op);
+                    int calculoFase=FaseActual-this.FaseSet;
+                    while(Tropa.ComprobadorDisponibilidad(calculoFase)==false){
+                        FaseActual = Auxiliar.getFase();
+                        calculoFase=FaseActual-this.FaseSet;
+                    }
+                    this.FaseSet=-1;
+                    return Tropa;
+                case 2:
+                    Tropa Tropa2= TropaFactory.getTropa(op);
+                    int calculoFase2=FaseActual-this.FaseSet;
+                    while(Tropa2.ComprobadorDisponibilidad(calculoFase2)==false){
+                        FaseActual = Auxiliar.getFase();
+                        calculoFase2=FaseActual-this.FaseSet;
+                    }
+                    this.FaseSet=-1;
+                    return Tropa2;    
+            }
+        }
+        else{
+            System.out.println("El cuartel está siendo ocupado por otra tropa.");
         }
         
         return null;
-   
     }
     
     @Override
