@@ -5,8 +5,6 @@
  */
 package Edificacion;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -14,8 +12,8 @@ import java.util.logging.Logger;
  */
 public class MaquinadeMagia extends Thread implements Edificacion {
     int Vida=1000;
-    int RecursosGuardados;
-    Date tiempoAnterior=null;
+    float RecursosGuardados;
+    int tiempoAnterior=0;
     
     MaquinadeMagia(){
         start();
@@ -23,11 +21,8 @@ public class MaquinadeMagia extends Thread implements Edificacion {
     
     @Override
     public void run(){
-        GenerarRecursos();
-        try {
-            sleep(1);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(MaquinadeDiamantes.class.getName()).log(Level.SEVERE, null, ex);
+        while(true){
+            GenerarRecursos();
         }
         
     }
@@ -35,22 +30,26 @@ public class MaquinadeMagia extends Thread implements Edificacion {
     
     @Override
     public void GenerarRecursos() {
-        while(this.Vida!=0){
-            Date TiempoActual = new Date();
-            if(tiempoAnterior==null){
+        
+        if(this.Vida!=0){
+            Date DateActual = new Date();
+            int TiempoActual= DateActual.getHours()*3600+DateActual.getMinutes()*60+DateActual.getSeconds();
+            if(tiempoAnterior==0){
                 this.tiempoAnterior=TiempoActual;
             }
-            float calculo= (int) (TiempoActual.getTime()-tiempoAnterior.getTime());
-            this.RecursosGuardados=this.RecursosGuardados+(int)(calculo*0.04);
-            this.tiempoAnterior=TiempoActual;
+            else{
+                int calculo= TiempoActual-tiempoAnterior;
+                this.RecursosGuardados=this.RecursosGuardados+ (float)(calculo*5);
+                this.tiempoAnterior=TiempoActual;
+            }
         }
     }
 
     @Override
     public int EntregarRecursos() {
         if(this.RecursosGuardados>=0){
-            int Entregado = this.RecursosGuardados;
-            this.RecursosGuardados=0;
+            int Entregado = (int) this.RecursosGuardados;
+            this.RecursosGuardados=this.RecursosGuardados-Entregado;
             return Entregado; 
         }
         else{
