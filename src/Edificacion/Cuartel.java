@@ -28,8 +28,9 @@ public class Cuartel extends Thread implements Edificacion{
         }
         int comprobador = Auxiliar.getFase()-this.FaseSet;
         if(comprobador==2){
-            System.out.println("La tropa ha sido generada");
-            System.out.println("");
+            if(TipoDeTropa==1){System.out.println("El escuadron ha sido entrenado/n");   
+            }else if(TipoDeTropa==2){System.out.println("El Super Soldado ha sido entrenado/n");}
+            
             setDisponibilidad(true);
             this.FaseSet=-1;
             Tropa Tropa= TropaFactory.getTropa(this.TipoDeTropa);
