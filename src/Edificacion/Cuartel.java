@@ -8,6 +8,8 @@ package Edificacion;
 import Parcial_2_POO.Auxiliar;
 import Tropa.Tropa;
 import Tropa.TropaFactory;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -18,53 +20,29 @@ public class Cuartel extends Thread implements Edificacion{
     private int FaseSet=-1;
     private int TipoDeTropa = 0;
     private boolean Disponibilidad=true;
+
     
-    public Tropa GenerarTropa1(int op){
-        int FaseActual = Auxiliar.getFase();
-        
+    public Tropa GenerarTropa(){
         if(this.FaseSet==-1){
-            this.FaseSet=FaseActual;
-            switch(op){
-                case 1:
-                    Tropa Tropa= TropaFactory.getTropa(op);
-                    int calculoFase=FaseActual-this.FaseSet;
-                    while(Tropa.ComprobadorDisponibilidad(calculoFase)==false){
-                        FaseActual = Auxiliar.getFase();
-                        calculoFase=FaseActual-this.FaseSet;
-                    }
-                    this.FaseSet=-1;
-                    return Tropa;
-                case 2:
-                    Tropa Tropa2= TropaFactory.getTropa(op);
-                    int calculoFase2=FaseActual-this.FaseSet;
-                    while(Tropa2.ComprobadorDisponibilidad(calculoFase2)==false){
-                        FaseActual = Auxiliar.getFase();
-                        calculoFase2=FaseActual-this.FaseSet;
-                    }
-                    this.FaseSet=-1;
-                    return Tropa2;    
-            }
+            this.FaseSet=Auxiliar.getFase();
         }
-        else{
-            System.out.println("El cuartel está siendo ocupado por otra tropa.");
+        int comprobador = Auxiliar.getFase()-this.FaseSet;
+        if(comprobador==2){
+            System.out.println("La tropa ha sido generada");
+            System.out.println("");
+            setDisponibilidad(true);
+            this.FaseSet=-1;
+            Tropa Tropa= TropaFactory.getTropa(this.TipoDeTropa);
+            return Tropa;
         }
         
         return null;
     }
     
-    public Tropa GenerarTropa(){
-        int Fase0=Auxiliar.getFase();
-        while(Auxiliar.getFase()-Fase0!=2){
-        }
-        System.out.println("La tropa ha sido generada");
-        Tropa Tropa= TropaFactory.getTropa(this.TipoDeTropa);
-        setDisponibilidad(true);
-        return Tropa;
-    }
-    
     @Override
     public void run() {
-        GenerarTropa();
+        GenerarTropa();  
+  
     }
 
     public int getFaseSet() {
