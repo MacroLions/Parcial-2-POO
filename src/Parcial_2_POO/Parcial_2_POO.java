@@ -18,7 +18,9 @@ public class Parcial_2_POO {
           
         Jugador Mai = new Jugador("Mai");
         while(true){
+            System.out.println("Fase #"+Auxiliar.getFase());
             Mai.MenuJugador();
+            Auxiliar.setFase(Auxiliar.fase+1);
             System.out.println("");
         }
       
