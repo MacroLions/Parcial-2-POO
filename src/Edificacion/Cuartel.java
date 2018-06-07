@@ -16,9 +16,10 @@ import Tropa.TropaFactory;
  */
 public class Cuartel extends Thread implements Edificacion{
     private int FaseSet=-1;
+    private int TipoDeTropa = 0;
     private boolean Disponibilidad=true;
     
-    public Tropa GenerarTropa(int op){
+    public Tropa GenerarTropa1(int op){
         int FaseActual = Auxiliar.getFase();
         
         if(this.FaseSet==-1){
@@ -51,9 +52,19 @@ public class Cuartel extends Thread implements Edificacion{
         return null;
     }
     
+    public Tropa GenerarTropa(){
+        int Fase0=Auxiliar.getFase();
+        while(Auxiliar.getFase()-Fase0!=2){
+        }
+        System.out.println("La tropa ha sido generada");
+        Tropa Tropa= TropaFactory.getTropa(this.TipoDeTropa);
+        setDisponibilidad(true);
+        return Tropa;
+    }
+    
     @Override
     public void run() {
-        
+        GenerarTropa();
     }
 
     public int getFaseSet() {
@@ -71,6 +82,15 @@ public class Cuartel extends Thread implements Edificacion{
     public void setDisponibilidad(boolean Disponibilidad) {
         this.Disponibilidad = Disponibilidad;
     }
+
+    public int getTipoDeTropa() {
+        return TipoDeTropa;
+    }
+
+    public void setTipoDeTropa(int TipoDeTropa) {
+        this.TipoDeTropa = TipoDeTropa;
+    }
+    
     
     
 
