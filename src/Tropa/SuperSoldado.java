@@ -36,5 +36,10 @@ public class SuperSoldado implements Tropa{
             return false;
         }
     }
+
+    @Override
+    public boolean ComprobadorDisponibilidad(int ValorFase) {
+        return ValorFase==4;
+    }
     
 }

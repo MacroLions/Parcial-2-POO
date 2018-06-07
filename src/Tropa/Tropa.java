@@ -12,5 +12,6 @@ package Tropa;
 public interface Tropa {
     public int Atacar();
     public boolean Viajar(int FaseActual);
+    public boolean ComprobadorDisponibilidad(int ValorFase);
     
 }
