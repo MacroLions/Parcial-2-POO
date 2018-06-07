@@ -63,5 +63,10 @@ public class MaquinadeOro extends Thread implements Edificacion {
     public void GenerarVehiculo() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public boolean isDisponibilidad() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
