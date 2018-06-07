@@ -22,9 +22,7 @@ public class MaquinadeOro extends Thread implements Edificacion {
     
     @Override
     public void run(){
-        while(true){
-            GenerarRecursos();
-        }
+        GenerarRecursos();
     }
     
     

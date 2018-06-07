@@ -21,10 +21,7 @@ public class MaquinadeMagia extends Thread implements Edificacion {
     
     @Override
     public void run(){
-        while(true){
-            GenerarRecursos();
-        }
-        
+        GenerarRecursos();      
     }
     
     
