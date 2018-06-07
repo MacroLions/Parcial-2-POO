@@ -65,6 +65,7 @@ public class Jugador {
         System.out.println("1. Maquina de Oro (200 de Magia)");
         System.out.println("2. Maquina de Magia (200 de oro)");
         System.out.println("3. Maquina de Diamantes (600 de Oro, 600 de Magia)");
+        System.out.println("4. Cuartel de tropas (300 de Magia,1 Diamantes)");
         
         System.out.print("Opcion: ");
         int op = input.nextInt();
@@ -103,6 +104,18 @@ public class Jugador {
                 }
                 else{
                     System.out.println("No hay Magia u Oro suficiente.");
+                    break;
+                }
+            case 4:
+                if(this.MagiaTotal>=300&&this.Diamantes>=1){
+                    this.MagiaTotal=this.MagiaTotal-300;
+                    this.Diamantes=this.Diamantes-1;
+                    Edificaciones.add(EdificacionFactory.getEdificacion(op));
+                    System.out.println("Se construyó Cuartel");
+                    break;
+                }
+                else{
+                    System.out.println("No hay Magia o Diamantes suficiente.");
                     break;
                 }
         }
