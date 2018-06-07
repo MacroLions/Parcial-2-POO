@@ -174,7 +174,7 @@ public class Jugador {
             if(Comprobador_1==0){
                 System.out.println("No hay Cuarteles, solo otro tipo de edificaciones.");
             }
-            int contador = 0;
+            int contador = 1;
             for(int i = 0; i<this.Edificaciones.size() ;i++){
                 Edificacion EdificacionABuscar = EdificacionFactory.getEdificacion(4);
                 if(Edificaciones.get(i).getClass()==EdificacionABuscar.getClass()){
