@@ -25,7 +25,6 @@ public class MaquinadeMagia extends Thread implements Edificacion {
     }
     
     
-    @Override
     public void GenerarRecursos() {
         
         if(this.Vida!=0){
@@ -59,10 +58,6 @@ public class MaquinadeMagia extends Thread implements Edificacion {
         this.Vida=this.Vida-damage;
     };
 
-    @Override
-    public void GenerarTropa() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public void GenerarVehiculo() {

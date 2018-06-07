@@ -10,10 +10,8 @@ package Edificacion;
  * @author Maishi
  */
 public interface Edificacion {
-    public void GenerarRecursos();
     public int EntregarRecursos();
     
-    public void GenerarTropa();
     
     public void GenerarVehiculo();
     public void RecibirDamage(int damage);

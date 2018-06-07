@@ -20,6 +20,8 @@ public class EdificacionFactory {
                 
             case 3:
                 return new MaquinadeDiamantes();
+            case 4:
+                return new Cuartel();
         }
         return null;
     }
