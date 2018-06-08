@@ -17,11 +17,26 @@ public class Parcial_2_POO {
     public static void main(String[] args) {
           
         Jugador Mai = new Jugador("Mai");
-        while(true){
+        Jugador Mako = new Jugador("Mako");
+        boolean TurnoJugador1= true;
+        boolean TurnoJugador2= true;
+        
+        boolean Start = true;
+        
+        while(Start){
             System.out.println("Fase #"+Auxiliar.getFase());
-            Mai.MenuJugador();
-            Auxiliar.setFase(Auxiliar.fase+1);
-            System.out.println("");
+            while(TurnoJugador1){
+                TurnoJugador1= Mai.MenuJugador();
+                System.out.println("");
+            }
+            while(TurnoJugador2){
+                TurnoJugador2= Mako.MenuJugador();
+                System.out.println("");
+            }
+            Auxiliar.setFase(Auxiliar.getFase()+1);
+            TurnoJugador1=true;
+            TurnoJugador2=true;
+            
         }
       
     }
