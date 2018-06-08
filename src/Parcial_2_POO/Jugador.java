@@ -32,7 +32,7 @@ public class Jugador {
     }
     
     
-    public void MenuJugador(){
+    public boolean MenuJugador(){
         Scanner input = new Scanner(System.in);
         
 
@@ -47,6 +47,7 @@ public class Jugador {
         System.out.println("1. Construir");
         System.out.println("2. Recolectar Recursos");
         System.out.println("3. Entrenar Tropa");
+        System.out.println("4. Terminar Turno");
         
         System.out.print("Opcion: ");
         int op = input.nextInt();
@@ -62,7 +63,10 @@ public class Jugador {
             case 3:
                 EntrenarTropa();
                 break;
+            case 4:
+                return false;
         }
+        return true;
     }
     
     public void Construir(){
