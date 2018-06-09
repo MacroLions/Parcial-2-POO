@@ -18,6 +18,7 @@ import java.util.ArrayList;
 public class Cuartel extends Thread implements Edificacion{
     private int FaseSet=-1;
     private int TipoDeTropa = 0;
+    private int EsperaDeTropa = 0;
     private boolean Disponibilidad=true;
     private ArrayList<Tropa> Tropas;
     
@@ -26,7 +27,7 @@ public class Cuartel extends Thread implements Edificacion{
             this.FaseSet=Auxiliar.getFase();
         }
         int comprobador = Auxiliar.getFase()-this.FaseSet;
-        if(comprobador==2){
+        if(comprobador==EsperaDeTropa){
             System.out.println("El escuadron ha sido entrenado");
             System.out.println("");   
             setDisponibilidad(true);
@@ -34,7 +35,7 @@ public class Cuartel extends Thread implements Edificacion{
             Tropa Tropa= TropaFactory.getTropa(this.TipoDeTropa);
             Tropas.add(Tropa);
         }
-        else if(comprobador==4){
+        else if(comprobador==EsperaDeTropa){
             System.out.println("El Super Soldado ha sido entrenado");
             System.out.println("");
             setDisponibilidad(true);
@@ -84,6 +85,15 @@ public class Cuartel extends Thread implements Edificacion{
     public void setTropas(ArrayList<Tropa> Tropas) {
         this.Tropas = Tropas;
     }
+
+    public int getEsperaDeTropa() {
+        return EsperaDeTropa;
+    }
+
+    public void setEsperaDeTropa(int EsperaDeTropa) {
+        this.EsperaDeTropa = EsperaDeTropa;
+    }
+    
     
     
     
