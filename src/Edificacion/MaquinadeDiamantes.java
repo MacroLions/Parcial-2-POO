@@ -12,6 +12,7 @@ import java.util.Date;
  * @author Mai Perez
  */
 public class MaquinadeDiamantes extends Thread implements Edificacion {
+    private final String nombre = "Maquina de Diamantes";
     int Vida=1000;
     float RecursosGuardados;
     int tiempoAnterior=0;
@@ -54,14 +55,45 @@ public class MaquinadeDiamantes extends Thread implements Edificacion {
             return 0;
         }
     }
-
     
     @Override
     public void RecibirDamage(int damage){
         this.Vida=this.Vida-damage;
     };
 
+    
+    //Gets and sets
+    public String getNombre() {
+        return nombre;
+    }
 
+    public int getVida() {
+        return Vida;
+    }
+
+    public void setVida(int Vida) {
+        this.Vida = Vida;
+    }
+
+    public float getRecursosGuardados() {
+        return RecursosGuardados;
+    }
+
+    public void setRecursosGuardados(float RecursosGuardados) {
+        this.RecursosGuardados = RecursosGuardados;
+    }
+
+    public int getTiempoAnterior() {
+        return tiempoAnterior;
+    }
+
+    public void setTiempoAnterior(int tiempoAnterior) {
+        this.tiempoAnterior = tiempoAnterior;
+    }
+    
+    
+
+    //Not suported. 
     @Override
     public void GenerarVehiculo() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
