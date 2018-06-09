@@ -16,6 +16,7 @@ import java.util.ArrayList;
  * @author Mai Perez
  */
 public class Cuartel extends Thread implements Edificacion{
+    private final String nombre="Cuartel";
     private int FaseSet=-1;
     private int TipoDeTropa = 0;
     private int EsperaDeTropa = 0;
@@ -53,6 +54,11 @@ public class Cuartel extends Thread implements Edificacion{
     }
 
     //Gets and sets.
+
+    public String getNombre() {
+        return nombre;
+    }
+    
     public int getFaseSet() {
         return FaseSet;
     }
