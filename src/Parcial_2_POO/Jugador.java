@@ -47,7 +47,8 @@ public class Jugador {
         System.out.println("1. Construir");
         System.out.println("2. Recolectar Recursos");
         System.out.println("3. Entrenar Tropa");
-        System.out.println("4. Terminar Turno");
+        System.out.println("4. Revisar Tropas");
+        System.out.println("5. Terminar Turno");
         
         System.out.print("Opcion: ");
         int op = input.nextInt();
@@ -64,6 +65,9 @@ public class Jugador {
                 EntrenarTropa();
                 break;
             case 4:
+                RevisarTropas();
+                break;
+            case 5:
                 return false;
         }
         return true;
@@ -120,7 +124,9 @@ public class Jugador {
                 if(this.MagiaTotal>=300&&this.Diamantes>=1){
                     this.MagiaTotal=this.MagiaTotal-300;
                     this.Diamantes=this.Diamantes-1;
-                    Edificaciones.add(EdificacionFactory.getEdificacion(op));
+                    Cuartel cuartel = (Cuartel) EdificacionFactory.getEdificacion(op);
+                    cuartel.setTropas(this.Tropas);
+                    Edificaciones.add(cuartel);
                     System.out.println("Se construyó Cuartel");
                     break;
                 }
@@ -204,12 +210,14 @@ public class Jugador {
                         if(TropaElegida==1){
                             CuartelElegido.setDisponibilidad(false);
                             CuartelElegido.setTipoDeTropa(TropaElegida);
+                            CuartelElegido.setEsperaDeTropa(2);
                             CuartelElegido.start();
                             System.out.println("Se está entrenando un escuadron!");
                         }
                         else if(TropaElegida==2){
                             CuartelElegido.setDisponibilidad(false);
                             CuartelElegido.setTipoDeTropa(TropaElegida);
+                            CuartelElegido.setEsperaDeTropa(4);
                             CuartelElegido.start();
                             System.out.println("Se está generando un super soldado");
                         }
@@ -228,6 +236,19 @@ public class Jugador {
         }
            
     };
+    
+    public void RevisarTropas(){
+        if(this.Tropas.isEmpty()){
+            System.out.println("No hay ningún tipo de tropa en la base.");
+        }
+        else{
+            System.out.println("Tropas disponibles:");
+            for(int i=1;i<=this.Tropas.size();i++){
+                System.out.print(this.Tropas.get(i-1)+"");
+            }
+            System.out.println("");
+        }
+    }
     
     public void Atacar(){};
     
