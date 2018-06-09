@@ -29,14 +29,16 @@ public class Parcial_2_POO {
                 TurnoJugador1= Mai.MenuJugador();
                 System.out.println("");
             }
+            
+            /*
             while(TurnoJugador2){
                 TurnoJugador2= Mako.MenuJugador();
                 System.out.println("");
             }
+            */
             Auxiliar.setFase(Auxiliar.getFase()+1);
             TurnoJugador1=true;
             TurnoJugador2=true;
-            
         }
       
     }
