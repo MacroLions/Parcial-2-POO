@@ -10,6 +10,7 @@ import Edificacion.Edificacion;
 import Edificacion.EdificacionFactory;
 import Razas.Raza;
 import Tropa.Tropa;
+import Vehiculos.Vehiculo;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -25,6 +26,9 @@ public class Jugador {
     private int Diamantes=1;
     private final ArrayList<Tropa> Tropas = new ArrayList();
     private final ArrayList<Edificacion> Edificaciones = new ArrayList();
+    private final ArrayList<Vehiculo> Vehiculos = new ArrayList();
+    private ArrayList<Edificacion> Objetivos;
+    
     
     
     Jugador(String nombre){
@@ -44,11 +48,10 @@ public class Jugador {
         
         System.out.println("////Hola "+this.nombre+" ¿Que quieres en este turno?////");
         System.out.println("Recursos disponibles: Oro: "+this.OroTotal+" Magia: "+this.MagiaTotal+" Diamantes: "+this.Diamantes);
-        System.out.println("1. Construir");
-        System.out.println("2. Recolectar Recursos");
-        System.out.println("3. Entrenar Tropa");
-        System.out.println("4. Revisar Tropas");
-        System.out.println("5. Terminar Turno");
+        System.out.println("1)Construir                4)Revisar Tropas");
+        System.out.println("2)Recolectar Recursos      5)Atacar  ");
+        System.out.println("3)Entrenar Tropa           6)Terminar Turno  ");
+
         
         System.out.print("Opcion: ");
         int op = input.nextInt();
@@ -68,6 +71,9 @@ public class Jugador {
                 RevisarTropas();
                 break;
             case 5:
+                Atacar();
+                break;
+            case 6:
                 return false;
         }
         return true;
@@ -250,7 +256,67 @@ public class Jugador {
         }
     }
     
-    public void Atacar(){};
+    public void Atacar(){
+        if(this.Tropas.isEmpty()&&this.Vehiculos.isEmpty()){
+            System.out.println("No hay tropa disponible o vehiculos disponibles.");
+        }
+        else{
+            System.out.println("Objetivos disponibles: ");
+            for(int i=1;i<=this.Objetivos.size();i++){
+                System.out.println("Posicion"+(i-1)+"Nombre del objetivo: "+this.Objetivos.get(i-1));
+            }
+            Scanner input = new Scanner(System.in);
+            System.out.println("Posición del objetivo a atacar: ");
+            int objetivo = input.nextInt();
+            
+        }
+    
+    }
+    
+    
+    //Gets and Sets luego de esta linea. 
+
+    public Raza getRaza() {
+        return raza;
+    }
+
+    public void setRaza(Raza raza) {
+        this.raza = raza;
+    }
+
+    public int getOroTotal() {
+        return OroTotal;
+    }
+
+    public void setOroTotal(int OroTotal) {
+        this.OroTotal = OroTotal;
+    }
+
+    public int getMagiaTotal() {
+        return MagiaTotal;
+    }
+
+    public void setMagiaTotal(int MagiaTotal) {
+        this.MagiaTotal = MagiaTotal;
+    }
+
+    public int getDiamantes() {
+        return Diamantes;
+    }
+
+    public void setDiamantes(int Diamantes) {
+        this.Diamantes = Diamantes;
+    }
+
+    public ArrayList<Edificacion> getObjetivos() {
+        return Objetivos;
+    }
+
+    public void setObjetivos(ArrayList<Edificacion> Objetivos) {
+        this.Objetivos = Objetivos;
+    }
+    
+    
     
     
 }
