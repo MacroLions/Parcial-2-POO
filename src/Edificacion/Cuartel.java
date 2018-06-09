@@ -8,8 +8,7 @@ package Edificacion;
 import Parcial_2_POO.Auxiliar;
 import Tropa.Tropa;
 import Tropa.TropaFactory;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
 
 
 /**
@@ -20,24 +19,30 @@ public class Cuartel extends Thread implements Edificacion{
     private int FaseSet=-1;
     private int TipoDeTropa = 0;
     private boolean Disponibilidad=true;
-
+    private ArrayList<Tropa> Tropas;
     
-    public Tropa GenerarTropa(){
+    public void GenerarTropa(){
         if(this.FaseSet==-1){
             this.FaseSet=Auxiliar.getFase();
         }
         int comprobador = Auxiliar.getFase()-this.FaseSet;
         if(comprobador==2){
-            if(TipoDeTropa==1){System.out.println("El escuadron ha sido entrenado/n");   
-            }else if(TipoDeTropa==2){System.out.println("El Super Soldado ha sido entrenado/n");}
-            
+            System.out.println("El escuadron ha sido entrenado");
+            System.out.println("");   
             setDisponibilidad(true);
             this.FaseSet=-1;
             Tropa Tropa= TropaFactory.getTropa(this.TipoDeTropa);
-            return Tropa;
+            Tropas.add(Tropa);
+        }
+        else if(comprobador==4){
+            System.out.println("El Super Soldado ha sido entrenado");
+            System.out.println("");
+            setDisponibilidad(true);
+            this.FaseSet=-1;
+            Tropa Tropa= TropaFactory.getTropa(this.TipoDeTropa);
+            Tropas.add(Tropa);            
         }
         
-        return null;
     }
     
     @Override
@@ -46,6 +51,7 @@ public class Cuartel extends Thread implements Edificacion{
   
     }
 
+    //Gets and sets.
     public int getFaseSet() {
         return FaseSet;
     }
@@ -54,6 +60,7 @@ public class Cuartel extends Thread implements Edificacion{
         this.FaseSet = FaseSet;
     }
 
+    @Override
     public boolean isDisponibilidad() {
         return Disponibilidad;
     }
@@ -68,6 +75,14 @@ public class Cuartel extends Thread implements Edificacion{
 
     public void setTipoDeTropa(int TipoDeTropa) {
         this.TipoDeTropa = TipoDeTropa;
+    }
+
+    public ArrayList<Tropa> getTropas() {
+        return Tropas;
+    }
+
+    public void setTropas(ArrayList<Tropa> Tropas) {
+        this.Tropas = Tropas;
     }
     
     
