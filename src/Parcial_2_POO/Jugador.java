@@ -30,6 +30,7 @@ public class Jugador {
     private final ArrayList<Vehiculo> Vehiculos = new ArrayList();
     private ArrayList<Edificacion> Objetivos;
     
+
     
     
     Jugador(String nombre){
@@ -49,10 +50,11 @@ public class Jugador {
         
         System.out.println("////Hola "+this.nombre+" ¿Que quieres en este turno?////");
         System.out.println("Recursos disponibles: Oro: "+this.OroTotal+" Magia: "+this.MagiaTotal+" Diamantes: "+this.Diamantes);
-        System.out.println("1)Construir                4)Revisar Tropas");
-        System.out.println("2)Recolectar Recursos      5)Atacar  ");
-        System.out.println("3)Entrenar Tropa           6)Terminar Turno  ");
-
+        System.out.println("1. Construir");
+        System.out.println("2. Recolectar Recursos");
+        System.out.println("3. Entrenar Tropa");
+        System.out.println("4. Revisar Tropas");
+        System.out.println("5. Terminar Turno");
         
         System.out.print("Opcion: ");
         int op = input.nextInt();
@@ -72,9 +74,6 @@ public class Jugador {
                 RevisarTropas();
                 break;
             case 5:
-                Atacar();
-                break;
-            case 6:
                 return false;
         }
         return true;
@@ -136,6 +135,7 @@ public class Jugador {
                     cuartel.setPropitario(this.nombre);
                     cuartel.setNombre(String.valueOf(this.Cuarteles.size()+1));
                     Cuarteles.add(cuartel);
+                    Edificaciones.add(cuartel);
                     System.out.println("Se construyó Cuartel");
                     break;
                 }
@@ -311,7 +311,5 @@ public class Jugador {
         this.Objetivos = Objetivos;
     }
     
-    
-    
-    
+
 }
