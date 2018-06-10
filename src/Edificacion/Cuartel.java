@@ -6,6 +6,7 @@
 package Edificacion;
 
 import Parcial_2_POO.Auxiliar;
+import Parcial_2_POO.Jugador;
 import Tropa.Tropa;
 import Tropa.TropaFactory;
 import java.util.ArrayList;
@@ -16,7 +17,8 @@ import java.util.ArrayList;
  * @author Mai Perez
  */
 public class Cuartel extends Thread implements Edificacion{
-    private final String nombre="Cuartel";
+    private String Nombre;
+    private Jugador propitario;
     private int FaseSet=-1;
     private int TipoDeTropa = 0;
     private int EsperaDeTropa = 0;
@@ -29,20 +31,21 @@ public class Cuartel extends Thread implements Edificacion{
         }
         int comprobador = Auxiliar.getFase()-this.FaseSet;
         if(comprobador==EsperaDeTropa){
-            System.out.println("El escuadron ha sido entrenado");
-            System.out.println("");   
+            if(this.TipoDeTropa==1){
+                System.out.println("El escuadron ha sido entrenado");
+                System.out.println("");   
+            }
+            else if (this.TipoDeTropa==2){
+                System.out.println("El Super Soldado ha sido entrenado");
+                System.out.println("");
+            }
+            
             setDisponibilidad(true);
             this.FaseSet=-1;
             Tropa Tropa= TropaFactory.getTropa(this.TipoDeTropa);
+            Tropa.setPropietario(this.propitario);
+            Tropa.setNombre(String.valueOf(this.Tropas.size()+1));
             Tropas.add(Tropa);
-        }
-        else if(comprobador==EsperaDeTropa){
-            System.out.println("El Super Soldado ha sido entrenado");
-            System.out.println("");
-            setDisponibilidad(true);
-            this.FaseSet=-1;
-            Tropa Tropa= TropaFactory.getTropa(this.TipoDeTropa);
-            Tropas.add(Tropa);            
         }
         
     }
@@ -55,8 +58,20 @@ public class Cuartel extends Thread implements Edificacion{
 
     //Gets and sets.
 
+    public Jugador getPropitario() {
+        return propitario;
+    }
+
+    public void setPropitario(Jugador propitario) {
+        this.propitario = propitario;
+    }
+    
+    public void setNombre(String Nombre){
+        this.Nombre=Nombre;
+    }
+    
     public String getNombre() {
-        return nombre;
+        return Nombre;
     }
     
     public int getFaseSet() {
@@ -101,10 +116,7 @@ public class Cuartel extends Thread implements Edificacion{
     }
     
     
-    
-    
-
-
+   
     @Override
     public int EntregarRecursos() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
