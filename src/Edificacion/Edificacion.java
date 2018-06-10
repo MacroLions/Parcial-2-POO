@@ -5,6 +5,8 @@
  */
 package Edificacion;
 
+import Tropa.Tropa;
+
 /**
  *
  * @author Maishi
@@ -13,6 +15,7 @@ public interface Edificacion {
 
     public int EntregarRecursos();
     
+    public Tropa GenerarTropa();
     public boolean isDisponibilidad();
     
     public void GenerarVehiculo();
