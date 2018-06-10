@@ -5,6 +5,8 @@
  */
 package Tropa;
 
+import Parcial_2_POO.Jugador;
+
 /**
  *
  * @author Maishi
@@ -13,5 +15,7 @@ public interface Tropa {
     public int Atacar();
     public boolean Viajar(int FaseActual);
     public boolean ComprobadorDisponibilidad(int ValorFase);
+    public void setPropietario(Jugador Propietario);
+    public void setNombre(String nombre);
     
 }

@@ -5,11 +5,15 @@
  */
 package Tropa;
 
+import Parcial_2_POO.Jugador;
+
 /**
  *
  * @author Mai Perez
  */
 public class SuperSoldado implements Tropa{
+    Jugador Propietario;
+    String nombre;
     int FaseInicial=0;
     int FaseUbicacion=0;
     int DamageBase=250;
@@ -40,6 +44,16 @@ public class SuperSoldado implements Tropa{
     @Override
     public boolean ComprobadorDisponibilidad(int ValorFase) {
         return ValorFase==4;
+    }
+
+    @Override
+    public void setPropietario(Jugador Propietario) {
+        this.Propietario=Propietario;
+    }
+
+    @Override
+    public void setNombre(String nombre) {
+        this.nombre=nombre;
     }
     
 }
