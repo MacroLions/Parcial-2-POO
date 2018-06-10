@@ -21,9 +21,9 @@ import java.util.Scanner;
 public class Jugador {
     private final String nombre;
     private Raza raza;
-    private int OroTotal=1000;
-    private int MagiaTotal=1000;
-    private int Diamantes=1;
+    private int OroTotal=2000;
+    private int MagiaTotal=2000;
+    private int Diamantes=10;
     private final ArrayList<Tropa> Tropas = new ArrayList();
     private final ArrayList<Edificacion> Edificaciones = new ArrayList();
     private final ArrayList<Cuartel> Cuarteles = new ArrayList();
@@ -45,7 +45,7 @@ public class Jugador {
         Auxiliar.RecursosCreatorMaster(Edificaciones, EdificacionFactory.getEdificacion(1));
         Auxiliar.RecursosCreatorMaster(Edificaciones, EdificacionFactory.getEdificacion(2));
         Auxiliar.RecursosCreatorMaster(Edificaciones, EdificacionFactory.getEdificacion(3));
-        Auxiliar.TropaCreatorMaster(Edificaciones, EdificacionFactory.getEdificacion(4));
+        Auxiliar.TropaCreatorMaster(Cuarteles, EdificacionFactory.getEdificacion(4));
 
         
         System.out.println("////Hola "+this.nombre+" ¿Que quieres en este turno?////");
@@ -132,7 +132,7 @@ public class Jugador {
                     this.Diamantes=this.Diamantes-1;
                     Cuartel cuartel = (Cuartel) EdificacionFactory.getEdificacion(op);
                     cuartel.setTropas(this.Tropas);
-                    cuartel.setPropitario(this.nombre);
+                    cuartel.setPropitario(this);
                     cuartel.setNombre(String.valueOf(this.Cuarteles.size()+1));
                     Cuarteles.add(cuartel);
                     Edificaciones.add(cuartel);
@@ -234,7 +234,7 @@ public class Jugador {
             }
         }catch(Exception ex){
             System.out.println("Ese cuartel no existe.");   
-         }
+        }
     };
     
     public void RevisarTropas(){
@@ -270,6 +270,10 @@ public class Jugador {
     
     
     //Gets and Sets luego de esta linea. 
+
+    public String getNombre() {
+        return nombre;
+    } 
 
     public Raza getRaza() {
         return raza;
