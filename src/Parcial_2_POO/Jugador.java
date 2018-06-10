@@ -26,6 +26,7 @@ public class Jugador {
     private int Diamantes=1;
     private final ArrayList<Tropa> Tropas = new ArrayList();
     private final ArrayList<Edificacion> Edificaciones = new ArrayList();
+    private final ArrayList<Cuartel> Cuarteles = new ArrayList();
     private final ArrayList<Vehiculo> Vehiculos = new ArrayList();
     private ArrayList<Edificacion> Objetivos;
     
@@ -132,7 +133,9 @@ public class Jugador {
                     this.Diamantes=this.Diamantes-1;
                     Cuartel cuartel = (Cuartel) EdificacionFactory.getEdificacion(op);
                     cuartel.setTropas(this.Tropas);
-                    Edificaciones.add(cuartel);
+                    cuartel.setPropitario(this.nombre);
+                    cuartel.setNombre(String.valueOf(this.Cuarteles.size()+1));
+                    Cuarteles.add(cuartel);
                     System.out.println("Se construyó Cuartel");
                     break;
                 }
@@ -184,63 +187,54 @@ public class Jugador {
     
     public void EntrenarTropa(){
         Scanner input = new Scanner(System.in);
-        if(Edificaciones.isEmpty()==false){
-            System.out.println("Cuarteles disponibles:");
-            int Comprobador_1 = Auxiliar.RevisarEdificaciones(Edificaciones, EdificacionFactory.getEdificacion(4));
-        
-            if(Comprobador_1==0){
-                System.out.println("No hay Cuarteles, solo otro tipo de edificaciones.");
-            } 
-            else{
-                int contador = 1;
-                for(int i = 0; i<this.Edificaciones.size() ;i++){
-                    Edificacion EdificacionABuscar = EdificacionFactory.getEdificacion(4);
-                    if(Edificaciones.get(i).getClass()==EdificacionABuscar.getClass()){
-                        Cuartel cuartel = (Cuartel) Edificaciones.get(i);
-                        System.out.println("Cuartel #"+i+" Disponibilidad: "+cuartel.isDisponibilidad());
-                        contador= contador+1;
-                    }     
-                 }
+        if(Cuarteles.isEmpty()){
+                System.out.println("No hay Cuarteles ningún cuartel en la base");
+        } 
+        else{
+            for(int i = 0; i<this.Cuarteles.size() ;i++){
+                Cuartel cuartel = Cuarteles.get(i);
+                System.out.print("Cuartel "+cuartel.getNombre());
+                if(cuartel.isDisponibilidad()){
+                    System.out.println(" Disponible: Si");    
+                }
+                else{
+                    System.out.println(" Disponible: No");    
+                }
+            }     
+        }
+        System.out.println("");
+        System.out.print("¿Cuál cuartel usará? Opcion: ");
+        int NumCuartelElegido = input.nextInt();
+        try{ 
+            Cuartel CuartelElegido = Cuarteles.get(NumCuartelElegido-1);
+            if(CuartelElegido.isDisponibilidad()){
                 System.out.println("");
-                System.out.print("¿Cuál cuartel usará? Opcion: ");
-                int NumCuartelElegido = input.nextInt();
-                try{
-                    Cuartel CuartelElegido = (Cuartel) Edificaciones.get(NumCuartelElegido);
-                    if(CuartelElegido.isDisponibilidad()){
-                        System.out.println("");
-                        System.out.println("Tipo de tropa a entrenar:");
-                        System.out.println("1. Escuadron");
-                        System.out.println("2. Super Soldado");
-                        System.out.print("Opcion: ");
-                        int TropaElegida=input.nextInt();
-                        if(TropaElegida==1){
-                            CuartelElegido.setDisponibilidad(false);
-                            CuartelElegido.setTipoDeTropa(TropaElegida);
-                            CuartelElegido.setEsperaDeTropa(2);
-                            CuartelElegido.start();
-                            System.out.println("Se está entrenando un escuadron!");
-                        }
-                        else if(TropaElegida==2){
-                            CuartelElegido.setDisponibilidad(false);
-                            CuartelElegido.setTipoDeTropa(TropaElegida);
-                            CuartelElegido.setEsperaDeTropa(4);
-                            CuartelElegido.start();
-                            System.out.println("Se está generando un super soldado");
-                        }
-                    }
-                    else{
-                        System.out.println("El Cuartel Elegido no está disponible.");
-                    }
-                }catch(Exception ex){
-                    System.out.println("Ese cuartel no existe.");   
+                System.out.println("Tipo de tropa a entrenar:");
+                System.out.println("1. Escuadron");
+                System.out.println("2. Super Soldado");
+                System.out.print("Opcion: ");
+                int TropaElegida=input.nextInt();
+                if(TropaElegida==1){
+                    CuartelElegido.setDisponibilidad(false);
+                    CuartelElegido.setTipoDeTropa(TropaElegida);
+                    CuartelElegido.setEsperaDeTropa(2);
+                    CuartelElegido.start();
+                    System.out.println("Se está entrenando un escuadron!");
+                }
+                else if(TropaElegida==2){
+                    CuartelElegido.setDisponibilidad(false);
+                    CuartelElegido.setTipoDeTropa(TropaElegida);
+                    CuartelElegido.setEsperaDeTropa(4);
+                    CuartelElegido.start();
+                    System.out.println("Se está generando un super soldado");
                 }
             }
-        }
-        
-        else if(Edificaciones.isEmpty()){
-                System.out.println("No hay edificaciones");    
-        }
-           
+            else{
+                System.out.println("El Cuartel Elegido no está disponible.");
+            }
+        }catch(Exception ex){
+            System.out.println("Ese cuartel no existe.");   
+         }
     };
     
     public void RevisarTropas(){
@@ -268,6 +262,7 @@ public class Jugador {
             Scanner input = new Scanner(System.in);
             System.out.println("Posición del objetivo a atacar: ");
             int objetivo = input.nextInt();
+            
             
         }
     
