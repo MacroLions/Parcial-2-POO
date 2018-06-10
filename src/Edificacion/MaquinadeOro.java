@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Edificacion;
+import Tropa.Tropa;
 import java.util.Date;
 
 
@@ -101,6 +102,11 @@ public class MaquinadeOro extends Thread implements Edificacion {
 
     @Override
     public boolean isDisponibilidad() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Tropa GenerarTropa() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
