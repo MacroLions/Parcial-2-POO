@@ -25,7 +25,8 @@ public class Cuartel extends Thread implements Edificacion{
     private boolean Disponibilidad=true;
     private ArrayList<Tropa> Tropas;
     
-    public void GenerarTropa(){
+    @Override
+    public Tropa GenerarTropa(){
         if(this.FaseSet==-1){
             this.FaseSet=Auxiliar.getFase();
         }
@@ -42,12 +43,12 @@ public class Cuartel extends Thread implements Edificacion{
             
             setDisponibilidad(true);
             this.FaseSet=-1;
-            Tropa Tropa= TropaFactory.getTropa(this.TipoDeTropa);
-            Tropa.setPropietario(this.propitario);
-            Tropa.setNombre(String.valueOf(this.Tropas.size()+1));
-            Tropas.add(Tropa);
+            Tropa tropa= TropaFactory.getTropa(this.TipoDeTropa);
+            tropa.setPropietario(this.propitario);
+            tropa.setNombre(String.valueOf(this.Tropas.size()+1));
+            return tropa;
         }
-        
+        return null;
     }
     
     @Override
