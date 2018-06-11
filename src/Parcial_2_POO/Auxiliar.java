@@ -63,7 +63,7 @@ public class Auxiliar extends Thread{
     }
     
     public static void AtacarMaster(ArrayList lista, Tropa tropa){
-        for(int i=0;i<=lista.size();i++){
+        for(int i=0;i<lista.size();i++){
             if(lista.get(i).getClass()==tropa.getClass()){
                 Tropa tropaMaster = (Tropa) lista.get(i);
                 if(tropaMaster.isViajando()){
