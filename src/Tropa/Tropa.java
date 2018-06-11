@@ -5,7 +5,9 @@
  */
 package Tropa;
 
+import Edificacion.Edificacion;
 import Parcial_2_POO.Jugador;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,4 +20,11 @@ public interface Tropa {
     public void setPropietario(Jugador Propietario);
     public void setNombre(String nombre);
     public String getNombre();
+    public void setObjetivo(int Objetivo);
+    public void setAtacando(boolean Atacando);
+    public void setViajando(boolean Viajando);
+    public boolean isAtacando();
+    public boolean isViajando();
+    public ArrayList<Edificacion> getObjetivos();
+    public int getObjetivo();
 }
