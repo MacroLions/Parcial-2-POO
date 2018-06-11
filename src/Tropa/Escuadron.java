@@ -37,7 +37,6 @@ public class Escuadron implements Tropa{
             return DamageBase;
         }
         else if(FaseUbicacion<2){
-            System.out.println("El escuadron "+this.nombre+" de "+this.Propietario+" aún está viajando.");
             return 0;
         }
         return 0;
@@ -46,11 +45,12 @@ public class Escuadron implements Tropa{
     @Override
     public boolean Viajar(int FaseActual){
         if(FaseUbicacion<2){
+            System.out.println("El escuadron de "+this.Propietario.getNombre()+" aún está viajando.");
             this.FaseUbicacion= FaseActual - this.FaseInicial;
             return false;
         }
         else if(FaseUbicacion==2){
-            System.out.println("El escuadron ya llegó");
+            System.out.println("El escuadron de "+this.Propietario.getNombre()+" ya llegó");
             return true;
         }
         return true;
@@ -101,6 +101,7 @@ public class Escuadron implements Tropa{
         this.FaseUbicacion = FaseUbicacion;
     }
 
+    @Override
     public ArrayList<Edificacion> getObjetivos() {
         return Objetivos;
     }
@@ -109,10 +110,12 @@ public class Escuadron implements Tropa{
         this.Objetivos = Objetivos;
     }
 
+    @Override
     public int getObjetivo() {
         return Objetivo;
     }
-
+    
+    @Override
     public void setObjetivo(int Objetivo) {
         this.Objetivo = Objetivo;
     }
@@ -125,18 +128,22 @@ public class Escuadron implements Tropa{
         this.DamageBase = DamageBase;
     }
 
+    @Override
     public boolean isViajando() {
         return Viajando;
     }
 
+    @Override
     public void setViajando(boolean Viajando) {
         this.Viajando = Viajando;
     }
 
+    @Override
     public boolean isAtacando() {
         return Atacando;
     }
 
+    @Override
     public void setAtacando(boolean Atacando) {
         this.Atacando = Atacando;
     }
