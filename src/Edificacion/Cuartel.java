@@ -45,7 +45,6 @@ public class Cuartel extends Thread implements Edificacion{
             this.FaseSet=-1;
             Tropa tropa= TropaFactory.getTropa(this.TipoDeTropa);
             tropa.setPropietario(this.propitario);
-            tropa.setNombre(String.valueOf(this.Tropas.size()+1));
             return tropa;
         }
         return null;
