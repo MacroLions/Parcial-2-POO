@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * @author Mai Perez
  */
 public class Cuartel extends Thread implements Edificacion{
-    private String Nombre;
+    private String Nombre = "Cuartel";
     private Jugador propitario;
     private int FaseSet=-1;
     private int TipoDeTropa = 0;
@@ -70,6 +70,7 @@ public class Cuartel extends Thread implements Edificacion{
         this.Nombre=Nombre;
     }
     
+    @Override
     public String getNombre() {
         return Nombre;
     }

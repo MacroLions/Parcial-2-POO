@@ -63,6 +63,7 @@ public class MaquinadeOro extends Thread implements Edificacion {
 
     
     //Gets and sets.
+    @Override
     public String getNombre() {
         return nombre;
     }
