@@ -6,6 +6,7 @@
 package Parcial_2_POO;
 
 import Edificacion.Edificacion;
+import Tropa.Tropa;
 import java.util.ArrayList;
 
 /**
@@ -46,12 +47,15 @@ public class Auxiliar extends Thread{
         }
     }
     
-    public static void TropaCreatorMaster(ArrayList lista, Edificacion MaquinaRecursos){
+    public static void TropaCreatorMaster(ArrayList lista, Edificacion MaquinaRecursos, ArrayList Tropas){
         for(int i = 0; i<lista.size();i++){
             if(lista.get(i).getClass()==MaquinaRecursos.getClass()){
                 Edificacion MaquinaTropaMaster = (Edificacion) lista.get(i);
                 if(MaquinaTropaMaster.isDisponibilidad()==false){
-                    MaquinaTropaMaster.run();
+                    Tropa tropa=MaquinaTropaMaster.GenerarTropa();
+                    if(tropa != null){
+                        Tropas.add(tropa);
+                    }
                 }
                 
             }    
