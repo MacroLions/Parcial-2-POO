@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * @author Mai Perez
  */
 
-public class Escuadron extends Thread implements Tropa{
+public class Escuadron implements Tropa{
     Jugador Propietario;
     String nombre;
     int FaseInicial=0;
@@ -28,22 +28,7 @@ public class Escuadron extends Thread implements Tropa{
     
     boolean Viajando=false;
     boolean Atacando=false;
-    
-    public Escuadron(){}
-    
-    
-    @Override 
-    public void run(){
-        if(this.Viajando){
-            this.Viajando=Viajar(Auxiliar.getFase());
-        }
-        else{
-            if(this.Atacando){
-                this.Objetivos.get(Objetivo).RecibirDamage(Atacar());
-            }
-        }
-        
-    }
+       
     
     
     @Override
