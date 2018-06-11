@@ -17,5 +17,5 @@ public interface Tropa {
     public boolean ComprobadorDisponibilidad(int ValorFase);
     public void setPropietario(Jugador Propietario);
     public void setNombre(String nombre);
-    
+    public String getNombre();
 }
