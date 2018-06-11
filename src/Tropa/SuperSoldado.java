@@ -13,7 +13,7 @@ import Parcial_2_POO.Jugador;
  */
 public class SuperSoldado implements Tropa{
     Jugador Propietario;
-    String nombre;
+    String nombre = "Super soldado";
     int FaseInicial=0;
     int FaseUbicacion=0;
     int DamageBase=250;
@@ -50,7 +50,11 @@ public class SuperSoldado implements Tropa{
     public void setPropietario(Jugador Propietario) {
         this.Propietario=Propietario;
     }
-
+    @Override
+    public String getNombre(){
+        return nombre;
+    }
+    
     @Override
     public void setNombre(String nombre) {
         this.nombre=nombre;
