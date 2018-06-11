@@ -5,7 +5,9 @@
  */
 package Tropa;
 
+import Edificacion.Edificacion;
 import Parcial_2_POO.Jugador;
+import java.util.ArrayList;
 
 /**
  *
@@ -58,6 +60,41 @@ public class SuperSoldado implements Tropa{
     @Override
     public void setNombre(String nombre) {
         this.nombre=nombre;
+    }
+
+    @Override
+    public void setObjetivo(int Objetivo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setAtacando(boolean Atacando) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setViajando(boolean Viajando) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean isAtacando() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean isViajando() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public ArrayList<Edificacion> getObjetivos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getObjetivo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
