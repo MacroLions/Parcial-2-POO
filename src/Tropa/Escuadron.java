@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class Escuadron implements Tropa{
     Jugador Propietario;
-    String nombre;
+    String nombre = "Escuadron";
     int FaseInicial=0;
     int FaseUbicacion=0;
     
@@ -63,6 +63,8 @@ public class Escuadron implements Tropa{
     
     
     //Gets y Sets
+    
+    
 
     public Jugador getPropietario() {
         return Propietario;
@@ -72,7 +74,8 @@ public class Escuadron implements Tropa{
     public void setPropietario(Jugador Propietario) {
         this.Propietario = Propietario;
     }
-
+    
+    @Override
     public String getNombre() {
         return nombre;
     }
