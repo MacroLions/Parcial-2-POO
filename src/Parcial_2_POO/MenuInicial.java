@@ -26,8 +26,8 @@ public class MenuInicial {
             case 1:
                 Jugador1 = JugadorCreator();
                 Jugador2 = JugadorCreator();
-                Jugador1.setObjetivos(Jugador2.getObjetivos());
-                Jugador2.setObjetivos(Jugador1.getObjetivos());
+                Jugador1.setObjetivos(Jugador2.getEdificaciones());
+                Jugador2.setObjetivos(Jugador1.getEdificaciones());
                 JuegoComenzar();
             case 2:
         }
