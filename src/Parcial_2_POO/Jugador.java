@@ -45,7 +45,7 @@ public class Jugador {
         Auxiliar.RecursosCreatorMaster(Edificaciones, EdificacionFactory.getEdificacion(1));
         Auxiliar.RecursosCreatorMaster(Edificaciones, EdificacionFactory.getEdificacion(2));
         Auxiliar.RecursosCreatorMaster(Edificaciones, EdificacionFactory.getEdificacion(3));
-        Auxiliar.TropaCreatorMaster(Cuarteles, EdificacionFactory.getEdificacion(4));
+        Auxiliar.TropaCreatorMaster(Cuarteles, EdificacionFactory.getEdificacion(4),Tropas);
 
         
         System.out.println("////Hola "+this.nombre+" ¿Que quieres en este turno?////");
