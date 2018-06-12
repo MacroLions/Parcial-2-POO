@@ -62,17 +62,20 @@ public class Auxiliar extends Thread{
         }
     }
     
-    public static void AtacarMaster(ArrayList lista, Tropa tropa){
+    public static void ViajarMaster(ArrayList lista){
         for(int i=0;i<lista.size();i++){
-            if(lista.get(i).getClass()==tropa.getClass()){
-                Tropa tropaMaster = (Tropa) lista.get(i);
-                if(tropaMaster.isViajando()){
-                    tropaMaster.Viajar(getFase());
-                }
-                else if(tropaMaster.isAtacando()){
-                    tropaMaster.getObjetivos().get(tropaMaster.getObjetivo()).RecibirDamage(tropaMaster.Atacar());
-                    System.out.println("Oh shit.");
-                }
+            Tropa tropaMaster = (Tropa) lista.get(i);
+            if(tropaMaster.isViajando()){
+                tropaMaster.Viajar(getFase());
+            }
+        }
+    }
+    
+    public static void AtacarMaster(ArrayList lista){
+        for(int i=0;i<lista.size();i++){
+            Tropa tropaMaster = (Tropa) lista.get(i);
+            if(tropaMaster.isAtacando()){
+                tropaMaster.getObjetivos().get(tropaMaster.getObjetivo()).RecibirDamage(tropaMaster.Atacar());
             }
         }
     }
