@@ -52,8 +52,8 @@ public class Jugador {
         Auxiliar.RecursosCreatorMaster(Edificaciones, EdificacionFactory.getEdificacion(2));
         Auxiliar.RecursosCreatorMaster(Edificaciones, EdificacionFactory.getEdificacion(3));
         Auxiliar.TropaCreatorMaster(Cuarteles, EdificacionFactory.getEdificacion(4),Tropas);
-        Auxiliar.AtacarMaster(Tropas, TropaFactory.getTropa(1));
-        Auxiliar.AtacarMaster(Tropas, TropaFactory.getTropa(2));
+        Auxiliar.ViajarMaster(Tropas);
+        Auxiliar.AtacarMaster(Tropas);
 
         
         System.out.println("////Hola "+this.nombre+" ¿Que quieres en este turno?////");
@@ -295,6 +295,7 @@ public class Jugador {
                 RevisarTropas();
                 System.out.print("Tropa a mandar a atacar: ");
                 int Tropa = input.nextInt();
+                this.Tropas.get(Tropa-1).setFaseInicial(Auxiliar.getFase());
                 this.Tropas.get(Tropa-1).setObjetivo(objetivo);
                 this.Tropas.get(Tropa-1).setViajando(true);
                 this.Tropas.get(Tropa-1).setAtacando(true);
