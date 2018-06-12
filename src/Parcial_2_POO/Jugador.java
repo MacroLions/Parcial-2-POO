@@ -152,6 +152,8 @@ public class Jugador {
                     cuartel.setPropitario(this);
                     cuartel.setNombreEscuadron(raza.getNombreEscuadron());
                     cuartel.setNombreSuperSoldado(raza.getNombreSuperSoldado());
+                    cuartel.setDamageEscuadron(raza.getAtaqueEscuadron());
+                    cuartel.setDamageSuperSoldado(raza.getAtaqueSuperSoldado());
                     Cuarteles.add(cuartel);
                     Edificaciones.add(cuartel);
                     System.out.println("Se construyó Cuartel");
@@ -207,7 +209,7 @@ public class Jugador {
     public void EntrenarTropa(){
         Scanner input = new Scanner(System.in);
         if(Cuarteles.isEmpty()){
-                System.out.println("No hay Cuarteles ningún cuartel en la base");
+                System.out.println("No hay Cuarteles en la base");
         } 
         else{
             System.out.println(">>Entrenar tropa!");
