@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Edificacion;
+import Parcial_2_POO.Jugador;
 import Tropa.Tropa;
 import java.util.Date;
 
@@ -14,6 +15,7 @@ import java.util.Date;
  */
 public class MaquinadeOro extends Thread implements Edificacion {
     private final String nombre = "Maquina de Oro";
+    private Jugador propitario;
     int Vida=1000;
     float RecursosGuardados=0;
     int tiempoAnterior=0;
@@ -57,9 +59,10 @@ public class MaquinadeOro extends Thread implements Edificacion {
     }
 
     @Override
-    public void RecibirDamage(int damage){
-        this.Vida=this.Vida-damage;
-    };
+    public void RecibirDamage(int damage) {
+        System.out.println(this.nombre+" de "+this.propitario.getNombre()+" recibio "+damage+" de daño");
+        Vida=Vida-damage;     
+    }
 
     
     //Gets and sets.
@@ -68,6 +71,14 @@ public class MaquinadeOro extends Thread implements Edificacion {
         return nombre;
     }
 
+    public Jugador getPropitario() {
+        return propitario;
+    }
+
+    public void setPropitario(Jugador propitario) {
+        this.propitario = propitario;
+    }
+    
     public int getVida() {
         return Vida;
     }

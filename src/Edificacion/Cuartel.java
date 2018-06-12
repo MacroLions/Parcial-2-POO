@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public class Cuartel extends Thread implements Edificacion{
     private String Nombre = "Cuartel";
     private Jugador propitario;
+    private int Vida=1000;
     private int FaseSet=-1;
     private int TipoDeTropa = 0;
     private int EsperaDeTropa = 0;
@@ -62,6 +63,12 @@ public class Cuartel extends Thread implements Edificacion{
         GenerarTropa();  
   
     }
+    @Override
+    public void RecibirDamage(int damage) {
+        System.out.println("El cuartel de "+this.propitario.getNombre()+" recibio "+damage+" de daño");
+        Vida=Vida-damage;
+        
+    }
 
     //Gets and sets.
 
@@ -81,6 +88,15 @@ public class Cuartel extends Thread implements Edificacion{
     public String getNombre() {
         return Nombre;
     }
+
+    public int getVida() {
+        return Vida;
+    }
+
+    public void setVida(int Vida) {
+        this.Vida = Vida;
+    }
+    
     
     public int getFaseSet() {
         return FaseSet;
@@ -167,11 +183,6 @@ public class Cuartel extends Thread implements Edificacion{
 
     @Override
     public void GenerarVehiculo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void RecibirDamage(int damage) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
