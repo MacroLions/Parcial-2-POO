@@ -6,7 +6,6 @@
 package Tropa;
 
 import Edificacion.Edificacion;
-import Parcial_2_POO.Auxiliar;
 import Parcial_2_POO.Jugador;
 import java.util.ArrayList;
 
@@ -45,12 +44,12 @@ public class Escuadron implements Tropa{
     @Override
     public boolean Viajar(int FaseActual){
         if(FaseUbicacion<2){
-            System.out.println("El escuadron de "+this.Propietario.getNombre()+" aún está viajando.");
+            System.out.println("El "+this.nombre+" de "+this.Propietario.getNombre()+" aún está viajando.");
             this.FaseUbicacion= FaseActual - this.FaseInicial;
             return false;
         }
         else if(FaseUbicacion==2){
-            System.out.println("El escuadron de "+this.Propietario.getNombre()+" ya llegó");
+            System.out.println("El "+this.nombre+" de "+this.Propietario.getNombre()+" ya llegó");
             return true;
         }
         return true;
