@@ -18,7 +18,8 @@ public class RazaFactory {
                 return new Tanuki();
             case 3:
                 return new Humano();
+            default:
+                return null;
         }
-        return null;
     }
 }
