@@ -38,6 +38,10 @@ public class Jugador {
     Jugador(String nombre){
         this.nombre=nombre;
     }
+    Jugador(String nombre, Raza raza){
+        this.nombre=nombre;
+        this.raza=raza;
+    }
     
     
     public boolean MenuJugador(){
@@ -59,7 +63,11 @@ public class Jugador {
         System.out.println("3. Entrenar Tropa       6. Terminar Turno");
 
         System.out.print("Opcion: ");
-        int op = input.nextInt();
+        int op = 7;
+        try{
+            op = input.nextInt();
+        }catch(Exception ex){}
+        
         System.out.println("");
         
         switch(op){
@@ -80,6 +88,8 @@ public class Jugador {
                 break;
             case 6:
                 return false;
+            default:
+                System.out.println("Escoja una opcion valida.");
         }
         return true;
     }
