@@ -14,17 +14,28 @@ import java.util.ArrayList;
  * @author Maishi
  */
 public interface Tropa {
+    //Metodos basicos?
     public int Atacar();
-    public boolean Viajar(int FaseActual);
-    public boolean ComprobadorDisponibilidad(int ValorFase);
+    public void Viajar(int FaseActual);
+    
+    //Metodos necesarios para sets locos ¿
+    public Jugador getPropietario();
     public void setPropietario(Jugador Propietario);
-    public void setNombre(String nombre);
     public String getNombre();
+    public void setNombre(String nombre);
+    public int getDamageBase();
+    public void setDamageBase(int DamageBase);
+    public int getFaseInicial();
+    public void setFaseInicial(int FaseInicial);
+    public int getFaseUbicacion();
+    public void setFaseUbicacion(int FaseUbicacion);
+    public ArrayList<Edificacion> getObjetivos();
+    public void setObjetivos(ArrayList<Edificacion> Objetivos);
+    public int getObjetivo();
     public void setObjetivo(int Objetivo);
-    public void setAtacando(boolean Atacando);
+    public boolean isViajando();
     public void setViajando(boolean Viajando);
     public boolean isAtacando();
-    public boolean isViajando();
-    public ArrayList<Edificacion> getObjetivos();
-    public int getObjetivo();
+    public void setAtacando(boolean Atacando);
+
 }

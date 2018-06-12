@@ -14,87 +14,132 @@ import java.util.ArrayList;
  * @author Mai Perez
  */
 public class SuperSoldado implements Tropa{
-    Jugador Propietario;
-    String nombre = "Super soldado";
-    int FaseInicial=0;
-    int FaseUbicacion=0;
-    int DamageBase=250;
-
+    Jugador Propietario; //Listo
+    String nombre = "Super Soldado"; //Listo
+    int DamageBase=250; //Listo
+    
+    int FaseInicial=0;//Listo
+    int FaseUbicacion=0;//Se supone funciona en Viajando.
+    
+    ArrayList <Edificacion> Objetivos;
+    int Objetivo;
+    
+    boolean Viajando=false;//Funciona con el global de Viajando.
+    boolean Atacando=false;//Funciona con el global de Atacando.
+       
+    
+    
     @Override
     public int Atacar() {
         if(FaseUbicacion==2){
             return DamageBase;
         }
-        else{
-            System.out.println("El Super Soldado no pueden atacar ahora.");
+        else if(FaseUbicacion<2){
             return 0;
         }
+        return 0;
     }
 
     @Override
-    public boolean Viajar(int FaseActual){
+    public void Viajar(int FaseActual){
         if(FaseUbicacion<2){
+            System.out.println("El "+this.nombre+" de "+this.Propietario.getNombre()+" aún está viajando.");
             this.FaseUbicacion= FaseActual - this.FaseInicial;
-            return true;
         }
-        else{
-            System.out.println("El escuadron ya llegó");
-            return false;
+        else if(FaseUbicacion==2){
+            System.out.println("El "+this.nombre+" de "+this.Propietario.getNombre()+" ya llegó");
+            this.Atacando=true;
         }
     }
 
+    //Gets and sets.
     @Override
-    public boolean ComprobadorDisponibilidad(int ValorFase) {
-        return ValorFase==4;
+    public Jugador getPropietario() {
+        return Propietario;
     }
-
+    
     @Override
     public void setPropietario(Jugador Propietario) {
-        this.Propietario=Propietario;
+        this.Propietario = Propietario;
     }
+    
     @Override
-    public String getNombre(){
+    public String getNombre() {
         return nombre;
     }
     
     @Override
     public void setNombre(String nombre) {
-        this.nombre=nombre;
+        this.nombre = nombre;
     }
-
+    
+    @Override
+    public int getDamageBase() {
+        return DamageBase;
+    }
+    
+    @Override
+    public void setDamageBase(int DamageBase) {
+        this.DamageBase = DamageBase;
+    }
+    
+    @Override
+    public int getFaseInicial() {
+        return FaseInicial;
+    }
+    
+    @Override
+    public void setFaseInicial(int FaseInicial) {
+        this.FaseInicial = FaseInicial;
+    }
+    
+    @Override
+    public int getFaseUbicacion() {
+        return FaseUbicacion;
+    }
+    
+    @Override
+    public void setFaseUbicacion(int FaseUbicacion) {
+        this.FaseUbicacion = FaseUbicacion;
+    }
+    
+    @Override
+    public ArrayList<Edificacion> getObjetivos() {
+        return Objetivos;
+    }
+    
+    @Override
+    public void setObjetivos(ArrayList<Edificacion> Objetivos) {
+        this.Objetivos = Objetivos;
+    }
+    
+    @Override
+    public int getObjetivo() {
+        return Objetivo;
+    }
+    
     @Override
     public void setObjetivo(int Objetivo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.Objetivo = Objetivo;
+    }
+    
+    @Override
+    public boolean isViajando() {
+        return Viajando;
+    }
+    
+    @Override
+    public void setViajando(boolean Viajando) {
+        this.Viajando = Viajando;
+    }
+    
+    @Override
+    public boolean isAtacando() {
+        return Atacando;
     }
 
     @Override
     public void setAtacando(boolean Atacando) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.Atacando = Atacando;
     }
-
-    @Override
-    public void setViajando(boolean Viajando) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isAtacando() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isViajando() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public ArrayList<Edificacion> getObjetivos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getObjetivo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

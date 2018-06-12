@@ -15,18 +15,18 @@ import java.util.ArrayList;
  */
 
 public class Escuadron implements Tropa{
-    Jugador Propietario;
-    String nombre = "Escuadron";
-    int FaseInicial=0;
-    int FaseUbicacion=0;
+    Jugador Propietario; //Listo
+    String nombre = "Escuadron"; //Listo
+    int DamageBase=100; //Listo
+    
+    int FaseInicial=0;//Listo
+    int FaseUbicacion=0;//Se supone funciona en Viajando.
     
     ArrayList <Edificacion> Objetivos;
     int Objetivo;
     
-    int DamageBase=100;
-    
-    boolean Viajando=false;
-    boolean Atacando=false;
+    boolean Viajando=false;//Funciona con el global de Viajando.
+    boolean Atacando=false;//Funciona con el global de Atacando.
        
     
     
@@ -42,29 +42,19 @@ public class Escuadron implements Tropa{
     }
 
     @Override
-    public boolean Viajar(int FaseActual){
+    public void Viajar(int FaseActual){
         if(FaseUbicacion<2){
             System.out.println("El "+this.nombre+" de "+this.Propietario.getNombre()+" aún está viajando.");
             this.FaseUbicacion= FaseActual - this.FaseInicial;
-            return false;
         }
         else if(FaseUbicacion==2){
             System.out.println("El "+this.nombre+" de "+this.Propietario.getNombre()+" ya llegó");
-            return true;
+            this.Atacando=true;
         }
-        return true;
     }
 
+    //Gets and sets.
     @Override
-    public boolean ComprobadorDisponibilidad(int ValorFase) {
-        return ValorFase==2;
-    }
-    
-    
-    //Gets y Sets
-    
-    
-
     public Jugador getPropietario() {
         return Propietario;
     }
@@ -78,37 +68,52 @@ public class Escuadron implements Tropa{
     public String getNombre() {
         return nombre;
     }
-
+    
     @Override
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+    
+    @Override
+    public int getDamageBase() {
+        return DamageBase;
+    }
+    
+    @Override
+    public void setDamageBase(int DamageBase) {
+        this.DamageBase = DamageBase;
+    }
+    
+    @Override
     public int getFaseInicial() {
         return FaseInicial;
     }
-
+    
+    @Override
     public void setFaseInicial(int FaseInicial) {
         this.FaseInicial = FaseInicial;
     }
-
+    
+    @Override
     public int getFaseUbicacion() {
         return FaseUbicacion;
     }
-
+    
+    @Override
     public void setFaseUbicacion(int FaseUbicacion) {
         this.FaseUbicacion = FaseUbicacion;
     }
-
+    
     @Override
     public ArrayList<Edificacion> getObjetivos() {
         return Objetivos;
     }
-
+    
+    @Override
     public void setObjetivos(ArrayList<Edificacion> Objetivos) {
         this.Objetivos = Objetivos;
     }
-
+    
     @Override
     public int getObjetivo() {
         return Objetivo;
@@ -118,25 +123,17 @@ public class Escuadron implements Tropa{
     public void setObjetivo(int Objetivo) {
         this.Objetivo = Objetivo;
     }
-
-    public int getDamageBase() {
-        return DamageBase;
-    }
-
-    public void setDamageBase(int DamageBase) {
-        this.DamageBase = DamageBase;
-    }
-
+    
     @Override
     public boolean isViajando() {
         return Viajando;
     }
-
+    
     @Override
     public void setViajando(boolean Viajando) {
         this.Viajando = Viajando;
     }
-
+    
     @Override
     public boolean isAtacando() {
         return Atacando;
@@ -147,5 +144,4 @@ public class Escuadron implements Tropa{
         this.Atacando = Atacando;
     }
 
-    
 }
