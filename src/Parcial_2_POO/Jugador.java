@@ -6,12 +6,14 @@
 package Parcial_2_POO;
 
 import Edificacion.Cuartel;
+import Edificacion.MaquinadeOro;
+import Edificacion.MaquinadeMagia;
+import Edificacion.MaquinadeDiamantes;
 import Edificacion.Edificacion;
 import Edificacion.EdificacionFactory;
 import Razas.Raza;
 import Razas.RazaFactory;
 import Tropa.Tropa;
-import Tropa.TropaFactory;
 import Vehiculos.Vehiculo;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -58,12 +60,13 @@ public class Jugador {
         
         System.out.println("////Hola "+this.nombre+" ¿Que quieres en este turno?////");
         System.out.println("Recursos disponibles: "+raza.getNombreRecurso1()+": "+RecursoTotal1+" "+raza.getNombreRecurso2()+": "+this.RecursoTotal2+" " +raza.getNombreRecurso3()+": "+this.RecursoTotal3);
-        System.out.println("1. Construir            4. Revisar Tropas");
-        System.out.println("2. Recolectar Recursos  5. Atacar");
-        System.out.println("3. Entrenar Tropa       6. Terminar Turno");
+        System.out.println("1. Construir            5. Revisar Tropas");
+        System.out.println("2. Recolectar Recursos  6. Revisar Edificaciones");
+        System.out.println("3. Entrenar Tropa       7. Atacar");
+        System.out.println("4. Crear Vehiculo       8. Terminar Turno");
 
         System.out.print("Opcion: ");
-        int op = 7;
+        int op = 8;
         try{
             op = input.nextInt();
         }catch(Exception ex){}
@@ -81,12 +84,18 @@ public class Jugador {
                 EntrenarTropa();
                 break;
             case 4:
-                RevisarTropas();
+                CrearVehiculo();
                 break;
             case 5:
-                Atacar();
+                RevisarTropas();
                 break;
             case 6:
+                RevisarEdificaciones();
+                break;
+            case 7:
+                Atacar();
+                break;
+            case 8:
                 return false;
             default:
                 System.out.println("Escoja una opcion valida.");
@@ -112,7 +121,9 @@ public class Jugador {
             case 1:
                 if(this.RecursoTotal2>=200){
                     this.RecursoTotal2=this.RecursoTotal2-200;
-                    Edificaciones.add(EdificacionFactory.getEdificacion(op));
+                    MaquinadeOro MaquinaRecurso1 = (MaquinadeOro) EdificacionFactory.getEdificacion(op);
+                    MaquinaRecurso1.setPropitario(this);
+                    Edificaciones.add(MaquinaRecurso1);
                     System.out.println("Se construyó "+raza.getNombreMaquinaRecurso1());
                     break;
                 }
@@ -123,7 +134,9 @@ public class Jugador {
             case 2:
                 if(this.RecursoTotal1>=200){
                     this.RecursoTotal1=this.RecursoTotal1-200;
-                    Edificaciones.add(EdificacionFactory.getEdificacion(op));
+                    MaquinadeMagia MaquinaRecurso2 = (MaquinadeMagia) EdificacionFactory.getEdificacion(op);
+                    MaquinaRecurso2.setPropitario(this);
+                    Edificaciones.add(MaquinaRecurso2);
                     System.out.println("Se construyó "+raza.getNombreMaquinaRecurso2());
                     break;
                 }
@@ -135,7 +148,9 @@ public class Jugador {
                 if(this.RecursoTotal1>=600&&this.RecursoTotal2>=600){
                     this.RecursoTotal1=this.RecursoTotal1-600;
                     this.RecursoTotal2=this.RecursoTotal2-600;
-                    Edificaciones.add(EdificacionFactory.getEdificacion(op));
+                    MaquinadeDiamantes MaquinaRecurso3 = (MaquinadeDiamantes) EdificacionFactory.getEdificacion(op);
+                    MaquinaRecurso3.setPropitario(this);
+                    Edificaciones.add(MaquinaRecurso3);
                     System.out.println("Se construyó "+raza.getNombreMaquinaRecurso3());
                     break;
                 }
@@ -260,6 +275,8 @@ public class Jugador {
         }
     };
     
+    public void CrearVehiculo(){}
+    
     public void RevisarTropas(){
         if(this.Tropas.isEmpty()){
             System.out.println("No hay ningún tipo de tropa en la base.");
@@ -268,6 +285,19 @@ public class Jugador {
             System.out.println("Tropas disponibles:");
             for(int i=1;i<=this.Tropas.size();i++){
                 System.out.print(i+") "+this.Tropas.get(i-1).getNombre()+" ");
+            }
+            System.out.println("");
+        }
+    }
+    
+    public void RevisarEdificaciones(){
+        if(this.Edificaciones.isEmpty()){
+            System.out.println("No hay edificaciones (Esto no debe estar cuando se agrege el HQ) Ya que implica que el otro jugado ganó.");
+        }
+        else{
+            System.out.println("Edificaciones:");
+            for(int i=1;i<=this.Edificaciones.size();i++){
+                System.out.print(i+") "+this.Edificaciones.get(i-1).getNombre()+" Vida: "+this.Edificaciones.get(i-1).getVida()+"  ");
             }
             System.out.println("");
         }
@@ -296,9 +326,9 @@ public class Jugador {
                 System.out.print("Tropa a mandar a atacar: ");
                 int Tropa = input.nextInt();
                 this.Tropas.get(Tropa-1).setFaseInicial(Auxiliar.getFase());
+                this.Tropas.get(Tropa-1).setObjetivos(Objetivos);
                 this.Tropas.get(Tropa-1).setObjetivo(objetivo);
                 this.Tropas.get(Tropa-1).setViajando(true);
-                this.Tropas.get(Tropa-1).setAtacando(true);
                 
             }
             
