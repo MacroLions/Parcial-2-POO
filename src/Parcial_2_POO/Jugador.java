@@ -227,14 +227,14 @@ public class Jugador {
                     if(TropaElegida==1){
                         CuartelElegido.setDisponibilidad(false);
                         CuartelElegido.setTipoDeTropa(TropaElegida);
-                        CuartelElegido.setEsperaDeTropa(2);
+                        CuartelElegido.setEsperaDeTropa(raza.getEsperaEscuadron());
                         CuartelElegido.start();
                         System.out.println("Se está entrenando un "+raza.getNombreEscuadron());
                     }
                     else if(TropaElegida==2){
                         CuartelElegido.setDisponibilidad(false);
                         CuartelElegido.setTipoDeTropa(TropaElegida);
-                        CuartelElegido.setEsperaDeTropa(4);
+                        CuartelElegido.setEsperaDeTropa(raza.getEsperaSuperSoldado());
                         CuartelElegido.start();
                         System.out.println("Se está generando un "+raza.getNombreSuperSoldado());
                     }
