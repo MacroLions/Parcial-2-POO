@@ -26,4 +26,5 @@ public interface Edificacion {
     public void start();
     
     public String getNombre();
+    public int getVida();
 }
