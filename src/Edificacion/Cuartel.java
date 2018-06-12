@@ -24,6 +24,8 @@ public class Cuartel extends Thread implements Edificacion{
     private int EsperaDeTropa = 0;
     private boolean Disponibilidad=true;
     private ArrayList<Tropa> Tropas;
+    String NombreEscuadron = "Escuadron";
+    String NombreSuperSoldado = "Super Soldado";
     
     @Override
     public Tropa GenerarTropa(){
@@ -32,19 +34,20 @@ public class Cuartel extends Thread implements Edificacion{
         }
         int comprobador = Auxiliar.getFase()-this.FaseSet;
         if(comprobador==EsperaDeTropa){
-            if(this.TipoDeTropa==1){
-                System.out.println("El escuadron ha sido entrenado");
-                System.out.println("");   
-            }
-            else if (this.TipoDeTropa==2){
-                System.out.println("El Super Soldado ha sido entrenado");
-                System.out.println("");
-            }
-            
             setDisponibilidad(true);
             this.FaseSet=-1;
             Tropa tropa= TropaFactory.getTropa(this.TipoDeTropa);
             tropa.setPropietario(this.propitario);
+            if(this.TipoDeTropa==1){
+                tropa.setNombre(NombreEscuadron);
+                System.out.println("El "+NombreEscuadron+" ha sido entrenado");
+                System.out.println("");   
+            }
+            else if (this.TipoDeTropa==2){
+                tropa.setNombre(NombreSuperSoldado);
+                System.out.println("El "+NombreSuperSoldado+" ha sido entrenado");
+                System.out.println("");
+            }
             return tropa;
         }
         return null;
@@ -115,6 +118,23 @@ public class Cuartel extends Thread implements Edificacion{
     public void setEsperaDeTropa(int EsperaDeTropa) {
         this.EsperaDeTropa = EsperaDeTropa;
     }
+
+    public String getNombreEscuadron() {
+        return NombreEscuadron;
+    }
+
+    public void setNombreEscuadron(String NombreEscuadron) {
+        this.NombreEscuadron = NombreEscuadron;
+    }
+
+    public String getNombreSuperSoldado() {
+        return NombreSuperSoldado;
+    }
+
+    public void setNombreSuperSoldado(String NombreSuperSoldado) {
+        this.NombreSuperSoldado = NombreSuperSoldado;
+    }
+    
     
     
    
