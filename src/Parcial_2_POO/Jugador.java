@@ -9,6 +9,7 @@ import Edificacion.Cuartel;
 import Edificacion.Edificacion;
 import Edificacion.EdificacionFactory;
 import Razas.Raza;
+import Razas.RazaFactory;
 import Tropa.Tropa;
 import Tropa.TropaFactory;
 import Vehiculos.Vehiculo;
@@ -21,10 +22,10 @@ import java.util.Scanner;
  */
 public class Jugador {
     private final String nombre;
-    private Raza raza;
-    private int OroTotal=2000;
-    private int MagiaTotal=2000;
-    private int Diamantes=10;
+    private Raza raza = RazaFactory.getRaza(1);
+    private int RecursoTotal1=2000;
+    private int RecursoTotal2=2000;
+    private int RecursoTotal3=10;
     private final ArrayList<Tropa> Tropas = new ArrayList();
     private final ArrayList<Edificacion> Edificaciones = new ArrayList();
     private final ArrayList<Cuartel> Cuarteles = new ArrayList();
@@ -52,7 +53,7 @@ public class Jugador {
 
         
         System.out.println("////Hola "+this.nombre+" ¿Que quieres en este turno?////");
-        System.out.println("Recursos disponibles: Oro: "+this.OroTotal+" Magia: "+this.MagiaTotal+" Diamantes: "+this.Diamantes);
+        System.out.println("Recursos disponibles: "+raza.getNombreRecurso1()+": "+RecursoTotal1+" "+raza.getNombreRecurso2()+": "+this.RecursoTotal2+" " +raza.getNombreRecurso3()+": "+this.RecursoTotal3);
         System.out.println("1. Construir            4. Revisar Tropas");
         System.out.println("2. Recolectar Recursos  5. Atacar");
         System.out.println("3. Entrenar Tropa       6. Terminar Turno");
@@ -88,10 +89,10 @@ public class Jugador {
         System.out.println(">>Construir!");
         System.out.println("");
         System.out.println("Construcciones disponibles: ");
-        System.out.println("1. Maquina de Oro (200 de Magia)");
-        System.out.println("2. Maquina de Magia (200 de oro)");
-        System.out.println("3. Maquina de Diamantes (600 de Oro, 600 de Magia)");
-        System.out.println("4. Cuartel de tropas (300 de Magia,1 Diamantes)");
+        System.out.println("1. "+raza.getNombreMaquinaRecurso1()+" (200 de "+raza.getNombreRecurso2()+")");
+        System.out.println("2. "+raza.getNombreMaquinaRecurso2()+" (200 de "+raza.getNombreRecurso1()+")");
+        System.out.println("3. "+raza.getNombreMaquinaRecurso3()+" (600 de "+raza.getNombreRecurso1()+", 600 de "+raza.getNombreRecurso2()+")");
+        System.out.println("4. Cuartel de tropas (300 de " + raza.getNombreRecurso2()+", 2 "+raza.getNombreRecurso3()+")");
         
         System.out.print("Opcion: ");
         int op = input.nextInt();
@@ -99,53 +100,55 @@ public class Jugador {
         
         switch(op){
             case 1:
-                if(this.MagiaTotal>=200){
-                    this.MagiaTotal=this.MagiaTotal-200;
+                if(this.RecursoTotal2>=200){
+                    this.RecursoTotal2=this.RecursoTotal2-200;
                     Edificaciones.add(EdificacionFactory.getEdificacion(op));
-                    System.out.println("Se construyó maquina de Oro");
+                    System.out.println("Se construyó "+raza.getNombreMaquinaRecurso1());
                     break;
                 }
                 else{
-                    System.out.println("No hay suficiente Magia.");
+                    System.out.println("No hay suficiente "+raza.getNombreRecurso2());
                     break;
                 }
             case 2:
-                if(this.OroTotal>=200){
-                    this.OroTotal=this.OroTotal-200;
+                if(this.RecursoTotal1>=200){
+                    this.RecursoTotal1=this.RecursoTotal1-200;
                     Edificaciones.add(EdificacionFactory.getEdificacion(op));
-                    System.out.println("Se construyó maquina de Magia");
+                    System.out.println("Se construyó "+raza.getNombreMaquinaRecurso2());
                     break;
                 }
                 else{
-                    System.out.println("No hay suficiente Oro.");
+                    System.out.println("No hay suficiente "+raza.getNombreRecurso1());
                     break;
                 }
             case 3:
-                if(this.OroTotal>=600&&this.MagiaTotal>=600){
-                    this.OroTotal=this.OroTotal-600;
-                    this.MagiaTotal=this.MagiaTotal-600;
+                if(this.RecursoTotal1>=600&&this.RecursoTotal2>=600){
+                    this.RecursoTotal1=this.RecursoTotal1-600;
+                    this.RecursoTotal2=this.RecursoTotal2-600;
                     Edificaciones.add(EdificacionFactory.getEdificacion(op));
-                    System.out.println("Se construyó maquina de diamantes");
+                    System.out.println("Se construyó "+raza.getNombreMaquinaRecurso3());
                     break;
                 }
                 else{
-                    System.out.println("No hay Magia u Oro suficiente.");
+                    System.out.println("No hay suficiente "+raza.getNombreRecurso1()+" o "+raza.getNombreRecurso2()+" suficiente.");
                     break;
                 }
             case 4:
-                if(this.MagiaTotal>=300&&this.Diamantes>=1){
-                    this.MagiaTotal=this.MagiaTotal-300;
-                    this.Diamantes=this.Diamantes-1;
+                if(this.RecursoTotal2>=300&&this.RecursoTotal3>=2){
+                    this.RecursoTotal2=this.RecursoTotal2-300;
+                    this.RecursoTotal3=this.RecursoTotal3-2;
                     Cuartel cuartel = (Cuartel) EdificacionFactory.getEdificacion(op);
                     cuartel.setTropas(this.Tropas);
                     cuartel.setPropitario(this);
+                    cuartel.setNombreEscuadron(raza.getNombreEscuadron());
+                    cuartel.setNombreSuperSoldado(raza.getNombreSuperSoldado());
                     Cuarteles.add(cuartel);
                     Edificaciones.add(cuartel);
                     System.out.println("Se construyó Cuartel");
                     break;
                 }
                 else{
-                    System.out.println("No hay Magia o Diamantes suficiente.");
+                    System.out.println("No hay suficiente "+raza.getNombreRecurso1()+" o "+raza.getNombreRecurso3()+" suficiente.");
                     break;
                 }
         }
@@ -163,22 +166,22 @@ public class Jugador {
             int Comprobador_3 = Auxiliar.RevisarEdificaciones(Edificaciones, EdificacionFactory.getEdificacion(3));
             
             if(Comprobador_1!=0){
-                System.out.println("Maquina de Oro x"+Comprobador_1);
+                System.out.println(raza.getNombreMaquinaRecurso1()+" x"+Comprobador_1);
             }
             if(Comprobador_2!=0){
-                System.out.println("Maquina de Magia x"+Comprobador_2);
+                System.out.println(raza.getNombreMaquinaRecurso2()+" x"+Comprobador_2);
             }
             if(Comprobador_3!=0){
-                System.out.println("Maquina de Diamantes x"+Comprobador_3);
+                System.out.println(raza.getNombreMaquinaRecurso3()+" x"+Comprobador_3);
             }
             
             if(Comprobador_1==0&&Comprobador_2==0&&Comprobador_3==0){
                 System.out.println("No hay Maquinas de recursos, solo otro tipo de edificaciones.");
             }
             if(Comprobador_1!=0||Comprobador_2!=0||Comprobador_3!=0){
-                this.OroTotal = this.OroTotal + Auxiliar.RecolectorMaster(Edificaciones, EdificacionFactory.getEdificacion(1));
-                this.MagiaTotal = this.MagiaTotal + Auxiliar.RecolectorMaster(Edificaciones, EdificacionFactory.getEdificacion(2));
-                this.Diamantes = this.Diamantes + Auxiliar.RecolectorMaster(Edificaciones, EdificacionFactory.getEdificacion(3));
+                this.RecursoTotal1 = this.RecursoTotal1 + Auxiliar.RecolectorMaster(Edificaciones, EdificacionFactory.getEdificacion(1));
+                this.RecursoTotal2 = this.RecursoTotal2 + Auxiliar.RecolectorMaster(Edificaciones, EdificacionFactory.getEdificacion(2));
+                this.RecursoTotal3 = this.RecursoTotal3 + Auxiliar.RecolectorMaster(Edificaciones, EdificacionFactory.getEdificacion(3));
                 System.out.println("Se ha recolectado todo lo posible");
                 
             }
@@ -217,8 +220,8 @@ public class Jugador {
                 if(CuartelElegido.isDisponibilidad()){
                     System.out.println("");
                     System.out.println("Tipo de tropa a entrenar:");
-                    System.out.println("1. Escuadron");
-                    System.out.println("2. Super Soldado");
+                    System.out.println("1. "+raza.getNombreEscuadron());
+                    System.out.println("2. "+raza.getNombreSuperSoldado());
                     System.out.print("Opcion: ");
                     int TropaElegida=input.nextInt();
                     if(TropaElegida==1){
@@ -226,14 +229,14 @@ public class Jugador {
                         CuartelElegido.setTipoDeTropa(TropaElegida);
                         CuartelElegido.setEsperaDeTropa(2);
                         CuartelElegido.start();
-                        System.out.println("Se está entrenando un escuadron!");
+                        System.out.println("Se está entrenando un "+raza.getNombreEscuadron());
                     }
                     else if(TropaElegida==2){
                         CuartelElegido.setDisponibilidad(false);
                         CuartelElegido.setTipoDeTropa(TropaElegida);
                         CuartelElegido.setEsperaDeTropa(4);
                         CuartelElegido.start();
-                        System.out.println("Se está generando un super soldado");
+                        System.out.println("Se está generando un "+raza.getNombreSuperSoldado());
                     }
                 }
                 else{
@@ -305,28 +308,28 @@ public class Jugador {
         this.raza = raza;
     }
 
-    public int getOroTotal() {
-        return OroTotal;
+    public int getRecursoTotal1() {
+        return RecursoTotal1;
     }
 
-    public void setOroTotal(int OroTotal) {
-        this.OroTotal = OroTotal;
+    public void setRecursoTotal1(int RecursoTotal1) {
+        this.RecursoTotal1 = RecursoTotal1;
     }
 
-    public int getMagiaTotal() {
-        return MagiaTotal;
+    public int getRecursoTotal2() {
+        return RecursoTotal2;
     }
 
-    public void setMagiaTotal(int MagiaTotal) {
-        this.MagiaTotal = MagiaTotal;
+    public void setRecursoTotal2(int RecursoTotal2) {
+        this.RecursoTotal2 = RecursoTotal2;
     }
 
-    public int getDiamantes() {
-        return Diamantes;
+    public int getRecursoTotal3() {
+        return RecursoTotal3;
     }
 
-    public void setDiamantes(int Diamantes) {
-        this.Diamantes = Diamantes;
+    public void setRecursoTotal3(int RecursoTotal3) {
+        this.RecursoTotal3 = RecursoTotal3;
     }
 
     public ArrayList<Edificacion> getObjetivos() {
