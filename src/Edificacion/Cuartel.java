@@ -26,6 +26,8 @@ public class Cuartel extends Thread implements Edificacion{
     private ArrayList<Tropa> Tropas;
     String NombreEscuadron = "Escuadron";
     String NombreSuperSoldado = "Super Soldado";
+    int DamageEscuadron;
+    int DamageSuperSoldado;
     
     @Override
     public Tropa GenerarTropa(){
@@ -40,11 +42,13 @@ public class Cuartel extends Thread implements Edificacion{
             tropa.setPropietario(this.propitario);
             if(this.TipoDeTropa==1){
                 tropa.setNombre(NombreEscuadron);
+                tropa.setDamageBase(DamageEscuadron);
                 System.out.println("El "+NombreEscuadron+" ha sido entrenado");
                 System.out.println("");   
             }
             else if (this.TipoDeTropa==2){
                 tropa.setNombre(NombreSuperSoldado);
+                tropa.setDamageBase(DamageSuperSoldado);
                 System.out.println("El "+NombreSuperSoldado+" ha sido entrenado");
                 System.out.println("");
             }
@@ -134,6 +138,24 @@ public class Cuartel extends Thread implements Edificacion{
     public void setNombreSuperSoldado(String NombreSuperSoldado) {
         this.NombreSuperSoldado = NombreSuperSoldado;
     }
+
+    public int getDamageEscuadron() {
+        return DamageEscuadron;
+    }
+
+    public void setDamageEscuadron(int DamageEscuadron) {
+        this.DamageEscuadron = DamageEscuadron;
+    }
+
+    public int getDamageSuperSoldado() {
+        return DamageSuperSoldado;
+    }
+
+    public void setDamageSuperSoldado(int DamageSuperSoldado) {
+        this.DamageSuperSoldado = DamageSuperSoldado;
+    }
+    
+    
     
     
     
