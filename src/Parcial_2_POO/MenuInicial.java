@@ -78,7 +78,12 @@ public class MenuInicial {
         boolean Start = true;
         
         while(Start){
-            System.out.println("Fase #"+Auxiliar.getFase());
+            System.out.println(">>>>Fase #"+Auxiliar.getFase()+"<<<<");
+            Auxiliar.ViajarMaster(Jugador1.getTropas());
+            Auxiliar.AtacarMaster(Jugador1.getTropas());
+            Auxiliar.ViajarMaster(Jugador2.getTropas());
+            Auxiliar.AtacarMaster(Jugador2.getTropas());
+            System.out.println("");
             while(TurnoJugador1){
                 TurnoJugador1= Jugador1.MenuJugador();
                 System.out.println("");
@@ -100,7 +105,10 @@ public class MenuInicial {
         boolean Start = true;
         JugadorDebug.setObjetivos(JugadorDebug.getEdificaciones());
         while(Start){
-            System.out.println("Fase #"+Auxiliar.getFase());
+            System.out.println(">>>>Fase #"+Auxiliar.getFase()+"<<<<");
+            Auxiliar.ViajarMaster(JugadorDebug.getTropas());
+            Auxiliar.AtacarMaster(JugadorDebug.getTropas());
+            System.out.println("");
             while(TurnoJugadorDebug){
                 TurnoJugadorDebug= JugadorDebug.MenuJugador();
                 System.out.println("");
