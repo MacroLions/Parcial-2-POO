@@ -85,11 +85,13 @@ public class MenuInicial {
             Auxiliar.AtacarMaster(Jugador2.getTropas());
             System.out.println("");
             while(TurnoJugador1){
+                System.out.println("Turno de "+Jugador1.getNombre());
                 TurnoJugador1= Jugador1.MenuJugador();
                 System.out.println("");
             }
 
             while(TurnoJugador2){
+                System.out.println("Turno de "+Jugador2.getNombre());
                 TurnoJugador2= Jugador2.MenuJugador();
                 System.out.println("");
             }
@@ -110,6 +112,7 @@ public class MenuInicial {
             Auxiliar.AtacarMaster(JugadorDebug.getTropas());
             System.out.println("");
             while(TurnoJugadorDebug){
+                System.out.println("Turno de "+JugadorDebug.getNombre());
                 TurnoJugadorDebug= JugadorDebug.MenuJugador();
                 System.out.println("");
             }
