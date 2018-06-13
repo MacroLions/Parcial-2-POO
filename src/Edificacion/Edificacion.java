@@ -27,4 +27,5 @@ public interface Edificacion {
     
     public String getNombre();
     public int getVida();
+    public boolean isVivo();
 }
