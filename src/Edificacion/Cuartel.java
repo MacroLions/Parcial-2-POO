@@ -70,6 +70,7 @@ public class Cuartel extends Thread implements Edificacion{
         Vida=Vida-damage;
         if(Vida<0){
             Vivo=false;
+            //destroy();
         }
         
     }
