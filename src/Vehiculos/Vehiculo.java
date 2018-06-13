@@ -5,11 +5,15 @@
  */
 package Vehiculos;
 
+import Parcial_2_POO.Jugador;
+
 /**
  *
  * @author Maishi
  */
 public interface Vehiculo {
     public void Existir();
+    public void setNombre(String Nombre);
+    public void setPropietario(Jugador Propietario);
     
 }
