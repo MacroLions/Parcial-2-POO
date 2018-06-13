@@ -113,72 +113,77 @@ public class Jugador {
         System.out.println("4. Cuartel de tropas (300 de " + raza.getNombreRecurso2()+", 2 "+raza.getNombreRecurso3()+")");
         
         System.out.print("Opcion: ");
-        int op = input.nextInt();
-        System.out.println("");
-        
-        switch(op){
-            case 1:
-                if(this.RecursoTotal2>=200){
-                    this.RecursoTotal2=this.RecursoTotal2-200;
-                    MaquinadeOro MaquinaRecurso1 = (MaquinadeOro) EdificacionFactory.getEdificacion(op);
-                    MaquinaRecurso1.setPropitario(this);
-                    Edificaciones.add(MaquinaRecurso1);
-                    System.out.println("Se construyó "+raza.getNombreMaquinaRecurso1());
-                    break;
-                }
-                else{
-                    System.out.println("No hay suficiente "+raza.getNombreRecurso2());
-                    break;
-                }
-            case 2:
-                if(this.RecursoTotal1>=200){
-                    this.RecursoTotal1=this.RecursoTotal1-200;
-                    MaquinadeMagia MaquinaRecurso2 = (MaquinadeMagia) EdificacionFactory.getEdificacion(op);
-                    MaquinaRecurso2.setPropitario(this);
-                    Edificaciones.add(MaquinaRecurso2);
-                    System.out.println("Se construyó "+raza.getNombreMaquinaRecurso2());
-                    break;
-                }
-                else{
-                    System.out.println("No hay suficiente "+raza.getNombreRecurso1());
-                    break;
-                }
-            case 3:
-                if(this.RecursoTotal1>=600&&this.RecursoTotal2>=600){
-                    this.RecursoTotal1=this.RecursoTotal1-600;
-                    this.RecursoTotal2=this.RecursoTotal2-600;
-                    MaquinadeDiamantes MaquinaRecurso3 = (MaquinadeDiamantes) EdificacionFactory.getEdificacion(op);
-                    MaquinaRecurso3.setPropitario(this);
-                    Edificaciones.add(MaquinaRecurso3);
-                    System.out.println("Se construyó "+raza.getNombreMaquinaRecurso3());
-                    break;
-                }
-                else{
-                    System.out.println("No hay suficiente "+raza.getNombreRecurso1()+" o "+raza.getNombreRecurso2()+" suficiente.");
-                    break;
-                }
-            case 4:
-                if(this.RecursoTotal2>=300&&this.RecursoTotal3>=2){
-                    this.RecursoTotal2=this.RecursoTotal2-300;
-                    this.RecursoTotal3=this.RecursoTotal3-2;
-                    Cuartel cuartel = (Cuartel) EdificacionFactory.getEdificacion(op);
-                    cuartel.setTropas(this.Tropas);
-                    cuartel.setPropitario(this);
-                    cuartel.setNombreEscuadron(raza.getNombreEscuadron());
-                    cuartel.setNombreSuperSoldado(raza.getNombreSuperSoldado());
-                    cuartel.setDamageEscuadron(raza.getAtaqueEscuadron());
-                    cuartel.setDamageSuperSoldado(raza.getAtaqueSuperSoldado());
-                    Cuarteles.add(cuartel);
-                    Edificaciones.add(cuartel);
-                    System.out.println("Se construyó Cuartel");
-                    break;
-                }
-                else{
-                    System.out.println("No hay suficiente "+raza.getNombreRecurso1()+" o "+raza.getNombreRecurso3()+" suficiente.");
-                    break;
-                }
+        try{
+            int op = input.nextInt();
+            System.out.println("");
+            switch(op){
+                case 1:
+                    if(this.RecursoTotal2>=200){
+                        this.RecursoTotal2=this.RecursoTotal2-200;
+                        MaquinadeOro MaquinaRecurso1 = (MaquinadeOro) EdificacionFactory.getEdificacion(op);
+                        MaquinaRecurso1.setPropitario(this);
+                        Edificaciones.add(MaquinaRecurso1);
+                        System.out.println("Se construyó "+raza.getNombreMaquinaRecurso1());
+                        break;
+                    }
+                    else{
+                        System.out.println("No hay suficiente "+raza.getNombreRecurso2());
+                        break;
+                    }
+                case 2:
+                    if(this.RecursoTotal1>=200){
+                        this.RecursoTotal1=this.RecursoTotal1-200;
+                        MaquinadeMagia MaquinaRecurso2 = (MaquinadeMagia) EdificacionFactory.getEdificacion(op);
+                        MaquinaRecurso2.setPropitario(this);
+                        Edificaciones.add(MaquinaRecurso2);
+                        System.out.println("Se construyó "+raza.getNombreMaquinaRecurso2());
+                        break;
+                    }
+                    else{
+                        System.out.println("No hay suficiente "+raza.getNombreRecurso1());
+                        break;
+                    }
+                case 3:
+                    if(this.RecursoTotal1>=600&&this.RecursoTotal2>=600){
+                        this.RecursoTotal1=this.RecursoTotal1-600;
+                        this.RecursoTotal2=this.RecursoTotal2-600;
+                        MaquinadeDiamantes MaquinaRecurso3 = (MaquinadeDiamantes) EdificacionFactory.getEdificacion(op);
+                        MaquinaRecurso3.setPropitario(this);
+                        Edificaciones.add(MaquinaRecurso3);
+                        System.out.println("Se construyó "+raza.getNombreMaquinaRecurso3());
+                        break;
+                    }
+                    else{
+                        System.out.println("No hay suficiente "+raza.getNombreRecurso1()+" o "+raza.getNombreRecurso2()+" suficiente.");
+                        break;
+                    }
+                case 4:
+                    if(this.RecursoTotal2>=300&&this.RecursoTotal3>=2){
+                        this.RecursoTotal2=this.RecursoTotal2-300;
+                        this.RecursoTotal3=this.RecursoTotal3-2;
+                        Cuartel cuartel = (Cuartel) EdificacionFactory.getEdificacion(op);
+                        cuartel.setTropas(this.Tropas);
+                        cuartel.setPropitario(this);
+                        cuartel.setNombreEscuadron(raza.getNombreEscuadron());
+                        cuartel.setNombreSuperSoldado(raza.getNombreSuperSoldado());
+                        cuartel.setDamageEscuadron(raza.getAtaqueEscuadron());
+                        cuartel.setDamageSuperSoldado(raza.getAtaqueSuperSoldado());
+                        Cuarteles.add(cuartel);
+                        Edificaciones.add(cuartel);
+                        System.out.println("Se construyó Cuartel");
+                        break;
+                    }
+                    else{
+                        System.out.println("No hay suficiente "+raza.getNombreRecurso1()+" o "+raza.getNombreRecurso3()+" suficiente.");
+                        break;
+                    }
+                default:
+                    System.out.println("Edificacion no existente.");
+            }
+        }catch(Exception ex){
+            System.out.println("");
+            System.out.println("Edificacion no valida");
         }
-        
     };
     
     
@@ -240,8 +245,8 @@ public class Jugador {
             }
             System.out.println("");
             System.out.print("¿Cuál cuartel usará? Opcion: ");
-            int NumCuartelElegido = input.nextInt();
             try{ 
+                int NumCuartelElegido = input.nextInt();
                 Cuartel CuartelElegido = Cuarteles.get(NumCuartelElegido-1);
                 if(CuartelElegido.isDisponibilidad()){
                     System.out.println("");
@@ -287,7 +292,7 @@ public class Jugador {
                     System.out.println("El Cuartel Elegido no está disponible.");
                 }
             }catch(Exception ex){
-                System.out.println("Ese cuartel no existe.");
+                System.out.println("Ese cuartel no existe o no es valido.");
             }     
         }
     };
