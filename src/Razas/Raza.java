@@ -34,11 +34,22 @@ public interface Raza {
     public void setEsperaEscuadron(int EsperaEscuadron);
     
 
-
     public String getNombreSuperSoldado();
     public void setNombreSuperSoldado(String NombreSuperSoldado);
     public int getAtaqueSuperSoldado();
     public void setAtaqueSuperSoldado(int AtaqueSuperSoldado);
     public int getEsperaSuperSoldado();
     public void setEsperaSuperSoldado(int SuperSoldado);
+    
+    public String getNombreVehiculo1();
+    public void setNombreVehiculo1(String NombreVehiculo2);
+    public int getEsperaVehiculo1();
+    public void setEsperaVehiculo1(int EsperaVehiculo1);
+    
+    
+    public String getNombreVehiculo2();
+    public void setNombreVehiculo2(String NombreVehiculo2);
+    public int getEsperaVehiculo2();
+    public void setEsperaVehiculo2(int EsperaVehiculo2);
+    
 }
