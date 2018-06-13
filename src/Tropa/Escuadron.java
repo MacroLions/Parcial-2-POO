@@ -23,7 +23,7 @@ public class Escuadron implements Tropa{
     int FaseUbicacion=0;//Se supone funciona en Viajando.
     
     ArrayList <Edificacion> Objetivos;
-    int Objetivo;
+    int Objetivo=-1;
     
     boolean Viajando=false;//Funciona con el global de Viajando.
     boolean Atacando=false;//Funciona con el global de Atacando.
