@@ -25,6 +25,14 @@ public class Mago implements Raza{
     String NombreSuperSoldado = "Grand Caster";
     int AtaqueSuperSoldado = 300;
     int EsperaSuperSoldado = 5;
+    
+    
+    
+    String NombreVehiculo1="Escoba voladora";
+    int EsperaVehiculo1=2;
+    
+    String NombreVehiculo2="Transportador";
+    int EsperaVehiculo2=2;
 
     @Override
     public String getNombreRecurso1() {
@@ -144,6 +152,38 @@ public class Mago implements Raza{
     @Override
     public void setEsperaSuperSoldado(int EsperaSuperSoldado) {
         this.EsperaSuperSoldado = EsperaSuperSoldado;
+    }
+    
+    public String getNombreVehiculo1() {
+        return NombreVehiculo1;
+    }
+
+    public void setNombreVehiculo1(String NombreVehiculo1) {
+        this.NombreVehiculo1 = NombreVehiculo1;
+    }
+
+    public int getEsperaVehiculo1() {
+        return EsperaVehiculo1;
+    }
+
+    public void setEsperaVehiculo1(int EsperaVehiculo1) {
+        this.EsperaVehiculo1 = EsperaVehiculo1;
+    }
+
+    public String getNombreVehiculo2() {
+        return NombreVehiculo2;
+    }
+
+    public void setNombreVehiculo2(String NombreVehiculo2) {
+        this.NombreVehiculo2 = NombreVehiculo2;
+    }
+
+    public int getEsperaVehiculo2() {
+        return EsperaVehiculo2;
+    }
+
+    public void setEsperaVehiculo2(int EsperaVehiculo2) {
+        this.EsperaVehiculo2 = EsperaVehiculo2;
     }
     
     
