@@ -11,6 +11,7 @@ import Edificacion.MaquinadeMagia;
 import Edificacion.MaquinadeDiamantes;
 import Edificacion.Edificacion;
 import Edificacion.EdificacionFactory;
+import Edificacion.GeneradordeVehiculos;
 import Razas.Raza;
 import Razas.RazaFactory;
 import Tropa.Tropa;
@@ -31,6 +32,7 @@ public class Jugador {
     private final ArrayList<Tropa> Tropas = new ArrayList();
     private final ArrayList<Edificacion> Edificaciones = new ArrayList();
     private final ArrayList<Cuartel> Cuarteles = new ArrayList();
+    private final ArrayList<GeneradordeVehiculos> GeneradoresDeVehiculos = new ArrayList();
     private final ArrayList<Vehiculo> Vehiculos = new ArrayList();
     private ArrayList<Edificacion> Objetivos = new ArrayList();
     
@@ -54,11 +56,12 @@ public class Jugador {
         Auxiliar.RecursosCreatorMaster(Edificaciones, EdificacionFactory.getEdificacion(2));
         Auxiliar.RecursosCreatorMaster(Edificaciones, EdificacionFactory.getEdificacion(3));
         Auxiliar.TropaCreatorMaster(Cuarteles, EdificacionFactory.getEdificacion(4),Tropas);
+        Auxiliar.VehiculoCreatorMaster(GeneradoresDeVehiculos,EdificacionFactory.getEdificacion(5),Vehiculos);
         
 
         
         System.out.println("////¿Que haras ahora?////");
-        System.out.println("Recursos disponibles: "+raza.getNombreRecurso1()+": "+RecursoTotal1+" "+raza.getNombreRecurso2()+": "+this.RecursoTotal2+" " +raza.getNombreRecurso3()+": "+this.RecursoTotal3);
+        System.out.println("Recursos disponibles: "+raza.getNombreRecurso1()+": "+RecursoTotal1+" //"+raza.getNombreRecurso2()+": "+this.RecursoTotal2+" //" +raza.getNombreRecurso3()+": "+this.RecursoTotal3);
         System.out.println("1. Construir            5. Revisar Tropas");
         System.out.println("2. Recolectar Recursos  6. Revisar Edificaciones");
         System.out.println("3. Entrenar Tropa       7. Atacar");
@@ -111,6 +114,7 @@ public class Jugador {
         System.out.println("2. "+raza.getNombreMaquinaRecurso2()+" (200 de "+raza.getNombreRecurso1()+")");
         System.out.println("3. "+raza.getNombreMaquinaRecurso3()+" (600 de "+raza.getNombreRecurso1()+", 600 de "+raza.getNombreRecurso2()+")");
         System.out.println("4. Cuartel de tropas (300 de " + raza.getNombreRecurso2()+", 2 "+raza.getNombreRecurso3()+")");
+        System.out.println("5. Generador de Vehiculos (200 de " + raza.getNombreRecurso1()+", 1 "+raza.getNombreRecurso3()+")");
         
         System.out.print("Opcion: ");
         try{
@@ -171,6 +175,24 @@ public class Jugador {
                         Cuarteles.add(cuartel);
                         Edificaciones.add(cuartel);
                         System.out.println("Se construyó Cuartel");
+                        break;
+                    }
+                    else{
+                        System.out.println("No hay suficiente "+raza.getNombreRecurso1()+" o "+raza.getNombreRecurso3()+" suficiente.");
+                        break;
+                    }
+                case 5:
+                    if(this.RecursoTotal2>=200&&this.RecursoTotal3>=1){
+                        this.RecursoTotal2=this.RecursoTotal2-200;
+                        this.RecursoTotal3=this.RecursoTotal3-1;
+                        GeneradordeVehiculos generadordevehiculos = (GeneradordeVehiculos) EdificacionFactory.getEdificacion(op);
+                        generadordevehiculos.setVehiculos(this.Vehiculos);
+                        generadordevehiculos.setPropitario(this);
+                        generadordevehiculos.setNombreVehiculo1(raza.getNombreVehiculo1());
+                        generadordevehiculos.setNombreVehiculo1(raza.getNombreVehiculo2());
+                        Edificaciones.add(generadordevehiculos);
+                        GeneradoresDeVehiculos.add(generadordevehiculos);
+                        System.out.println("Se construyó Generador de vehiculos");
                         break;
                     }
                     else{
@@ -286,6 +308,9 @@ public class Jugador {
                                 System.out.println("No hay suficiente "+raza.getNombreRecurso2()+" o "+raza.getNombreRecurso3()+" suficiente.");
                                 break;
                             }
+                        default:
+                            System.out.println("");
+                            System.out.println("Ese tipo de tropa no existe.");
                     }
                 }
                 else{
@@ -297,7 +322,80 @@ public class Jugador {
         }
     };
     
-    public void CrearVehiculo(){}
+    public void CrearVehiculo(){
+        Scanner input = new Scanner(System.in);
+        if(GeneradoresDeVehiculos.isEmpty()){
+                System.out.println("No hay Cuarteles en la base");
+        } 
+        else{
+            System.out.println(">>Generar vehiculos!");
+            System.out.println("");
+            for(int i = 0; i<this.GeneradoresDeVehiculos.size() ;i++){
+                GeneradordeVehiculos generadordevehiculos = GeneradoresDeVehiculos.get(i);
+                System.out.print((i+1)+") "+generadordevehiculos.getNombre());
+                if(generadordevehiculos.isDisponibilidad()){
+                    System.out.println(" Disponible: Si");    
+                }
+                else{
+                    System.out.println(" Disponible: No");    
+                }
+            }
+            System.out.println("");
+            System.out.print("¿Cuál generador de vehiculos usará? Opcion: ");
+            try{ 
+                int NumGeneradorElegido = input.nextInt();
+                GeneradordeVehiculos GeneradorElegido = GeneradoresDeVehiculos.get(NumGeneradorElegido-1);
+                if(GeneradorElegido.isDisponibilidad()){
+                    System.out.println("");
+                    System.out.println("Tipo de vehiculo a entrenar:");
+                    System.out.println("1. "+raza.getNombreVehiculo1()+" (400 de "+raza.getNombreRecurso1()+", 300 de "+raza.getNombreRecurso2()+")");
+                    System.out.println("2. "+raza.getNombreVehiculo2()+" (600 de "+raza.getNombreRecurso2()+", 10 de "+raza.getNombreRecurso3()+")");
+                    System.out.print("Opcion: ");
+                    int VehiculoElegido=input.nextInt();
+                    switch(VehiculoElegido){
+                        case 1:
+                            if(this.RecursoTotal1>=400&&this.RecursoTotal2>=300){
+                                this.RecursoTotal1=this.RecursoTotal1-400;
+                                this.RecursoTotal2=this.RecursoTotal2-300;
+                                GeneradorElegido.setDisponibilidad(false);
+                                GeneradorElegido.setTipoDeVehiculo(VehiculoElegido);
+                                GeneradorElegido.setEsperaDeVehiculo(raza.getEsperaVehiculo1());
+                                GeneradorElegido.start();
+                                System.out.println("Se está generando un "+raza.getNombreVehiculo1());
+                                break;
+                            }
+                            else{
+                                System.out.println("No hay suficiente "+raza.getNombreRecurso1()+" o "+raza.getNombreRecurso2()+" suficiente.");
+                                break;
+                            }
+                        case 2:
+                            if(this.RecursoTotal2>=600&&this.RecursoTotal3>=10){
+                                this.RecursoTotal2=this.RecursoTotal1-600;
+                                this.RecursoTotal3=this.RecursoTotal2-10;
+                                GeneradorElegido.setDisponibilidad(false);
+                                GeneradorElegido.setTipoDeVehiculo(VehiculoElegido);
+                                GeneradorElegido.setEsperaDeVehiculo(raza.getEsperaVehiculo2());
+                                GeneradorElegido.start();
+                                System.out.println("Se está generando un "+raza.getNombreVehiculo2());
+                                break;
+                            }
+                            else{
+                                System.out.println("No hay suficiente "+raza.getNombreRecurso2()+" o "+raza.getNombreRecurso3()+" suficiente.");
+                                break;
+                            }
+                        default:
+                            System.out.println("");
+                            System.out.println("Ese tipo de vehiculo no existe.");
+                    }
+                }
+                else{
+                    System.out.println("El Generador Elegido no está disponible.");
+                }
+            }catch(Exception ex){
+                System.out.println("Ese Generador no existe o no es valido.");
+            }     
+        }
+    };
     
     public void RevisarTropas(){
         if(this.Tropas.isEmpty()){
