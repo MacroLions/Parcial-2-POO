@@ -62,7 +62,7 @@ public class MaquinadeMagia extends Thread implements Edificacion {
     public void RecibirDamage(int damage) {
         System.out.println(this.nombre+" de "+this.propitario.getNombre()+" recibio "+damage+" de daño");
         Vida=Vida-damage;
-        if(Vida<0){
+        if(Vida<=0){
             Vivo=false;
         }
     }
