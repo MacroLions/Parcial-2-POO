@@ -351,24 +351,27 @@ public class Jugador {
                 System.out.println("");
                 RevisarTropas();
                 System.out.print("Tropa a mandar a atacar: ");
-                int Tropa = input.nextInt();
-                if(Tropas.get(Tropa-1).isViajando()){
-                    System.out.println("Esa tropa ya se encuentra viajando y no puede cambiar de objetivo aún.");
+                try{
+                    int Tropa = input.nextInt();
+                    if(Tropas.get(Tropa-1).isViajando()){
+                        System.out.println("Esa tropa ya se encuentra viajando y no puede cambiar de objetivo aún.");
+                    }
+                    else if(Tropas.get(Tropa-1).getFaseUbicacion()==2){
+                        this.Tropas.get(Tropa-1).setObjetivos(Objetivos);
+                        this.Tropas.get(Tropa-1).setObjetivo(objetivo-1);
+                        System.out.println(this.Tropas.get(Tropa-1).getNombre()+" cambio su objetivo a "+this.Objetivos.get(objetivo-1).getNombre());
+                        this.Tropas.get(Tropa-1).setAtacando(true);
+                    }
+                    else{
+                        this.Tropas.get(Tropa-1).setFaseInicial(Auxiliar.getFase());
+                        this.Tropas.get(Tropa-1).setObjetivos(Objetivos);
+                        this.Tropas.get(Tropa-1).setObjetivo(objetivo-1);
+                        this.Tropas.get(Tropa-1).setViajando(true);
+                        System.out.println(this.Tropas.get(Tropa-1).getNombre()+" Comenzó su viaje a la base enemiga!");
+                    }
+                }catch(Exception ex){
+                    System.out.println("Tropa u objetivo inexistente. ");
                 }
-                else if(Tropas.get(Tropa-1).getFaseUbicacion()==2){
-                    this.Tropas.get(Tropa-1).setObjetivos(Objetivos);
-                    this.Tropas.get(Tropa-1).setObjetivo(objetivo-1);
-                    System.out.println(this.Tropas.get(Tropa-1).getNombre()+" cambio su objetivo a "+this.Objetivos.get(objetivo-1).getNombre());
-                    this.Tropas.get(Tropa-1).setAtacando(true);
-                }
-                else{
-                    this.Tropas.get(Tropa-1).setFaseInicial(Auxiliar.getFase());
-                    this.Tropas.get(Tropa-1).setObjetivos(Objetivos);
-                    this.Tropas.get(Tropa-1).setObjetivo(objetivo-1);
-                    this.Tropas.get(Tropa-1).setViajando(true);
-                    System.out.println(this.Tropas.get(Tropa-1).getNombre()+" Comenzó su viaje a la base enemiga!");
-                }
-                
                 
             }
             
