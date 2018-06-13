@@ -77,10 +77,10 @@ public class Auxiliar extends Thread{
             if(tropaMaster.isAtacando()){
                 if(tropaMaster.getObjetivos().get(tropaMaster.getObjetivo()).isVivo()){
                     tropaMaster.getObjetivos().get(tropaMaster.getObjetivo()).RecibirDamage(tropaMaster.Atacar());
-                }
-                else{
-                    tropaMaster.getObjetivos().remove(tropaMaster.getObjetivo());
-                    tropaMaster.setAtacando(false);
+                    if(tropaMaster.getObjetivos().get(tropaMaster.getObjetivo()).isVivo()==false){
+                        tropaMaster.getObjetivos().remove(tropaMaster.getObjetivo());
+                        tropaMaster.setAtacando(false);
+                    }
                 }
             }
         }
