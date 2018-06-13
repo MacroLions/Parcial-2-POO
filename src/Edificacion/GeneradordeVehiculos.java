@@ -27,8 +27,8 @@ public class GeneradordeVehiculos extends Thread implements Edificacion{
     private boolean Disponibilidad=true;
     private boolean Vivo=true;
     private ArrayList<Vehiculo> Vehiculos;
-    String NombreVehiculo1 = "Moto";
-    String NombreVehiculo2 = "Jeep";
+    String NombreVehiculo1 = "Motocicleta";
+    String NombreVehiculo2 = "Camioneta";
     
     @Override
     public Vehiculo GenerarVehiculo(){
@@ -43,12 +43,12 @@ public class GeneradordeVehiculos extends Thread implements Edificacion{
             vehiculo.setPropietario(this.propitario);
             if(this.TipoDeVehiculo==1){
                 vehiculo.setNombre(NombreVehiculo1);
-                System.out.println("El "+NombreVehiculo1+" ha sido entrenado");
+                System.out.println("El "+NombreVehiculo1+" se ha creado");
                 System.out.println("");   
             }
             else if (this.TipoDeVehiculo==2){
                 vehiculo.setNombre(NombreVehiculo2);
-                System.out.println("El "+NombreVehiculo2+" ha sido entrenado");
+                System.out.println("El "+NombreVehiculo2+" se ha creado");
                 System.out.println("");
             }
             return vehiculo;
