@@ -24,6 +24,7 @@ public class Cuartel extends Thread implements Edificacion{
     private int TipoDeTropa = 0;
     private int EsperaDeTropa = 0;
     private boolean Disponibilidad=true;
+    private boolean Vivo=true;
     private ArrayList<Tropa> Tropas;
     String NombreEscuadron = "Escuadron";
     String NombreSuperSoldado = "Super Soldado";
@@ -67,6 +68,9 @@ public class Cuartel extends Thread implements Edificacion{
     public void RecibirDamage(int damage) {
         System.out.println("El cuartel de "+this.propitario.getNombre()+" recibio "+damage+" de daño");
         Vida=Vida-damage;
+        if(Vida<0){
+            Vivo=false;
+        }
         
     }
 
@@ -113,6 +117,14 @@ public class Cuartel extends Thread implements Edificacion{
 
     public void setDisponibilidad(boolean Disponibilidad) {
         this.Disponibilidad = Disponibilidad;
+    }
+
+    public boolean isVivo() {
+        return Vivo;
+    }
+
+    public void setVivo(boolean Vivo) {
+        this.Vivo = Vivo;
     }
 
     public int getTipoDeTropa() {

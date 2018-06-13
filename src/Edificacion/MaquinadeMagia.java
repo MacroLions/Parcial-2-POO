@@ -16,6 +16,7 @@ public class MaquinadeMagia extends Thread implements Edificacion {
     private final String nombre = "Maquina de Magia";
     private Jugador propitario;
     int Vida=1000;
+    private boolean Vivo=true;
     float RecursosGuardados;
     int tiempoAnterior=0;
     
@@ -60,7 +61,10 @@ public class MaquinadeMagia extends Thread implements Edificacion {
     @Override
     public void RecibirDamage(int damage) {
         System.out.println(this.nombre+" de "+this.propitario.getNombre()+" recibio "+damage+" de daño");
-        Vida=Vida-damage;   
+        Vida=Vida-damage;
+        if(Vida<0){
+            Vivo=false;
+        }
     }
 
     
@@ -84,6 +88,14 @@ public class MaquinadeMagia extends Thread implements Edificacion {
 
     public void setVida(int Vida) {
         this.Vida = Vida;
+    }
+    
+    public boolean isVivo() {
+        return Vivo;
+    }
+
+    public void setVivo(boolean Vivo) {
+        this.Vivo = Vivo;
     }
 
     public float getRecursosGuardados() {
