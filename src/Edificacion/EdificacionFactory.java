@@ -22,6 +22,8 @@ public class EdificacionFactory {
                 return new MaquinadeDiamantes();
             case 4:
                 return new Cuartel();
+            case 5:
+                return new GeneradordeVehiculos();
         }
         return null;
     }
