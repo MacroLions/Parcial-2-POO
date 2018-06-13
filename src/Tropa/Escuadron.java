@@ -50,6 +50,7 @@ public class Escuadron implements Tropa{
         else if(FaseUbicacion==2){
             System.out.println("El "+this.nombre+" de "+this.Propietario.getNombre()+" ya llegó");
             this.Atacando=true;
+            this.Viajando=false;
         }
     }
 
