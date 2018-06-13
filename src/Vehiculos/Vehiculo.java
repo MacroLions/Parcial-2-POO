@@ -12,8 +12,9 @@ import Parcial_2_POO.Jugador;
  * @author Maishi
  */
 public interface Vehiculo {
-    public void Existir();
     public void setNombre(String Nombre);
+    public String getNombre();
+    public boolean isDisponibilidad();
     public void setPropietario(Jugador Propietario);
     
 }
