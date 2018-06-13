@@ -75,7 +75,13 @@ public class Auxiliar extends Thread{
         for(int i=0;i<lista.size();i++){
             Tropa tropaMaster = (Tropa) lista.get(i);
             if(tropaMaster.isAtacando()){
-                tropaMaster.getObjetivos().get(tropaMaster.getObjetivo()).RecibirDamage(tropaMaster.Atacar());
+                if(tropaMaster.getObjetivos().get(tropaMaster.getObjetivo()).isVivo()){
+                    tropaMaster.getObjetivos().get(tropaMaster.getObjetivo()).RecibirDamage(tropaMaster.Atacar());
+                }
+                else{
+                    tropaMaster.getObjetivos().remove(tropaMaster.getObjetivo());
+                    tropaMaster.setAtacando(false);
+                }
             }
         }
     }
