@@ -14,7 +14,9 @@ public class VehiculoFactory {
     public static Vehiculo getVehiculo(int opcion) {
         switch(opcion){
             case 1:
-                break;
+                return new Motocicleta();
+            case 2:
+                return new Camioneta();
         }
         return null;
     }
