@@ -14,8 +14,8 @@ import java.util.Scanner;
  * @author Mai Perez
  */
 public class MenuInicial {
-    static public Jugador Jugador1;
-    static public Jugador Jugador2;
+    static public Jugador Jugador1=null;
+    static public Jugador Jugador2=null;
     static public Jugador JugadorDebug = new Jugador("gato");
     
     public static void MenuInicio(){
@@ -34,8 +34,18 @@ public class MenuInicial {
         }
         switch(opmenu){
                 case 1:
-                    Jugador1 = JugadorCreator();
-                    Jugador2 = JugadorCreator();
+                    System.out.println("///////////////////////////////////////");
+                    System.out.println(">>Creacion de jugadores para el juego<<");
+                    System.out.println("");
+                    while(Jugador1==null){
+                        System.out.println(">Creacion Jugador 1:");
+                        Jugador1 = JugadorCreator();
+                    }
+                    System.out.println("");
+                    while(Jugador2==null){
+                        System.out.println(">Creacion Jugador 2:");
+                        Jugador2 = JugadorCreator();
+                    }
                     Jugador1.setObjetivos(Jugador2.getEdificaciones());
                     Jugador2.setObjetivos(Jugador1.getEdificaciones());
                     JuegoComenzar();
@@ -56,7 +66,6 @@ public class MenuInicial {
         Scanner input = new Scanner(System.in);
         System.out.print("Nombre del jugador:"); 
         nombre = input.next();
-        System.out.println("");
         int RazaOpcion=-1;
         System.out.println("Tipos de Raza: 1) Mago  2) Tanuki  3) Humano ");
         System.out.print("Raza: ");
@@ -64,11 +73,17 @@ public class MenuInicial {
         try{
             RazaOpcion = input.nextInt();
         }catch(Exception ex){
-            throw new UnsupportedOperationException("Raza no valida.");
+            System.out.println("Solo se pueden usar números para escoger la raza. Se volverá a intentar crear al jugador.");
+            return null;
         }
         raza = RazaFactory.getRaza(RazaOpcion);
-        
-        return new Jugador(nombre,raza);
+        if(raza==null){
+            System.out.println("Raza no valida. Se volverá a intentar crear al jugador.");
+            return null;
+        }
+        else{
+            return new Jugador(nombre,raza);
+        }
     }
     
     public static void JuegoComenzar(){
@@ -76,7 +91,8 @@ public class MenuInicial {
         boolean TurnoJugador2= true;
         
         boolean Start = true;
-        
+        System.out.println("///////////////////////////////////////");
+        System.out.println(">>¡Inicio del juego!<<");
         while(Start){
             System.out.println(">>>>Fase #"+Auxiliar.getFase()+"<<<<");
             Auxiliar.ViajarMaster(Jugador1.getTropas());
