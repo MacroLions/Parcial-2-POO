@@ -327,7 +327,7 @@ public class Jugador {
                 int Tropa = input.nextInt();
                 this.Tropas.get(Tropa-1).setFaseInicial(Auxiliar.getFase());
                 this.Tropas.get(Tropa-1).setObjetivos(Objetivos);
-                this.Tropas.get(Tropa-1).setObjetivo(objetivo);
+                this.Tropas.get(Tropa-1).setObjetivo(objetivo-1);
                 this.Tropas.get(Tropa-1).setViajando(true);
                 
             }
