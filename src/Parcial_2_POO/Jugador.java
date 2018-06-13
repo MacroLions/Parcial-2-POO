@@ -54,8 +54,7 @@ public class Jugador {
         Auxiliar.RecursosCreatorMaster(Edificaciones, EdificacionFactory.getEdificacion(2));
         Auxiliar.RecursosCreatorMaster(Edificaciones, EdificacionFactory.getEdificacion(3));
         Auxiliar.TropaCreatorMaster(Cuarteles, EdificacionFactory.getEdificacion(4),Tropas);
-        Auxiliar.ViajarMaster(Tropas);
-        Auxiliar.AtacarMaster(Tropas);
+        
 
         
         System.out.println("////Hola "+this.nombre+" ¿Que quieres en este turno?////");
@@ -247,23 +246,41 @@ public class Jugador {
                 if(CuartelElegido.isDisponibilidad()){
                     System.out.println("");
                     System.out.println("Tipo de tropa a entrenar:");
-                    System.out.println("1. "+raza.getNombreEscuadron());
-                    System.out.println("2. "+raza.getNombreSuperSoldado());
+                    System.out.println("1. "+raza.getNombreEscuadron()+" (400 de "+raza.getNombreRecurso1()+", 300 de "+raza.getNombreRecurso2()+")");
+                    System.out.println("2. "+raza.getNombreSuperSoldado()+" (600 de "+raza.getNombreRecurso2()+", 10 de "+raza.getNombreRecurso3()+")");
                     System.out.print("Opcion: ");
                     int TropaElegida=input.nextInt();
-                    if(TropaElegida==1){
-                        CuartelElegido.setDisponibilidad(false);
-                        CuartelElegido.setTipoDeTropa(TropaElegida);
-                        CuartelElegido.setEsperaDeTropa(raza.getEsperaEscuadron());
-                        CuartelElegido.start();
-                        System.out.println("Se está entrenando un "+raza.getNombreEscuadron());
-                    }
-                    else if(TropaElegida==2){
-                        CuartelElegido.setDisponibilidad(false);
-                        CuartelElegido.setTipoDeTropa(TropaElegida);
-                        CuartelElegido.setEsperaDeTropa(raza.getEsperaSuperSoldado());
-                        CuartelElegido.start();
-                        System.out.println("Se está generando un "+raza.getNombreSuperSoldado());
+                    switch(TropaElegida){
+                        case 1:
+                            if(this.RecursoTotal1>=400&&this.RecursoTotal2>=300){
+                                this.RecursoTotal1=this.RecursoTotal1-400;
+                                this.RecursoTotal2=this.RecursoTotal2-300;
+                                CuartelElegido.setDisponibilidad(false);
+                                CuartelElegido.setTipoDeTropa(TropaElegida);
+                                CuartelElegido.setEsperaDeTropa(raza.getEsperaEscuadron());
+                                CuartelElegido.start();
+                                System.out.println("Se está entrenando un "+raza.getNombreEscuadron());
+                                break;
+                            }
+                            else{
+                                System.out.println("No hay suficiente "+raza.getNombreRecurso1()+" o "+raza.getNombreRecurso2()+" suficiente.");
+                                break;
+                            }
+                        case 2:
+                            if(this.RecursoTotal2>=600&&this.RecursoTotal3>=10){
+                                this.RecursoTotal2=this.RecursoTotal1-600;
+                                this.RecursoTotal3=this.RecursoTotal2-10;
+                                CuartelElegido.setDisponibilidad(false);
+                                CuartelElegido.setTipoDeTropa(TropaElegida);
+                                CuartelElegido.setEsperaDeTropa(raza.getEsperaSuperSoldado());
+                                CuartelElegido.start();
+                                System.out.println("Se está generando un "+raza.getNombreSuperSoldado());
+                                break;
+                            }
+                            else{
+                                System.out.println("No hay suficiente "+raza.getNombreRecurso2()+" o "+raza.getNombreRecurso3()+" suficiente.");
+                                break;
+                            }
                     }
                 }
                 else{
@@ -285,6 +302,16 @@ public class Jugador {
             System.out.println("Tropas disponibles:");
             for(int i=1;i<=this.Tropas.size();i++){
                 System.out.print(i+") "+this.Tropas.get(i-1).getNombre()+" ");
+                System.out.print("Se encuentra en la base:");
+                if(this.Tropas.get(i-1).getFaseUbicacion()==2){
+                    System.out.println(" No, está en la base enemiga");
+                }
+                else if(this.Tropas.get(i-1).isViajando()){
+                    System.out.println(" No, está viajando");
+                }
+                else{
+                    System.out.println(" Si");
+                }
             }
             System.out.println("");
         }
@@ -325,10 +352,23 @@ public class Jugador {
                 RevisarTropas();
                 System.out.print("Tropa a mandar a atacar: ");
                 int Tropa = input.nextInt();
-                this.Tropas.get(Tropa-1).setFaseInicial(Auxiliar.getFase());
-                this.Tropas.get(Tropa-1).setObjetivos(Objetivos);
-                this.Tropas.get(Tropa-1).setObjetivo(objetivo-1);
-                this.Tropas.get(Tropa-1).setViajando(true);
+                if(Tropas.get(Tropa-1).isViajando()){
+                    System.out.println("Esa tropa ya se encuentra viajando y no puede cambiar de objetivo aún.");
+                }
+                else if(Tropas.get(Tropa-1).getFaseUbicacion()==2){
+                    this.Tropas.get(Tropa-1).setObjetivos(Objetivos);
+                    this.Tropas.get(Tropa-1).setObjetivo(objetivo-1);
+                    System.out.println(this.Tropas.get(Tropa-1).getNombre()+" cambio su objetivo a "+this.Objetivos.get(objetivo-1).getNombre());
+                    this.Tropas.get(Tropa-1).setAtacando(true);
+                }
+                else{
+                    this.Tropas.get(Tropa-1).setFaseInicial(Auxiliar.getFase());
+                    this.Tropas.get(Tropa-1).setObjetivos(Objetivos);
+                    this.Tropas.get(Tropa-1).setObjetivo(objetivo-1);
+                    this.Tropas.get(Tropa-1).setViajando(true);
+                    System.out.println(this.Tropas.get(Tropa-1).getNombre()+" Comenzó su viaje a la base enemiga!");
+                }
+                
                 
             }
             
@@ -385,6 +425,10 @@ public class Jugador {
 
     public ArrayList<Edificacion> getEdificaciones() {
         return Edificaciones;
+    }
+
+    public ArrayList<Tropa> getTropas() {
+        return Tropas;
     }
     
 
