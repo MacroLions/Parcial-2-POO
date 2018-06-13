@@ -57,7 +57,7 @@ public class Jugador {
         
 
         
-        System.out.println("////Hola "+this.nombre+" ¿Que quieres en este turno?////");
+        System.out.println("////¿Que haras ahora?////");
         System.out.println("Recursos disponibles: "+raza.getNombreRecurso1()+": "+RecursoTotal1+" "+raza.getNombreRecurso2()+": "+this.RecursoTotal2+" " +raza.getNombreRecurso3()+": "+this.RecursoTotal3);
         System.out.println("1. Construir            5. Revisar Tropas");
         System.out.println("2. Recolectar Recursos  6. Revisar Edificaciones");
