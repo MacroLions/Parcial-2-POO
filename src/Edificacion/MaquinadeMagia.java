@@ -6,6 +6,7 @@
 package Edificacion;
 import Parcial_2_POO.Jugador;
 import Tropa.Tropa;
+import Vehiculos.Vehiculo;
 import java.util.Date;
 
 /**
@@ -116,10 +117,6 @@ public class MaquinadeMagia extends Thread implements Edificacion {
 
 
     //Not supported.
-    @Override
-    public void GenerarVehiculo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public boolean isDisponibilidad() {
@@ -128,6 +125,11 @@ public class MaquinadeMagia extends Thread implements Edificacion {
 
     @Override
     public Tropa GenerarTropa() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Vehiculo GenerarVehiculo() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

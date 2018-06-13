@@ -6,6 +6,7 @@
 package Edificacion;
 
 import Tropa.Tropa;
+import Vehiculos.Vehiculo;
 
 /**
  *
@@ -18,7 +19,7 @@ public interface Edificacion {
     public Tropa GenerarTropa();
     public boolean isDisponibilidad();
     
-    public void GenerarVehiculo();
+    public Vehiculo GenerarVehiculo();
     public void RecibirDamage(int damage);
 
     public void run();

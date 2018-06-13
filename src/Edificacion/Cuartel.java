@@ -9,6 +9,7 @@ import Parcial_2_POO.Auxiliar;
 import Parcial_2_POO.Jugador;
 import Tropa.Tropa;
 import Tropa.TropaFactory;
+import Vehiculos.Vehiculo;
 import java.util.ArrayList;
 
 
@@ -185,9 +186,7 @@ public class Cuartel extends Thread implements Edificacion{
     }
     
     
-    
-    
-    
+    //Not suported. 
    
     @Override
     public int EntregarRecursos() {
@@ -195,7 +194,7 @@ public class Cuartel extends Thread implements Edificacion{
     }
 
     @Override
-    public void GenerarVehiculo() {
+    public Vehiculo GenerarVehiculo() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
