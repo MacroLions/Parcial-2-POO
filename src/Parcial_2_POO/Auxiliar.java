@@ -7,6 +7,7 @@ package Parcial_2_POO;
 
 import Edificacion.Edificacion;
 import Tropa.Tropa;
+import Vehiculos.Vehiculo;
 import java.util.ArrayList;
 
 /**
@@ -62,6 +63,21 @@ public class Auxiliar extends Thread{
         }
     }
     
+     public static void VehiculoCreatorMaster(ArrayList lista, Edificacion MaquinaRecursos, ArrayList Vehiculos){
+        for(int i = 0; i<lista.size();i++){
+            if(lista.get(i).getClass()==MaquinaRecursos.getClass()){
+                Edificacion MaquinaVehiculoMaster = (Edificacion) lista.get(i);
+                if(MaquinaVehiculoMaster.isDisponibilidad()==false){
+                    Vehiculo vehiculo=MaquinaVehiculoMaster.GenerarVehiculo();
+                    if(vehiculo != null){
+                        Vehiculos.add(vehiculo);
+                    }
+                }
+                
+            }    
+        }
+    }
+     
     public static void ViajarMaster(ArrayList lista){
         for(int i=0;i<lista.size();i++){
             Tropa tropaMaster = (Tropa) lista.get(i);
