@@ -15,6 +15,7 @@ public interface Vehiculo {
     public void setNombre(String Nombre);
     public String getNombre();
     public boolean isDisponibilidad();
+    public void setDisponibilidad(boolean Disponibilidad);
     public void setPropietario(Jugador Propietario);
     
 }
