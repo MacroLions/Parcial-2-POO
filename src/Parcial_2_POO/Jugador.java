@@ -28,6 +28,7 @@ public class Jugador {
     private final String nombre;
     private Raza raza = RazaFactory.getRaza(1);
     private HQ HQ;
+    private int NivelHQ = 0;
     private final ArrayList<Tropa> Tropas = new ArrayList();
     private final ArrayList<Edificacion> Edificaciones = new ArrayList();
     private final ArrayList<Cuartel> Cuarteles = new ArrayList();
@@ -65,6 +66,7 @@ public class Jugador {
 
         
         System.out.println("////¿Que haras ahora?////");
+        System.out.println("HQ nivel "+NivelHQ);
         System.out.println("Recursos disponibles: "+raza.getNombreRecurso1()+": "+HQ.getRecursoTotal1()+" //"+raza.getNombreRecurso2()+": "+HQ.getRecursoTotal2()+" //" +raza.getNombreRecurso3()+": "+HQ.getRecursoTotal3());
         System.out.println("1. Construir            5. Revisar Tropas");
         System.out.println("2. Recolectar Recursos  6. Revisar Edificaciones y Vehiculos");
@@ -120,6 +122,19 @@ public class Jugador {
         System.out.println("3. "+raza.getNombreMaquinaRecurso3()+" (600 de "+raza.getNombreRecurso1()+", 600 de "+raza.getNombreRecurso2()+")");
         System.out.println("4. Cuartel de tropas (300 de " + raza.getNombreRecurso2()+", 2 "+raza.getNombreRecurso3()+")");
         System.out.println("5. Generador de Vehiculos (200 de " + raza.getNombreRecurso1()+", 1 "+raza.getNombreRecurso3()+")");
+        switch(NivelHQ){
+            case 0:
+                System.out.println("6. Mejorar HQ (1650 de "+raza.getNombreRecurso1()+", 1650 de "+raza.getNombreRecurso1()+", 1650 de "+raza.getNombreRecurso1()+")");
+                break;
+            case 1:
+                System.out.println("6. Mejorar HQ (1950 de "+raza.getNombreRecurso1()+", 1950 de "+raza.getNombreRecurso1()+", 1950 de "+raza.getNombreRecurso1()+")");
+                break;
+            case 2:
+                System.out.println("6. Mejorar HQ (2250 de "+raza.getNombreRecurso1()+", 2250 de "+raza.getNombreRecurso1()+", 2250 de "+raza.getNombreRecurso1()+")");
+                break;
+            default:
+                break;
+        }
         
         System.out.print("Opcion: ");
         try{
@@ -138,6 +153,7 @@ public class Jugador {
                     }
                     else{
                         System.out.println("No hay suficiente "+raza.getNombreRecurso2());
+                        System.out.println("");
                         break;
                     }
                 case 2:
@@ -152,6 +168,7 @@ public class Jugador {
                     }
                     else{
                         System.out.println("No hay suficiente "+raza.getNombreRecurso1());
+                        System.out.println("");
                         break;
                     }
                 case 3:
@@ -167,6 +184,7 @@ public class Jugador {
                     }
                     else{
                         System.out.println("No hay suficiente "+raza.getNombreRecurso1()+" o "+raza.getNombreRecurso2()+" suficiente.");
+                        System.out.println("");
                         break;
                     }
                 case 4:
@@ -188,6 +206,7 @@ public class Jugador {
                     }
                     else{
                         System.out.println("No hay suficiente "+raza.getNombreRecurso1()+" o "+raza.getNombreRecurso3()+" suficiente.");
+                        System.out.println("");
                         break;
                     }
                 case 5:
@@ -207,8 +226,49 @@ public class Jugador {
                     }
                     else{
                         System.out.println("No hay suficiente "+raza.getNombreRecurso1()+" o "+raza.getNombreRecurso3()+" suficiente.");
+                        System.out.println("");
                         break;
                     }
+                case 6:
+                    switch(NivelHQ){
+                        case 0:
+                            if(HQ.getRecursoTotal1()>=1650&&HQ.getRecursoTotal2()>=1650&&HQ.getRecursoTotal3()>=1650){
+                                HQ.setLimiteRecurso1(11000);
+                                HQ.setLimiteRecurso2(5500);
+                                HQ.setLimiteRecurso3(3300);
+                            }
+                            else{
+                                System.out.println("No hay suficientes recursos.");
+                                System.out.println("");
+                            }
+                            break;
+                        case 1:
+                            if(HQ.getRecursoTotal1()>=1950&&HQ.getRecursoTotal2()>=1950&&HQ.getRecursoTotal3()>=1950){
+                                HQ.setLimiteRecurso1(13000);
+                                HQ.setLimiteRecurso2(6500);
+                                HQ.setLimiteRecurso3(3900);
+                            }
+                            else{
+                                System.out.println("No hay suficientes recursos.");
+                                System.out.println("");
+                            }
+                            break;
+                        case 2:
+                            if(HQ.getRecursoTotal1()>=2250&&HQ.getRecursoTotal2()>=2250&&HQ.getRecursoTotal3()>=2250){
+                                HQ.setLimiteRecurso1(15000);
+                                HQ.setLimiteRecurso2(7500);
+                                HQ.setLimiteRecurso3(4500);
+                            }
+                            else{
+                                System.out.println("No hay suficientes recursos.");
+                                System.out.println("");
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                    
                 default:
                     System.out.println("Edificacion no existente.");
             }
@@ -242,11 +302,33 @@ public class Jugador {
                 System.out.println("No hay Maquinas de recursos, solo otro tipo de edificaciones.");
             }
             if(Comprobador_1!=0||Comprobador_2!=0||Comprobador_3!=0){
-                HQ.setRecursoTotal1(HQ.getRecursoTotal1() + Auxiliar.RecolectorMaster(Edificaciones, EdificacionFactory.getEdificacion(1)));
-                HQ.setRecursoTotal2(HQ.getRecursoTotal2() + Auxiliar.RecolectorMaster(Edificaciones, EdificacionFactory.getEdificacion(2)));
-                HQ.setRecursoTotal3(HQ.getRecursoTotal3() + Auxiliar.RecolectorMaster(Edificaciones, EdificacionFactory.getEdificacion(3)));
-                System.out.println("Se ha recolectado todo lo posible");
+                if(HQ.getRecursoTotal1()<HQ.getLimiteRecurso1()){
+                    HQ.setRecursoTotal1(HQ.getRecursoTotal1() + Auxiliar.RecolectorMaster(Edificaciones, EdificacionFactory.getEdificacion(1)));
+                    if(HQ.getRecursoTotal1()>HQ.getLimiteRecurso1()){
+                        HQ.setRecursoTotal1(HQ.getLimiteRecurso1());
+                    }
+                }else{
+                    System.out.println("No se pudo recolectar más "+raza.getNombreRecurso1());
+                }
                 
+                if(HQ.getRecursoTotal2()<HQ.getLimiteRecurso2()){
+                    HQ.setRecursoTotal2(HQ.getRecursoTotal2() + Auxiliar.RecolectorMaster(Edificaciones, EdificacionFactory.getEdificacion(2)));
+                    if(HQ.getRecursoTotal2()>HQ.getLimiteRecurso2()){
+                        HQ.setRecursoTotal2(HQ.getLimiteRecurso2());
+                    }
+                }else{
+                    System.out.println("No se pudo recolectar más "+raza.getNombreRecurso2());
+                }
+                
+                if(HQ.getRecursoTotal3()<HQ.getLimiteRecurso3()){
+                    HQ.setRecursoTotal3(HQ.getRecursoTotal3() + Auxiliar.RecolectorMaster(Edificaciones, EdificacionFactory.getEdificacion(3)));
+                    if(HQ.getRecursoTotal3()>HQ.getLimiteRecurso3()){
+                        HQ.setRecursoTotal3(HQ.getLimiteRecurso3());
+                    }
+                }else{
+                    System.out.println("No se pudo recolectar más "+raza.getNombreRecurso3());
+                }
+                System.out.println("Se recolectó todo lo posible.");
             }
         }
         
