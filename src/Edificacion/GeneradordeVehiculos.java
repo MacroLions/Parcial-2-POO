@@ -43,12 +43,12 @@ public class GeneradordeVehiculos extends Thread implements Edificacion{
             vehiculo.setPropietario(this.propitario);
             if(this.TipoDeVehiculo==1){
                 vehiculo.setNombre(NombreVehiculo1);
-                System.out.println("El "+NombreVehiculo1+" se ha creado");
+                System.out.println(NombreVehiculo1+" se ha creado");
                 System.out.println("");   
             }
             else if (this.TipoDeVehiculo==2){
                 vehiculo.setNombre(NombreVehiculo2);
-                System.out.println("El "+NombreVehiculo2+" se ha creado");
+                System.out.println(NombreVehiculo2+" se ha creado");
                 System.out.println("");
             }
             return vehiculo;
