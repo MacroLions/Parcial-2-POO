@@ -133,6 +133,7 @@ public class Jugador {
                         MaquinaRecurso1.setPropitario(this);
                         Edificaciones.add(MaquinaRecurso1);
                         System.out.println("Se construyó "+raza.getNombreMaquinaRecurso1());
+                        System.out.println("");
                         break;
                     }
                     else{
@@ -146,6 +147,7 @@ public class Jugador {
                         MaquinaRecurso2.setPropitario(this);
                         Edificaciones.add(MaquinaRecurso2);
                         System.out.println("Se construyó "+raza.getNombreMaquinaRecurso2());
+                        System.out.println("");
                         break;
                     }
                     else{
@@ -160,6 +162,7 @@ public class Jugador {
                         MaquinaRecurso3.setPropitario(this);
                         Edificaciones.add(MaquinaRecurso3);
                         System.out.println("Se construyó "+raza.getNombreMaquinaRecurso3());
+                        System.out.println("");
                         break;
                     }
                     else{
@@ -180,6 +183,7 @@ public class Jugador {
                         Cuarteles.add(cuartel);
                         Edificaciones.add(cuartel);
                         System.out.println("Se construyó Cuartel");
+                        System.out.println("");
                         break;
                     }
                     else{
@@ -198,6 +202,7 @@ public class Jugador {
                         Edificaciones.add(generadordevehiculos);
                         GeneradoresDeVehiculos.add(generadordevehiculos);
                         System.out.println("Se construyó Generador de vehiculos");
+                        System.out.println("");
                         break;
                     }
                     else{
@@ -270,7 +275,6 @@ public class Jugador {
                     System.out.println(" Disponible: No");    
                 }
             }
-            System.out.println("");
             System.out.print("¿Cuál cuartel usará? Opcion: ");
             try{ 
                 int NumCuartelElegido = input.nextInt();
@@ -292,10 +296,12 @@ public class Jugador {
                                 CuartelElegido.setEsperaDeTropa(raza.getEsperaEscuadron());
                                 CuartelElegido.start();
                                 System.out.println("Se está entrenando un "+raza.getNombreEscuadron());
+                                System.out.println("");
                                 break;
                             }
                             else{
                                 System.out.println("No hay suficiente "+raza.getNombreRecurso1()+" o "+raza.getNombreRecurso2()+" suficiente.");
+                                System.out.println("");
                                 break;
                             }
                         case 2:
@@ -306,23 +312,30 @@ public class Jugador {
                                 CuartelElegido.setTipoDeTropa(TropaElegida);
                                 CuartelElegido.setEsperaDeTropa(raza.getEsperaSuperSoldado());
                                 CuartelElegido.start();
-                                System.out.println("Se está generando un "+raza.getNombreSuperSoldado());
+                                System.out.println("Se está entrenando un "+raza.getNombreSuperSoldado());
+                                System.out.println("");
                                 break;
                             }
                             else{
                                 System.out.println("No hay suficiente "+raza.getNombreRecurso2()+" o "+raza.getNombreRecurso3()+" suficiente.");
+                                System.out.println("");
                                 break;
                             }
                         default:
                             System.out.println("");
                             System.out.println("Ese tipo de tropa no existe.");
+                            System.out.println("");
                     }
                 }
                 else{
+                    System.out.println("");
                     System.out.println("El Cuartel Elegido no está disponible.");
+                    System.out.println("");
                 }
             }catch(Exception ex){
-                System.out.println("Ese cuartel no existe o no es valido.");
+                System.out.println("");
+                System.out.println("Ese cuartel o tropa no es valido.");
+                System.out.println("");
             }     
         }
     };
@@ -345,7 +358,6 @@ public class Jugador {
                     System.out.println(" Disponible: No");    
                 }
             }
-            System.out.println("");
             System.out.print("¿Cuál generador de vehiculos usará? Opcion: ");
             try{ 
                 int NumGeneradorElegido = input.nextInt();
@@ -367,10 +379,12 @@ public class Jugador {
                                 GeneradorElegido.setEsperaDeVehiculo(raza.getEsperaVehiculo1());
                                 GeneradorElegido.start();
                                 System.out.println("Se está generando un "+raza.getNombreVehiculo1());
+                                System.out.println("");
                                 break;
                             }
                             else{
                                 System.out.println("No hay suficiente "+raza.getNombreRecurso1()+" o "+raza.getNombreRecurso2()+" suficiente.");
+                                System.out.println("");
                                 break;
                             }
                         case 2:
@@ -382,22 +396,29 @@ public class Jugador {
                                 GeneradorElegido.setEsperaDeVehiculo(raza.getEsperaVehiculo2());
                                 GeneradorElegido.start();
                                 System.out.println("Se está generando un "+raza.getNombreVehiculo2());
+                                System.out.println("");
                                 break;
                             }
                             else{
                                 System.out.println("No hay suficiente "+raza.getNombreRecurso2()+" o "+raza.getNombreRecurso3()+" suficiente.");
+                                System.out.println("");
                                 break;
                             }
                         default:
                             System.out.println("");
                             System.out.println("Ese tipo de vehiculo no existe.");
+                            System.out.println("");
                     }
                 }
                 else{
+                    System.out.println("");
                     System.out.println("El Generador Elegido no está disponible.");
+                    System.out.println("");
                 }
             }catch(Exception ex){
-                System.out.println("Ese Generador no existe o no es valido.");
+                System.out.println("");
+                System.out.println("Ese Generador o Vehiculo no es valido.");
+                System.out.println("");
             }     
         }
     };
@@ -441,7 +462,6 @@ public class Jugador {
                     System.out.println(" No");
                 }
             }
-            System.out.println("");
         }
     }
     
@@ -477,16 +497,21 @@ public class Jugador {
                 Scanner input = new Scanner(System.in);
                 int objetivo=-1;
                 boolean ObjetivoExiste = false;
-                System.out.println("");
                 try{
                     while(ObjetivoExiste==false){
                         System.out.print("Posición del objetivo a atacar: ");
                         objetivo = input.nextInt();
-                        if(objetivo > Objetivos.size()){
+                        if(objetivo == 1 && Objetivos.size()>1){
+                            System.out.println("HQ no se puede atacar porque hay más edificaciones.");
+                            System.out.println("");
+                        }
+                        else if(objetivo > Objetivos.size()){
                             System.out.println("Objetivo no valido, escoja otro objetivo");
+                            System.out.println("");
                         }
                         else if(objetivo<=0){
                             System.out.println("Objetivo no valido, escoja otro objetivo");
+                            System.out.println("");
                         }
                         else{
                             ObjetivoExiste=true;
@@ -497,37 +522,13 @@ public class Jugador {
                     System.out.println("Objetivo no existente, vuelva a intentar realizar su ataque.");
                 }
                 
-                int Vehiculo = -1;
-                boolean VehiculoExiste = false;
-                Vehiculo vehiculoElegido;
-                if(ObjetivoExiste){
-                    System.out.println("");
-                    RevisarVehiculos();
-                    try{
-                        while(VehiculoExiste==false){
-                            System.out.print("Vehiculo ha utilizar: ");
-                            Vehiculo = input.nextInt();
-                            if(Vehiculos.get(Vehiculo-1).isDisponibilidad()){
-                                vehiculoElegido= Vehiculos.get(Vehiculo-1);
-                                Vehiculos.get(Vehiculo-1).setDisponibilidad(false);
-                                VehiculoExiste = true;
-                            }
-                            else{
-                                System.out.println("El vehiculo elegido no está disponible, vuelva a intentar su ataque.");
-                                break;
-                            }
-                        }
-                    }catch(Exception ex){
-                        System.out.println("Tipo de vehiculo no existente, vuelva a intentar realizar su ataque.");
-                    }
-                }
+                
+                //Aqui se escogerian las tropas
   
-                if(VehiculoExiste){
-                    //Aqui se escogerian las tropas
+                if(ObjetivoExiste){
                     System.out.println("");
                     RevisarTropas();
                     System.out.print("Tropa a mandar a atacar: ");
-                    try{
                         int Tropa = input.nextInt();
                         if(Tropas.get(Tropa-1).isViajando()){
                             System.out.println("Esa tropa ya se encuentra viajando y no puede cambiar de objetivo aún.");
@@ -539,22 +540,37 @@ public class Jugador {
                             this.Tropas.get(Tropa-1).setAtacando(true);
                         }
                         else{
+                            System.out.println("");
+                            RevisarVehiculos();
+                            try{
+                                int Vehiculo = -1;
+                                boolean VehiculoExiste = false;
+                            while(VehiculoExiste==false){
+                                System.out.print("Vehiculo ha utilizar: ");
+                                Vehiculo = input.nextInt();
+                                if(Vehiculos.get(Vehiculo-1).isDisponibilidad()){
+                                    Vehiculos.get(Vehiculo-1).setDisponibilidad(false);
+                                    VehiculoExiste = true;
+                                }
+                                else{
+                                    System.out.println("El vehiculo elegido no está disponible, vuelva a intentar su ataque.");
+                                    break;
+                                }
+                            }
+                            }catch(Exception ex){
+                            System.out.println("Tipo de vehiculo no existente, vuelva a intentar realizar su ataque.");
+                            }
                             this.Tropas.get(Tropa-1).setFaseInicial(Auxiliar.getFase());
                             this.Tropas.get(Tropa-1).setObjetivos(Objetivos);
                             this.Tropas.get(Tropa-1).setObjetivo(objetivo-1);
                             this.Tropas.get(Tropa-1).setViajando(true);
                             System.out.println(this.Tropas.get(Tropa-1).getNombre()+" Comenzó su viaje a la base enemiga!");
                         }
-                    }catch(Exception ex){
-                        System.out.println("Tropa inexistente vuelva a intentar realizar su ataque");
-                        Vehiculos.get(Vehiculo-1).setDisponibilidad(true);
-                    }
                 }
             }
-            
         }
-    
     }
+
     
     
     //Gets and Sets luego de esta linea. 
