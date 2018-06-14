@@ -112,6 +112,17 @@ public class MenuInicial {
                 System.out.println("");
             }
             
+            if(Jugador1.getEdificaciones().isEmpty()){
+                System.out.println("¡"+Jugador2.getNombre()+" ha destruido el HQ de "+Jugador1.getNombre()+"!");
+                System.out.println("¡"+Jugador2.getNombre()+" ha ganado!");
+                break;
+            }
+            else if(Jugador2.getEdificaciones().isEmpty()){
+                System.out.println("¡"+Jugador1.getNombre()+" ha destruido el HQ de "+Jugador2.getNombre()+"!");
+                System.out.println("¡"+Jugador1.getNombre()+" ha ganado!");
+                break;
+            }
+            
             Auxiliar.setFase(Auxiliar.getFase()+1);
             TurnoJugador1=true;
             TurnoJugador2=true;
@@ -131,6 +142,11 @@ public class MenuInicial {
                 System.out.println("Turno de "+JugadorDebug.getNombre());
                 TurnoJugadorDebug= JugadorDebug.MenuJugador();
                 System.out.println("");
+            }
+            if(JugadorDebug.getEdificaciones().isEmpty()){
+                System.out.println("¡"+JugadorDebug.getNombre()+" ha destruido el HQ de "+JugadorDebug.getNombre()+"!");
+                System.out.println("¡"+JugadorDebug.getNombre()+" ha ganado!");
+                break;
             }
             TurnoJugadorDebug=true;
             Auxiliar.setFase(Auxiliar.getFase()+1);
