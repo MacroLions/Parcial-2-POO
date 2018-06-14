@@ -18,11 +18,11 @@ public class HQ implements Edificacion{
     private Jugador propitario;
     private int Vida=10000;
     private boolean Vivo=true;
-    private int RecursoTotal1=2000;
+    private int RecursoTotal1=1000;
     private int LimiteRecurso1=10000;
-    private int RecursoTotal2=2000;
+    private int RecursoTotal2=1000;
     private int LimiteRecurso2=5000;
-    private int RecursoTotal3=20;
+    private int RecursoTotal3=5;
     private int LimiteRecurso3=3000;
 
     @Override
