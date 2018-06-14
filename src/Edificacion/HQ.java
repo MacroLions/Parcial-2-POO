@@ -17,11 +17,11 @@ public class HQ implements Edificacion{
     private String Nombre = "HQ";
     private Jugador propitario;
     private int Vida=10000;
+    private boolean Vivo=true;
     private int RecursoTotal1=2000;
     private int RecursoTotal2=2000;
     private int RecursoTotal3=20;
 
-    @Override
     public String getNombre() {
         return Nombre;
     }
@@ -38,13 +38,20 @@ public class HQ implements Edificacion{
         this.propitario = propitario;
     }
 
-    @Override
     public int getVida() {
         return Vida;
     }
 
     public void setVida(int Vida) {
         this.Vida = Vida;
+    }
+
+    public boolean isVivo() {
+        return Vivo;
+    }
+
+    public void setVivo(boolean Vivo) {
+        this.Vivo = Vivo;
     }
 
     public int getRecursoTotal1() {
@@ -71,8 +78,6 @@ public class HQ implements Edificacion{
         this.RecursoTotal3 = RecursoTotal3;
     }
 
-    
-    //Implements.
     @Override
     public int EntregarRecursos() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -95,7 +100,13 @@ public class HQ implements Edificacion{
 
     @Override
     public void RecibirDamage(int damage) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("El HQ de "+this.propitario.getNombre()+" recibio "+damage+" de daño");
+        Vida=Vida-damage;
+        if(Vida<=0){
+            Vivo=false;
+            //destroy();
+        }
+        
     }
 
     @Override
@@ -108,9 +119,5 @@ public class HQ implements Edificacion{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public boolean isVivo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+
 }
