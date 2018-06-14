@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class MenuInicial {
     static public Jugador Jugador1=null;
     static public Jugador Jugador2=null;
-    static public Jugador JugadorDebug = new Jugador("gato");
+    static public Jugador JugadorDebug = new Jugador("Gato");
     
     public static void MenuInicio(){
         Scanner input = new Scanner(System.in);
@@ -141,7 +141,6 @@ public class MenuInicial {
             while(TurnoJugadorDebug){
                 System.out.println("Turno de "+JugadorDebug.getNombre());
                 TurnoJugadorDebug= JugadorDebug.MenuJugador();
-                System.out.println("");
             }
             if(JugadorDebug.getEdificaciones().isEmpty()){
                 System.out.println("¡"+JugadorDebug.getNombre()+" ha destruido el HQ de "+JugadorDebug.getNombre()+"!");
