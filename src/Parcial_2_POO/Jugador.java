@@ -659,9 +659,9 @@ public class Jugador {
                         else{
                             System.out.println("");
                             RevisarVehiculos();
+                            boolean VehiculoExiste = false;
                             try{
                                 int Vehiculo = -1;
-                                boolean VehiculoExiste = false;
                             while(VehiculoExiste==false){
                                 System.out.print("Vehiculo ha utilizar: ");
                                 Vehiculo = input.nextInt();
@@ -671,17 +671,23 @@ public class Jugador {
                                 }
                                 else{
                                     System.out.println("El vehiculo elegido no está disponible, vuelva a intentar su ataque.");
+                                    System.out.println("");
                                     break;
                                 }
                             }
                             }catch(Exception ex){
                             System.out.println("Tipo de vehiculo no existente, vuelva a intentar realizar su ataque.");
+                                System.out.println("");
                             }
-                            this.Tropas.get(Tropa-1).setFaseInicial(Auxiliar.getFase());
-                            this.Tropas.get(Tropa-1).setObjetivos(Objetivos);
-                            this.Tropas.get(Tropa-1).setObjetivo(objetivo-1);
-                            this.Tropas.get(Tropa-1).setViajando(true);
-                            System.out.println(this.Tropas.get(Tropa-1).getNombre()+" Comenzó su viaje a la base enemiga!");
+                            
+                            if(VehiculoExiste){
+                                this.Tropas.get(Tropa-1).setFaseInicial(Auxiliar.getFase());
+                                this.Tropas.get(Tropa-1).setObjetivos(Objetivos);
+                                this.Tropas.get(Tropa-1).setObjetivo(objetivo-1);
+                                this.Tropas.get(Tropa-1).setViajando(true);
+                                System.out.println(this.Tropas.get(Tropa-1).getNombre()+" comenzó su viaje a la base enemiga!");
+                                System.out.println("");
+                            }
                         }
                     }catch(Exception ex){
                         System.out.println("Vuelva a intentar realizar el ataque. Hubo un error.");
@@ -723,6 +729,7 @@ public class Jugador {
                 System.out.print("Tropa enemiga a atacar: ");
                 int tropaEnemiga = input.nextInt();
                 System.out.println(TropasEnemigas.get(tropaEnemiga-1).getNombre()+" de "+TropasEnemigas.get(tropaEnemiga-1).getPropietario().getNombre()+" fue derrotado");
+                System.out.println("");
                 TropasEnemigas.remove(tropaEnemiga-1);
             }catch(Exception ex){
                 System.out.println("Tropa enemiga no valida");
