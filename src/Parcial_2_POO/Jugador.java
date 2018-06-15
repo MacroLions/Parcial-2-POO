@@ -744,9 +744,16 @@ public class Jugador {
             try{
                 System.out.print("Tropa enemiga a atacar: ");
                 int tropaEnemiga = input.nextInt();
-                System.out.println(TropasEnemigas.get(tropaEnemiga-1).getNombre()+" de "+TropasEnemigas.get(tropaEnemiga-1).getPropietario().getNombre()+" fue derrotado");
-                System.out.println("");
-                TropasEnemigas.remove(tropaEnemiga-1);
+                if(TropasEnemigas.get(tropaEnemiga-1).getFaseUbicacion()==2){
+                    System.out.println(TropasEnemigas.get(tropaEnemiga-1).getNombre()+" de "+TropasEnemigas.get(tropaEnemiga-1).getPropietario().getNombre()+" fue derrotado");
+                    System.out.println("");
+                    TropasEnemigas.remove(tropaEnemiga-1);
+                }
+                else{
+                    System.out.println("Error. Tropa elegida no existe. No está en la base, vuelva a intentar defender");
+                    System.out.println("");
+                }
+                
             }catch(Exception ex){
                 System.out.println("Tropa enemiga no valida");
                 System.out.println("");
