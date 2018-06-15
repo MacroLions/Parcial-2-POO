@@ -383,8 +383,8 @@ public class Jugador {
                 if(CuartelElegido.isDisponibilidad()){
                     System.out.println("");
                     System.out.println("Tipo de tropa a entrenar:");
-                    System.out.println("1. "+raza.getNombreEscuadron()+" (400 de "+raza.getNombreRecurso1()+", 300 de "+raza.getNombreRecurso2()+")");
-                    System.out.println("2. "+raza.getNombreSuperSoldado()+" (600 de "+raza.getNombreRecurso2()+", 10 de "+raza.getNombreRecurso3()+")");
+                    System.out.println("1. "+raza.getNombreEscuadron()+" (400 de "+raza.getNombreRecurso1()+", 300 de "+raza.getNombreRecurso2()+") Tiempo de espera: "+raza.getEsperaEscuadron()+" fases");
+                    System.out.println("2. "+raza.getNombreSuperSoldado()+" (600 de "+raza.getNombreRecurso2()+", 10 de "+raza.getNombreRecurso3()+") Tiempo de espera: "+raza.getEsperaSuperSoldado()+" fases");
                     System.out.print("Opcion: ");
                     int TropaElegida=input.nextInt();
                     switch(TropaElegida){
@@ -467,8 +467,8 @@ public class Jugador {
                 if(GeneradorElegido.isDisponibilidad()){
                     System.out.println("");
                     System.out.println("Tipo de vehiculo a entrenar:");
-                    System.out.println("1. "+raza.getNombreVehiculo1()+" (400 de "+raza.getNombreRecurso1()+", 300 de "+raza.getNombreRecurso2()+")");
-                    System.out.println("2. "+raza.getNombreVehiculo2()+" (600 de "+raza.getNombreRecurso2()+", 10 de "+raza.getNombreRecurso3()+")");
+                    System.out.println("1. "+raza.getNombreVehiculo1()+" (400 de "+raza.getNombreRecurso1()+", 300 de "+raza.getNombreRecurso2()+") Tiempo de espera: "+raza.getEsperaVehiculo1()+" fases");
+                    System.out.println("2. "+raza.getNombreVehiculo2()+" (600 de "+raza.getNombreRecurso2()+", 10 de "+raza.getNombreRecurso3()+") Tiempo de espera: "+raza.getEsperaVehiculo2()+" fases");
                     System.out.print("Opcion: ");
                     int VehiculoElegido=input.nextInt();
                     switch(VehiculoElegido){
