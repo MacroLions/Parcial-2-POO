@@ -76,7 +76,7 @@ public class Jugador {
         System.out.println("5. Revisar Tropas       10. Terminar Turno");
 
         System.out.print("Opcion: ");
-        int op = 8;
+        int op = 11;
         try{
             op = input.nextInt();
         }catch(Exception ex){}
@@ -115,6 +115,7 @@ public class Jugador {
                 return false;
             default:
                 System.out.println("Escoja una opcion valida.");
+                System.out.println("");
         }
         return true;
     }
@@ -243,6 +244,9 @@ public class Jugador {
                                 HQ.setLimiteRecurso1(11000);
                                 HQ.setLimiteRecurso2(5500);
                                 HQ.setLimiteRecurso3(3300);
+                                NivelHQ=NivelHQ+1;
+                                System.out.println("Se ha mejorado el HQ a nivel 1!");
+                                System.out.println("");
                             }
                             else{
                                 System.out.println("No hay suficientes recursos.");
@@ -254,6 +258,9 @@ public class Jugador {
                                 HQ.setLimiteRecurso1(13000);
                                 HQ.setLimiteRecurso2(6500);
                                 HQ.setLimiteRecurso3(3900);
+                                NivelHQ=NivelHQ+1;
+                                System.out.println("Se ha mejorado el HQ a nivel 2!");
+                                System.out.println("");
                             }
                             else{
                                 System.out.println("No hay suficientes recursos.");
@@ -265,6 +272,9 @@ public class Jugador {
                                 HQ.setLimiteRecurso1(15000);
                                 HQ.setLimiteRecurso2(7500);
                                 HQ.setLimiteRecurso3(4500);
+                                NivelHQ=NivelHQ+1;
+                                System.out.println("Se ha mejorado el HQ a nivel 3!");
+                                System.out.println("");
                             }
                             else{
                                 System.out.println("No hay suficientes recursos.");
@@ -307,6 +317,7 @@ public class Jugador {
             
             if(Comprobador_1==0&&Comprobador_2==0&&Comprobador_3==0){
                 System.out.println("No hay Maquinas de recursos, solo otro tipo de edificaciones.");
+                System.out.println("");
             }
             if(Comprobador_1!=0||Comprobador_2!=0||Comprobador_3!=0){
                 if(HQ.getRecursoTotal1()<HQ.getLimiteRecurso1()){
@@ -336,6 +347,7 @@ public class Jugador {
                     System.out.println("No se pudo recolectar más "+raza.getNombreRecurso3());
                 }
                 System.out.println("Se recolectó todo lo posible.");
+                System.out.println("");
             }
         }
         
@@ -432,7 +444,8 @@ public class Jugador {
     public void CrearVehiculo(){
         Scanner input = new Scanner(System.in);
         if(GeneradoresDeVehiculos.isEmpty()){
-                System.out.println("No hay Cuarteles en la base");
+                System.out.println("No hay Generadores de vehiculos en la base");
+                System.out.println("");
         } 
         else{
             System.out.println(">>Generar vehiculos!");
@@ -515,6 +528,7 @@ public class Jugador {
     public void RevisarTropas(){
         if(this.Tropas.isEmpty()){
             System.out.println("No hay ningún tipo de tropa en la base.");
+            System.out.println("");
         }
         else{
             System.out.println("Tropas disponibles:");
@@ -538,6 +552,7 @@ public class Jugador {
     public void RevisarVehiculos(){
         if(this.Vehiculos.isEmpty()){
             System.out.println("No hay ningún tipo de vehiculo en la base.");
+            System.out.println("");
         }
         else{
             System.out.println("Vehiculos disponibles:");
@@ -551,25 +566,35 @@ public class Jugador {
                     System.out.println(" No");
                 }
             }
+            System.out.println("");
         }
     }
     
     public void RevisarEdificaciones(){
+        int contador = 0;
         if(this.Edificaciones.isEmpty()){
             System.out.println("No hay edificaciones (Esto no debe estar cuando se agrege el HQ) Ya que implica que el otro jugado ganó.");
         }
         else{
             System.out.println("Edificaciones:");
             for(int i=1;i<=this.Edificaciones.size();i++){
-                System.out.print(i+") "+this.Edificaciones.get(i-1).getNombre()+" Vida: "+this.Edificaciones.get(i-1).getVida()+"  ");
+                System.out.print(i+") "+this.Edificaciones.get(i-1).getNombre()+", Vida: "+this.Edificaciones.get(i-1).getVida());
+                contador = contador +1;
+                if(contador == 4){
+                    System.out.println("");
+                }
+                else{
+                    System.out.print(" / ");
+                }
             }
-            System.out.println("");
         }
+        System.out.println("");
     }
     
     public void Atacar(){
         if(this.Tropas.isEmpty()||this.Vehiculos.isEmpty()){
             System.out.println("No hay tropa disponible o vehiculos disponibles.");
+            System.out.println("");
         }
         else{
             if(this.Objetivos.isEmpty()){
@@ -609,6 +634,7 @@ public class Jugador {
                 }catch(Exception ex){
                     System.out.println("");
                     System.out.println("Objetivo no existente, vuelva a intentar realizar su ataque.");
+                    System.out.println("");
                 }
                 
                 
@@ -618,9 +644,11 @@ public class Jugador {
                     System.out.println("");
                     RevisarTropas();
                     System.out.print("Tropa a mandar a atacar: ");
+                    try{
                         int Tropa = input.nextInt();
                         if(Tropas.get(Tropa-1).isViajando()){
                             System.out.println("Esa tropa ya se encuentra viajando y no puede cambiar de objetivo aún.");
+                            System.out.println("");
                         }
                         else if(Tropas.get(Tropa-1).getFaseUbicacion()==2){
                             this.Tropas.get(Tropa-1).setObjetivos(Objetivos);
@@ -655,6 +683,10 @@ public class Jugador {
                             this.Tropas.get(Tropa-1).setViajando(true);
                             System.out.println(this.Tropas.get(Tropa-1).getNombre()+" Comenzó su viaje a la base enemiga!");
                         }
+                    }catch(Exception ex){
+                        System.out.println("Vuelva a intentar realizar el ataque. Hubo un error.");
+                        System.out.println("");
+                    }
                 }
             }
         }
@@ -665,28 +697,36 @@ public class Jugador {
         Scanner input = new Scanner(System.in);
         for(int i=0;i<TropasEnemigas.size();i++){
             if(TropasEnemigas.get(i).isAtacando()){
-                System.out.println("Posicion: "+i+1+" Tropa:"+TropasEnemigas.get(i).getNombre());
+                System.out.println("Posicion: "+(i+1)+" Tropa:"+TropasEnemigas.get(i).getNombre());
                 HayTropasAtacando = true;
             }
         }
-        
+        boolean TropasDisponibles =false;
         if(Tropas.isEmpty()){
             System.out.println("No tienes con quien defenderte.");
         }
         else{
             for(int i=0;i<Tropas.size();i++){
-                if(Tropas.get(i).getFaseUbicacion()==2){
-                    HayTropasAtacando = true;
+                if(Tropas.get(i).getFaseUbicacion()==0){
+                    TropasDisponibles = true;
                 }
             }
            
         }
+        if(TropasDisponibles==false){
+            System.out.println("No hay tropas en la base, están en base enemiga o viajando");
+            System.out.println("");
+        }
         
-        if(HayTropasAtacando){
+        if(HayTropasAtacando && TropasDisponibles){
             try{
                 System.out.print("Tropa enemiga a atacar: ");
                 int tropaEnemiga = input.nextInt();
+                System.out.println(TropasEnemigas.get(tropaEnemiga-1).getNombre()+" de "+TropasEnemigas.get(tropaEnemiga-1).getPropietario().getNombre()+" fue derrotado");
+                TropasEnemigas.remove(tropaEnemiga-1);
             }catch(Exception ex){
+                System.out.println("Tropa enemiga no valida");
+                System.out.println("");
             }
         }
         else{
@@ -725,6 +765,31 @@ public class Jugador {
     public ArrayList<Tropa> getTropas() {
         return Tropas;
     }
+
+    public HQ getHQ() {
+        return HQ;
+    }
+
+    public void setHQ(HQ HQ) {
+        this.HQ = HQ;
+    }
+
+    public int getNivelHQ() {
+        return NivelHQ;
+    }
+
+    public void setNivelHQ(int NivelHQ) {
+        this.NivelHQ = NivelHQ;
+    }
+
+    public ArrayList<Tropa> getTropasEnemigas() {
+        return TropasEnemigas;
+    }
+
+    public void setTropasEnemigas(ArrayList<Tropa> TropasEnemigas) {
+        this.TropasEnemigas = TropasEnemigas;
+    }
+    
     
 
 }
