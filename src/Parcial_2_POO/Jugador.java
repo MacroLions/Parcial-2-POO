@@ -395,7 +395,11 @@ public class Jugador {
                                 CuartelElegido.setDisponibilidad(false);
                                 CuartelElegido.setTipoDeTropa(TropaElegida);
                                 CuartelElegido.setEsperaDeTropa(raza.getEsperaEscuadron());
-                                CuartelElegido.start();
+                                try{
+                                    CuartelElegido.start();
+                                }catch(Exception e){
+                                    
+                                }
                                 System.out.println("Se está entrenando un "+raza.getNombreEscuadron());
                                 System.out.println("");
                                 break;
@@ -412,7 +416,11 @@ public class Jugador {
                                 CuartelElegido.setDisponibilidad(false);
                                 CuartelElegido.setTipoDeTropa(TropaElegida);
                                 CuartelElegido.setEsperaDeTropa(raza.getEsperaSuperSoldado());
-                                CuartelElegido.start();
+                                try{
+                                    CuartelElegido.start();
+                                }catch(Exception e){
+                                    
+                                }
                                 System.out.println("Se está entrenando un "+raza.getNombreSuperSoldado());
                                 System.out.println("");
                                 break;
@@ -479,7 +487,11 @@ public class Jugador {
                                 GeneradorElegido.setDisponibilidad(false);
                                 GeneradorElegido.setTipoDeVehiculo(VehiculoElegido);
                                 GeneradorElegido.setEsperaDeVehiculo(raza.getEsperaVehiculo1());
-                                GeneradorElegido.start();
+                                try{
+                                    GeneradorElegido.start();
+                                }catch(Exception e){
+                                    
+                                }
                                 System.out.println("Se está generando un "+raza.getNombreVehiculo1());
                                 System.out.println("");
                                 break;
@@ -496,7 +508,11 @@ public class Jugador {
                                 GeneradorElegido.setDisponibilidad(false);
                                 GeneradorElegido.setTipoDeVehiculo(VehiculoElegido);
                                 GeneradorElegido.setEsperaDeVehiculo(raza.getEsperaVehiculo2());
-                                GeneradorElegido.start();
+                                try{
+                                    GeneradorElegido.start();
+                                }catch(Exception e){
+                                    
+                                }
                                 System.out.println("Se está generando un "+raza.getNombreVehiculo2());
                                 System.out.println("");
                                 break;
