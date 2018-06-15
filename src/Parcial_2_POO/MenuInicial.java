@@ -48,6 +48,8 @@ public class MenuInicial {
                     }
                     Jugador1.setObjetivos(Jugador2.getEdificaciones());
                     Jugador2.setObjetivos(Jugador1.getEdificaciones());
+                    Jugador1.setTropasEnemigas(Jugador2.getTropas());
+                    Jugador2.setTropasEnemigas(Jugador1.getTropas());
                     JuegoComenzar();
                     break;
                 case 2:
@@ -133,6 +135,10 @@ public class MenuInicial {
         boolean TurnoJugadorDebug = true;
         boolean Start = true;
         JugadorDebug.setObjetivos(JugadorDebug.getEdificaciones());
+        JugadorDebug.setTropasEnemigas(JugadorDebug.getTropas());
+        JugadorDebug.getHQ().setRecursoTotal1(10000);
+        JugadorDebug.getHQ().setRecursoTotal2(10000);
+        JugadorDebug.getHQ().setRecursoTotal3(10000);
         while(Start){
             System.out.println(">>>>Fase #"+Auxiliar.getFase()+"<<<<");
             Auxiliar.ViajarMaster(JugadorDebug.getTropas());
