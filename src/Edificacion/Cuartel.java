@@ -39,20 +39,26 @@ public class Cuartel extends Thread implements Edificacion{
         }
         int comprobador = Auxiliar.getFase()-this.FaseSet;
         if(comprobador==EsperaDeTropa){
-            setDisponibilidad(true);
-            this.FaseSet=-1;
             Tropa tropa= TropaFactory.getTropa(this.TipoDeTropa);
             tropa.setPropietario(this.propitario);
             if(this.TipoDeTropa==1){
                 tropa.setNombre(NombreEscuadron);
                 tropa.setDamageBase(DamageEscuadron);
                 System.out.println("El "+NombreEscuadron+" ha sido entrenado");
+                setDisponibilidad(true);
+                this.FaseSet=-1;
+                this.EsperaDeTropa=0;
+                this.TipoDeTropa=0;
                 System.out.println("");   
             }
             else if (this.TipoDeTropa==2){
                 tropa.setNombre(NombreSuperSoldado);
                 tropa.setDamageBase(DamageSuperSoldado);
                 System.out.println("El "+NombreSuperSoldado+" ha sido entrenado");
+                setDisponibilidad(true);
+                this.FaseSet=-1;
+                this.EsperaDeTropa=0;
+                this.TipoDeTropa=0;
                 System.out.println("");
             }
             return tropa;
