@@ -30,6 +30,7 @@ public class Jugador {
     private HQ HQ;
     private int NivelHQ = 0;
     private final ArrayList<Tropa> Tropas = new ArrayList();
+    private ArrayList<Tropa> TropasEnemigas = new ArrayList();
     private final ArrayList<Edificacion> Edificaciones = new ArrayList();
     private final ArrayList<Cuartel> Cuarteles = new ArrayList();
     private final ArrayList<GeneradordeVehiculos> GeneradoresDeVehiculos = new ArrayList();
@@ -68,10 +69,11 @@ public class Jugador {
         System.out.println("////¿Que haras ahora?////");
         System.out.println("HQ nivel "+NivelHQ);
         System.out.println("Recursos disponibles: "+raza.getNombreRecurso1()+": "+HQ.getRecursoTotal1()+" //"+raza.getNombreRecurso2()+": "+HQ.getRecursoTotal2()+" //" +raza.getNombreRecurso3()+": "+HQ.getRecursoTotal3());
-        System.out.println("1. Construir            5. Revisar Tropas");
-        System.out.println("2. Recolectar Recursos  6. Revisar Edificaciones y Vehiculos");
-        System.out.println("3. Entrenar Tropa       7. Atacar");
-        System.out.println("4. Crear Vehiculo       8. Terminar Turno");
+        System.out.println("1. Construir            6. Revisar Edificaciones");
+        System.out.println("2. Recolectar Recursos  7. Revisar Vehiculos");
+        System.out.println("3. Entrenar Tropa       8. Atacar");
+        System.out.println("4. Crear Vehiculo       9. Defender");
+        System.out.println("5. Revisar Tropas       10. Terminar Turno");
 
         System.out.print("Opcion: ");
         int op = 8;
@@ -99,12 +101,17 @@ public class Jugador {
                 break;
             case 6:
                 RevisarEdificaciones();
-                RevisarVehiculos();
                 break;
             case 7:
-                Atacar();
+                RevisarVehiculos();
                 break;
             case 8:
+                Atacar();
+                break;
+            case 9:
+                Defender();
+                break;
+            case 10:
                 return false;
             default:
                 System.out.println("Escoja una opcion valida.");
@@ -653,7 +660,41 @@ public class Jugador {
         }
     }
 
-    
+    public void Defender(){
+        boolean HayTropasAtacando = false;
+        Scanner input = new Scanner(System.in);
+        for(int i=0;i<TropasEnemigas.size();i++){
+            if(TropasEnemigas.get(i).isAtacando()){
+                System.out.println("Posicion: "+i+1+" Tropa:"+TropasEnemigas.get(i).getNombre());
+                HayTropasAtacando = true;
+            }
+        }
+        
+        if(Tropas.isEmpty()){
+            System.out.println("No tienes con quien defenderte.");
+        }
+        else{
+            for(int i=0;i<Tropas.size();i++){
+                if(Tropas.get(i).getFaseUbicacion()==2){
+                    HayTropasAtacando = true;
+                }
+            }
+           
+        }
+        
+        if(HayTropasAtacando){
+            try{
+                System.out.print("Tropa enemiga a atacar: ");
+                int tropaEnemiga = input.nextInt();
+            }catch(Exception ex){
+            }
+        }
+        else{
+            System.out.println("Nadie está atacando.");
+            System.out.println("");
+        }
+
+    }
     
     //Gets and Sets luego de esta linea. 
 
